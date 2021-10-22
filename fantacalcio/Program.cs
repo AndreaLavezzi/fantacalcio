@@ -9,9 +9,8 @@ namespace fantacalcio
     {
         class Calciatore
         {
-            string nome;
+            string nome, ruolo;
             int prezzo;
-            int probParata;
         }
         //coloro che giocano al fantacalcio, hanno un nome, un punteggio, dei crediti, una lista di giocatori posseduti, possono comprare giocatori
         class Giocatore
@@ -21,41 +20,60 @@ namespace fantacalcio
             public int fantaMilioni { get; }
             public Giocatore(string nome)
             {
-                this.nome = nome;
-                
+                this.nome = nome;    
             }
         }
 
         static void Main(string[] args)
         {
+            MostraFile();
             //aggiungi giocatori alla lista
-            List<Giocatore> giocatoriDaSerializzare = new List<Giocatore>();
-            for(int i = 0; i < 10; i++)
-            {
-                string pname = $"g{i}";
-                giocatoriDaSerializzare.Add(new Giocatore(pname));
-            }
+            //List<Giocatore> giocatoriDaSerializzare = new List<Giocatore>();
+            //for(int i = 0; i < 10; i++)
+            //{
+            //    string pname = $"g{i}";
+            //    giocatoriDaSerializzare.Add(new Giocatore(pname));
+            //}
             //serializza
 
-            string output = JsonConvert.SerializeObject(giocatoriDaSerializzare);
-            File.WriteAllText("bro.json", output);
+            //string output = JsonConvert.SerializeObject(giocatoriDaSerializzare);
+            //File.WriteAllText("bro.json", output);
 
 
 
             //deserializza
-            string input = File.ReadAllText("bro.json");
-            List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
+            //string input = File.ReadAllText("bro.json");
+            //List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
 
-            foreach(Giocatore giocatore in giocatoriDeserializzati)
-            {
-                Console.WriteLine(giocatore.nome);
-            }
+            //foreach(Giocatore giocatore in giocatoriDeserializzati)
+            //{
+            //    Console.WriteLine(giocatore.nome);
+            //}
 
         }
 
-        void CreaGiocatori()
+        static void MostraFile()
         {
+            if (File.Exists("bro.json"))
+            {
+                Console.WriteLine("Esiste un file. Vuoi Caricarlo? [y/n]");
+                if(Console.ReadKey(true).Key == ConsoleKey.Y)
+                {
+                    //deserializza
+                    string input = File.ReadAllText("bro.json");
+                    List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
 
+                    foreach (Giocatore giocatore in giocatoriDeserializzati)
+                    {
+                        Console.WriteLine(giocatore.nome);
+                    }
+                }
+            }
+        }
+
+        static void CreaGiocatori()
+        { 
+            
         }
     }
 }
