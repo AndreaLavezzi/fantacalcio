@@ -13,3 +13,19 @@ C:\Users\Studente\Git Bash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fanta
 C:\Users\Studente\Git Bash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.genruntimeconfig.cache
 C:\Users\Studente\Git Bash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Studente\Git Bash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.CopyComplete
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.dll
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.pdb
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.exe
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.deps.json
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.runtimeconfig.json
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.runtimeconfig.dev.json
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.dll
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\fantacalcio.pdb
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.AssemblyReference.cache
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.AssemblyInfoInputs.cache
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.AssemblyInfo.cs
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.CoreCompileInputs.cache
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.CopyComplete
+C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.genruntimeconfig.cache

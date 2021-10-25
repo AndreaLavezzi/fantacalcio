@@ -1,4 +1,18 @@
-﻿using System;
+﻿//Nickname: @Sandstorm
+//Data: 18/10/2021
+/*Consegna: Progettare un sistema di gestione del FANTACALCIO.
+* Il livello di complessità del regolamento dovrà essere gestito autonomamente e giustificato nella relazione.
+
+
+* Funzionalità minime
+* - Almeno 2 giocatori
+* - gestione dei crediti per l'acquisto giocatori (all'inizio X crediti, ogni giocatore vale y1, y2, y3..yn crediti
+* - gestione settimanale con inserimento punteggio singolo giocatori.
+* - gestione della classifica parziale al termine di ogni aggiornamento settimanale.
+
+
+* Il progetto DEVE essere svolto in modalità CONSOLE.*/
+using System;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -24,9 +38,21 @@ namespace fantacalcio
             }
         }
 
+        //partita in corso
+        class Fantacalcio
+        {
+            List<Giocatore> giocatori = new List<Giocatore>();
+            public Fantacalcio(List<Giocatore> giocatori)
+            {
+                this.giocatori = giocatori;
+            }
+        }
+
         static void Main(string[] args)
         {
+            Menu();
             MostraFile();
+
             //aggiungi giocatori alla lista
             //List<Giocatore> giocatoriDaSerializzare = new List<Giocatore>();
             //for(int i = 0; i < 10; i++)
@@ -52,6 +78,60 @@ namespace fantacalcio
 
         }
 
+        static void Menu()
+        {
+            string risposta;
+            bool nonValida = false;
+            Console.Write("1 - Inizia nuova partita\n2 - Carica partita\nRisposta: ");
+            risposta = Console.ReadLine();
+            do
+            {
+                switch (risposta)
+                {
+                    case "1":
+                        nonValida = false;
+                        NuovaPartita();
+                        break;
+                    case "2":
+                        ControllaFile();
+                        nonValida = false;
+                        break;
+                    default:
+                        nonValida = true;
+                        Console.Write("Inserimento non valido. Reiserire: ");
+                        risposta = Console.ReadLine();
+                        break;
+                }
+            } while (nonValida == true);
+            
+        }
+
+        static void ControllaFile()
+        {
+
+        }
+
+        /*inizia una nuova partita; chiede di inserire un numero di giocatori uguale o maggiore di 2 e minore o uguale a 8,
+        successivamente chiede di inserire i nomi dei giocatori, li mette in una lista e crea un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
+        static Fantacalcio NuovaPartita()
+        {
+            int numeroGiocatori;
+            Console.Write("Quanti giocatori parteciperanno al torneo? [MINIMO 2 GIOCATORI]\nRisposta: ");
+            while(!Int32.TryParse(Console.ReadLine(), out numeroGiocatori) || numeroGiocatori < 2 || numeroGiocatori > 8)
+            {
+                Console.Write("\nInserimento non valido. Reinserire: ");
+            }
+            List<Giocatore> giocatori = new List<Giocatore>();
+            for(int i = 0; i < numeroGiocatori; i++)
+            {
+                Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
+                giocatori.Add(new Giocatore(Console.ReadLine()));
+            }
+            Fantacalcio fantacalcio = new Fantacalcio(giocatori);
+            return fantacalcio;
+        }
+
+        //funzione di test del caricamento di un file JSON nel programma
         static void MostraFile()
         {
             if (File.Exists("bro.json"))
@@ -71,6 +151,7 @@ namespace fantacalcio
             }
         }
 
+        //dovrebbe creare i giocatori ma al momento la mansione spetta a NuovaPartita(), si vedrà se cambiare.
         static void CreaGiocatori()
         { 
             
