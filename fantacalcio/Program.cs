@@ -21,11 +21,13 @@ namespace fantacalcio
 {
     class Program
     {
+        //i calciatori, hanno un nome e un ruolo, viene inoltre salvato il prezzo a cui vengono comprati
         class Calciatore
         {
             string nome, ruolo;
             int prezzo;
         }
+
         //coloro che giocano al fantacalcio, hanno un nome, un punteggio, dei crediti, una lista di giocatori posseduti, possono comprare giocatori
         class Giocatore
         {
@@ -81,7 +83,7 @@ namespace fantacalcio
         static void Menu()
         {
             string risposta;
-            bool nonValida = false;
+            bool nonValida;
             Console.Write("1 - Inizia nuova partita\n2 - Carica partita\nRisposta: ");
             risposta = Console.ReadLine();
             do
@@ -111,23 +113,10 @@ namespace fantacalcio
 
         }
 
-        /*inizia una nuova partita; chiede di inserire un numero di giocatori uguale o maggiore di 2 e minore o uguale a 8,
-        successivamente chiede di inserire i nomi dei giocatori, li mette in una lista e crea un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
+        /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
         static Fantacalcio NuovaPartita()
-        {
-            int numeroGiocatori;
-            Console.Write("Quanti giocatori parteciperanno al torneo? [MINIMO 2 GIOCATORI]\nRisposta: ");
-            while(!Int32.TryParse(Console.ReadLine(), out numeroGiocatori) || numeroGiocatori < 2 || numeroGiocatori > 8)
-            {
-                Console.Write("\nInserimento non valido. Reinserire: ");
-            }
-            List<Giocatore> giocatori = new List<Giocatore>();
-            for(int i = 0; i < numeroGiocatori; i++)
-            {
-                Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
-                giocatori.Add(new Giocatore(Console.ReadLine()));
-            }
-            Fantacalcio fantacalcio = new Fantacalcio(giocatori);
+        {      
+            Fantacalcio fantacalcio = new Fantacalcio(CreaGiocatori());
             return fantacalcio;
         }
 
@@ -151,10 +140,49 @@ namespace fantacalcio
             }
         }
 
-        //dovrebbe creare i giocatori ma al momento la mansione spetta a NuovaPartita(), si vedrà se cambiare.
-        static void CreaGiocatori()
-        { 
+        /* chiede di inserire un numero di giocatori uguale o maggiore di 2 e minore o uguale a 8,
+         * successivamente chiede di inserire i nomi dei giocatori, li mette in una lista */
+        static List<Giocatore> CreaGiocatori()
+        {
+            int numeroGiocatori;
+            string nome;
+            bool nomeDoppio = false;
+            List<Giocatore> giocatori = new List<Giocatore>();
+
+
+            Console.Write("Quanti giocatori parteciperanno al torneo? [MINIMO 2 GIOCATORI]\nRisposta: ");
+            while (!Int32.TryParse(Console.ReadLine(), out numeroGiocatori) || numeroGiocatori < 2 || numeroGiocatori > 8)
+            {
+                Console.Write("\nInserimento non valido. Reinserire: ");
+            }
             
+            for (int i = 0; i < numeroGiocatori; i++)
+            {
+                Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
+                nome = Console.ReadLine();
+                do
+                {
+                    foreach (Giocatore giocatore in giocatori)
+                    {
+                        if (nome == giocatore.nome)
+                        {
+                            nomeDoppio = true;
+                            Console.Write("Inserire un nome che non sia già stato scelto: ");
+                            nome = Console.ReadLine();
+                            break;
+                        }
+                        else
+                        {
+                            nomeDoppio = false;
+                        }
+                    }
+                } while (nomeDoppio == true);
+
+
+                giocatori.Add(new Giocatore(nome));
+            }
+
+            return giocatori;
         }
     }
 }
