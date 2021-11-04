@@ -48,23 +48,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Studente\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\GitBash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
+      "projectUniqueName": "C:\\Users\\Studente\\Git Bash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
       "projectName": "fantacalcio",
-      "projectPath": "C:\\Users\\HP\\GitBash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\GitBash\\fantacalcio\\fantacalcio\\obj\\",
+      "projectPath": "C:\\Users\\Studente\\Git Bash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
+      "packagesPath": "C:\\Users\\Studente\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Studente\\Git Bash\\fantacalcio\\fantacalcio\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Studente\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -110,7 +106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

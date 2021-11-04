@@ -57,35 +57,12 @@ namespace fantacalcio
                 return giocatori;
             }
         }
+        
+        static Fantacalcio partitaInCorso;
 
         static void Main(string[] args)
         {
             Menu();
-            MostraFile();
-
-            //aggiungi giocatori alla lista
-            //List<Giocatore> giocatoriDaSerializzare = new List<Giocatore>();
-            //for(int i = 0; i < 10; i++)
-            //{
-            //    string pname = $"g{i}";
-            //    giocatoriDaSerializzare.Add(new Giocatore(pname));
-            //}
-            //serializza
-
-            //string output = JsonConvert.SerializeObject(giocatoriDaSerializzare);
-            //File.WriteAllText("bro.json", output);
-
-
-
-            //deserializza
-            //string input = File.ReadAllText("bro.json");
-            //List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
-
-            //foreach(Giocatore giocatore in giocatoriDeserializzati)
-            //{
-            //    Console.WriteLine(giocatore.nome);
-            //}
-
         }
 
         static void Menu()
@@ -93,23 +70,21 @@ namespace fantacalcio
             string risposta;
             bool nonValida;
             Console.Write("1 - Inizia nuova partita\n2 - Carica partita\nRisposta: ");
-            risposta = Console.ReadLine();
             do
             {
+                risposta = Console.ReadLine();
+                nonValida = false;
                 switch (risposta)
                 {
-                    case "1":
-                        nonValida = false;
+                    case "1": 
                         NuovaPartita();
                         break;
                     case "2":
-                        ControllaFile();
-                        nonValida = false;
+                        MostraFile();
                         break;
                     default:
                         nonValida = true;
                         Console.Write("Inserimento non valido. Reiserire: ");
-                        risposta = Console.ReadLine();
                         break;
                 }
             } while (nonValida == true);
@@ -121,14 +96,18 @@ namespace fantacalcio
 
         }
 
+        static void CaricaPartita(Fantacalcio partita)
+        {
+            partitaInCorso = partita;
+        }
+
         /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
-        static Fantacalcio NuovaPartita()
+        static void NuovaPartita()
         {
             string nomeTorneo;
             if(Directory.GetFiles("saveFiles/", "*.json").Length >= 3)
             {
                 Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");
-                return null;
             }
             else
             {
@@ -136,12 +115,11 @@ namespace fantacalcio
                 do
                 {
                     nomeTorneo = Console.ReadLine();
-                } while (ControlloNome(-1, nomeTorneo, new List<Giocatore>()) == false);
+                } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));
                 Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori());
                 string output = JsonConvert.SerializeObject(fantacalcio) + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);
 
                 File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);
-                return fantacalcio;
             }   
         }
 
@@ -151,23 +129,20 @@ namespace fantacalcio
             string[] salvataggi = Directory.GetFiles("saveFiles/", "*.json");
             if (salvataggi.Length != 0)
             {
+                List<Fantacalcio> partite = new List<Fantacalcio>();
+
                 foreach(string salvataggio in salvataggi)
                 {
                     string input = File.ReadAllText(salvataggio);
-                    string[] words = input.Split(input, ";");
+                    string[] words = input.Split(";");
+                    partite.Add(JsonConvert.DeserializeObject<Fantacalcio>(words[0]));
                 }
-                //Console.WriteLine("Esiste un file. Vuoi Caricarlo? [y/n]");
-                //if(Console.ReadKey(true).Key == ConsoleKey.Y)
-                //{
-                //    //deserializza
-                //    //string input = File.ReadAllText("bro.json");
-                //    //List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
 
-                //    //foreach (Giocatore giocatore in giocatoriDeserializzati)
-                //    //{
-                //    //    Console.WriteLine(giocatore.nome);
-                //    //}
-                //}
+                for(int i = 0; i < partite.Count; i++)
+                {
+                    Console.WriteLine(i + 1 +  " -> " + partite[i].nomeSalvataggio);
+                }
+
             }
             else
             {
@@ -207,14 +182,14 @@ namespace fantacalcio
 
         static bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
         {
+            string caratteriSpeciali = "|\\!\"£$%&/()='?^<>[]{}*+@°#§ ";
 
-            if(nomeDaControllare.Length < 4 || nomeDaControllare.Length > 12)
+            if (nomeDaControllare.Length < 4 || nomeDaControllare.Length > 12)
             {
                 Console.Write("Inserire un nome compreso tra 4 e 12 caratteri: ");
                 return false;
             }
-            string caratteriSpeciali = "|\\!\"£$%&/()='?^<>[]{}*+@°#§ "; 
-            //string[] caratteriSpeciali = { "|", "\\", "!", "\"", "£", "$", "%", "&", "/", "(", ")", "=", "?", "^", "<", ">", ";", ",", ":", ":", "-", "_", "@", "°", "#", "§", "[", "{", "]", "}", "*", "+", };
+
             for (int i = 0; i < nomeDaControllare.Length; i++)
             {
                 for(int j = 0; j < caratteriSpeciali.Length; j++)
@@ -238,7 +213,33 @@ namespace fantacalcio
                     }
                 }
             }
+
             return true;
+        }
+
+        static void SelezionaFile(string[] salvataggi)
+        {
+            int indiceFile;
+            string risposta;
+            Console.WriteLine("Su quale salvataggio vuoi compiere un'azione?");
+            do
+            {
+                risposta = Console.ReadLine();
+                
+                if (int.TryParse(risposta, out indiceFile))
+                {
+
+                }
+
+            } while (indiceFile > salvataggi.Length);
+
+
+
+        }
+
+        static void AzioniFile(string fileSelezionato)
+        {
+            
         }
     }
 }
