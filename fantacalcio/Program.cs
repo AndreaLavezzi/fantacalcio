@@ -221,19 +221,14 @@ namespace fantacalcio
         {
             int indiceFile;
             string risposta;
+            bool nonValida = false;
             Console.WriteLine("Su quale salvataggio vuoi compiere un'azione?");
-            do
+            risposta = Console.ReadLine();
+            while (!int.TryParse(risposta, out indiceFile) || indiceFile > salvataggi.Length || indiceFile < 0)
             {
+                Console.WriteLine("Risposta non valida. Reinserire:");
                 risposta = Console.ReadLine();
-                
-                if (int.TryParse(risposta, out indiceFile))
-                {
-
-                }
-
-            } while (indiceFile > salvataggi.Length);
-
-
+            }
 
         }
 
