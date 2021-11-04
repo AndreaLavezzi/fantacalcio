@@ -43,10 +43,18 @@ namespace fantacalcio
         //partita in corso
         class Fantacalcio
         {
+            public string nomeSalvataggio { get; }
             List<Giocatore> giocatori = new List<Giocatore>();
-            public Fantacalcio(List<Giocatore> giocatori)
+            
+            public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori)
             {
+                this.nomeSalvataggio = nomeSalvataggio;
                 this.giocatori = giocatori;
+            }
+
+            public List<Giocatore> GetGiocatori()
+            {
+                return giocatori;
             }
         }
 
@@ -115,28 +123,55 @@ namespace fantacalcio
 
         /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
         static Fantacalcio NuovaPartita()
-        {      
-            Fantacalcio fantacalcio = new Fantacalcio(CreaGiocatori());
-            return fantacalcio;
+        {
+            string nomeTorneo;
+            if(Directory.GetFiles("saveFiles/", "*.json").Length >= 3)
+            {
+                Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");
+                return null;
+            }
+            else
+            {
+                Console.Write("Inserire il nome del torneo: ");
+                do
+                {
+                    nomeTorneo = Console.ReadLine();
+                } while (ControlloNome(-1, nomeTorneo, new List<Giocatore>()) == false);
+                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori());
+                string output = JsonConvert.SerializeObject(fantacalcio) + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);
+
+                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);
+                return fantacalcio;
+            }   
         }
 
         //funzione di test del caricamento di un file JSON nel programma
         static void MostraFile()
         {
-            if (File.Exists("bro.json"))
+            string[] salvataggi = Directory.GetFiles("saveFiles/", "*.json");
+            if (salvataggi.Length != 0)
             {
-                Console.WriteLine("Esiste un file. Vuoi Caricarlo? [y/n]");
-                if(Console.ReadKey(true).Key == ConsoleKey.Y)
+                foreach(string salvataggio in salvataggi)
                 {
-                    //deserializza
-                    string input = File.ReadAllText("bro.json");
-                    List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
-
-                    foreach (Giocatore giocatore in giocatoriDeserializzati)
-                    {
-                        Console.WriteLine(giocatore.nome);
-                    }
+                    string input = File.ReadAllText(salvataggio);
+                    string[] words = input.Split(input, ";");
                 }
+                //Console.WriteLine("Esiste un file. Vuoi Caricarlo? [y/n]");
+                //if(Console.ReadKey(true).Key == ConsoleKey.Y)
+                //{
+                //    //deserializza
+                //    //string input = File.ReadAllText("bro.json");
+                //    //List<Giocatore> giocatoriDeserializzati = JsonConvert.DeserializeObject<List<Giocatore>>(input);
+
+                //    //foreach (Giocatore giocatore in giocatoriDeserializzati)
+                //    //{
+                //    //    Console.WriteLine(giocatore.nome);
+                //    //}
+                //}
+            }
+            else
+            {
+                Console.WriteLine("Non esistono file di salvataggio.");
             }
         }
 
@@ -146,7 +181,6 @@ namespace fantacalcio
         {
             int numeroGiocatori;
             string nome;
-            bool nomeDoppio = false;
             List<Giocatore> giocatori = new List<Giocatore>();
 
 
@@ -159,30 +193,52 @@ namespace fantacalcio
             for (int i = 0; i < numeroGiocatori; i++)
             {
                 Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
-                nome = Console.ReadLine();
                 do
                 {
-                    foreach (Giocatore giocatore in giocatori)
-                    {
-                        if (nome == giocatore.nome)
-                        {
-                            nomeDoppio = true;
-                            Console.Write("Inserire un nome che non sia già stato scelto: ");
-                            nome = Console.ReadLine();
-                            break;
-                        }
-                        else
-                        {
-                            nomeDoppio = false;
-                        }
-                    }
-                } while (nomeDoppio == true);
-
+                    nome = Console.ReadLine();
+                }
+                while (ControlloNome(0, nome, giocatori) == false);
 
                 giocatori.Add(new Giocatore(nome));
             }
 
             return giocatori;
+        }
+
+        static bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
+        {
+
+            if(nomeDaControllare.Length < 4 || nomeDaControllare.Length > 12)
+            {
+                Console.Write("Inserire un nome compreso tra 4 e 12 caratteri: ");
+                return false;
+            }
+            string caratteriSpeciali = "|\\!\"£$%&/()='?^<>[]{}*+@°#§ "; 
+            //string[] caratteriSpeciali = { "|", "\\", "!", "\"", "£", "$", "%", "&", "/", "(", ")", "=", "?", "^", "<", ">", ";", ",", ":", ":", "-", "_", "@", "°", "#", "§", "[", "{", "]", "}", "*", "+", };
+            for (int i = 0; i < nomeDaControllare.Length; i++)
+            {
+                for(int j = 0; j < caratteriSpeciali.Length; j++)
+                {
+                    if(nomeDaControllare[i].ToString() == caratteriSpeciali[j].ToString())
+                    {
+                        Console.Write("Impossibile inserire nel nome il carattere \"{0}\". Reinserire: ", caratteriSpeciali[j].ToString());
+                        return false;
+                    }
+                }
+            }
+
+            if(codice == 0)
+            {
+                foreach (Giocatore giocatore in giocatori)
+                {
+                    if (nomeDaControllare == giocatore.nome)
+                    {
+                        Console.Write("Inserire un nome che non sia già stato scelto: ");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
