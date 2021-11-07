@@ -21,11 +21,18 @@ namespace fantacalcio
 {
     class Program
     {
+        #region Classi
         //i calciatori, hanno un nome e un ruolo, viene inoltre salvato il prezzo a cui vengono comprati
         class Calciatore
         {
-            string nome, ruolo;
+            public string nome { get; }
+            public string ruolo { get; }
             int prezzo;
+            public Calciatore(string nome, string ruolo)
+            {
+                this.nome = nome;
+                this.ruolo = ruolo;
+            }
         }
 
         //coloro che giocano al fantacalcio, hanno un nome, un punteggio, dei crediti, una lista di giocatori posseduti, possono comprare giocatori
@@ -44,12 +51,14 @@ namespace fantacalcio
         class Fantacalcio
         {
             public string nomeSalvataggio { get; }      //nome del salvataggio che verrà assegnato al file di salvataggio
+            public int fase { get; }  //fase 0 -> appena creata, fase 1 -> asta finita, fase 2 -> 
             List<Giocatore> giocatori = new List<Giocatore>();      //lista contenente i giocatori registrati nella partita corrente  
             
-            public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori)   //metodo costruttore, ottiene in ingresso il nome del salvataggio e la lista dei giocatori registrati
+            public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori, int fase)   //metodo costruttore, ottiene in ingresso il nome del salvataggio e la lista dei giocatori registrati
             {
                 this.nomeSalvataggio = nomeSalvataggio;
                 this.giocatori = giocatori;
+                this.fase = fase;
             }
 
             public List<Giocatore> GetGiocatori()   //metodo pubblico che ritorna la lista dei giocatori registrati nella partita corrente
@@ -57,7 +66,8 @@ namespace fantacalcio
                 return giocatori;
             }
         }
-        
+        #endregion
+
         static Fantacalcio partitaInCorso;  //assume il valore della partita caricata attualmente
 
         static void Main(string[] args)     //il main chiama solo il metodo che mostra il menù principale
@@ -80,7 +90,7 @@ namespace fantacalcio
                         NuovaPartita();     //se l'utente inserisce "1" verrà iniziata la procedura di creazione di una nuova partita
                         break;  
                     case "2":
-                        MostraFile();       //se l'utente inserisce "2" verrà mostrata la lista dei salvataggi esistenti su cui si potranno eseguire delle azioni
+                        MostraFile();       //se l'utente inserisce "2" verrà mostrata la lista dei salvataggi esistenti su cui si potranno eseguire delle azioni)
                         break;
                     default:
                         nonValida = true;   //se l'utente inserisce qualcosa di non gestito, la risposta non sarà valida e verrà chiesto nuovamente l'inserimento di una risposta
@@ -91,14 +101,23 @@ namespace fantacalcio
             
         }
 
+        #region GestioneFile
         static void ControllaFile()
         {
-
+            
         }
 
         static void CaricaPartita(Fantacalcio partita)  //riceve in input una partita ricavata da un file di salvataggio
         {
             partitaInCorso = partita;   //imposta la partita come partita in corso
+            switch (partitaInCorso.fase)
+            {
+                case 0:
+                    Asta();
+                    break;
+                case 1:
+                    break;
+            }
         }
 
         /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
@@ -117,14 +136,15 @@ namespace fantacalcio
                     nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
                 } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine
 
-                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori());     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
+                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
 
-                string output = JsonConvert.SerializeObject(fantacalcio) + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della partita
+                string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della partita
                                                                                                                                                                 * appena creata e la lista di giocatori registrati che le appartiene; entrambe
                                                                                                                                                                 * vengono convertite ad un file con estensione json tramite il metodo "SerializeObject"
                                                                                                                                                                 * della classe JsonConvert della libreria Newtonsoft.Json*/
 
                 File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
+                CaricaPartita(fantacalcio);
             }   
         }
 
@@ -140,14 +160,15 @@ namespace fantacalcio
                 {
                     string input = File.ReadAllText(salvataggi[i]);
                     string[] words = input.Split(";");
-                    //partite.Add(new Fantacalcio());
-                    
+                    partite.Add(new Fantacalcio(words[0], JsonConvert.DeserializeObject<List<Giocatore>>(words[2]), Int32.Parse(words[1])));
                 }
 
                 for(int i = 0; i < partite.Count; i++)
                 {
                     Console.WriteLine(i + 1 +  " -> " + partite[i].nomeSalvataggio);
                 }
+
+                SelezionaFile(partite);
 
             }
             else
@@ -158,33 +179,6 @@ namespace fantacalcio
 
         /* chiede di inserire un numero di giocatori uguale o maggiore di 2 e minore o uguale a 8,
          * successivamente chiede di inserire i nomi dei giocatori, li mette in una lista */
-        static List<Giocatore> CreaGiocatori()
-        {
-            int numeroGiocatori;
-            string nome;
-            List<Giocatore> giocatori = new List<Giocatore>();
-
-
-            Console.Write("Quanti giocatori parteciperanno al torneo? [MINIMO 2 GIOCATORI]\nRisposta: ");
-            while (!Int32.TryParse(Console.ReadLine(), out numeroGiocatori) || numeroGiocatori < 2 || numeroGiocatori > 8)
-            {
-                Console.Write("\nInserimento non valido. Reinserire: ");
-            }
-            
-            for (int i = 0; i < numeroGiocatori; i++)
-            {
-                Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
-                do
-                {
-                    nome = Console.ReadLine();
-                }
-                while (ControlloNome(0, nome, giocatori) == false);
-
-                giocatori.Add(new Giocatore(nome));
-            }
-
-            return giocatori;
-        }
 
         static bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
         {
@@ -223,24 +217,98 @@ namespace fantacalcio
             return true;
         }
 
-        static void SelezionaFile(string[] salvataggi)
+        static void SelezionaFile(List<Fantacalcio> partite)
         {
             int indiceFile;
             string risposta;
             bool nonValida = false;
             Console.WriteLine("Su quale salvataggio vuoi compiere un'azione?");
             risposta = Console.ReadLine();
-            while (!int.TryParse(risposta, out indiceFile) || indiceFile > salvataggi.Length || indiceFile < 0)
+            while (!int.TryParse(risposta, out indiceFile) || indiceFile > partite.Count || indiceFile < 0)
             {
                 Console.WriteLine("Risposta non valida. Reinserire:");
                 risposta = Console.ReadLine();
             }
-
+            Console.WriteLine("E' stato selezionato il file numero {0}, cosa vuoi fare?", risposta);
+            Console.WriteLine("1 - Carica File");
+            Console.Write("Risposta: ");
+            string risposta2 = "e";
+            while(risposta2 != "1")
+            {
+                risposta2 = Console.ReadLine();
+            }
+            switch (risposta2)
+            {
+                case "1":
+                    CaricaPartita(partite[Int32.Parse(risposta)]);
+                    break;
+            }
         }
 
         static void AzioniFile(string fileSelezionato)
         {
             
         }
+
+        #endregion
+
+        #region Gioco
+        static List<Giocatore> CreaGiocatori()
+        {
+            int numeroGiocatori;
+            string nome;
+            List<Giocatore> giocatori = new List<Giocatore>();
+
+
+            Console.Write("Quanti giocatori parteciperanno al torneo? [MINIMO 2 GIOCATORI]\nRisposta: ");
+            while (!Int32.TryParse(Console.ReadLine(), out numeroGiocatori) || numeroGiocatori < 2 || numeroGiocatori > 8)
+            {
+                Console.Write("\nInserimento non valido. Reinserire: ");
+            }
+            
+            for (int i = 0; i < numeroGiocatori; i++)
+            {
+                Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
+                do
+                {
+                    nome = Console.ReadLine();
+                }
+                while (ControlloNome(0, nome, giocatori) == false);
+
+                giocatori.Add(new Giocatore(nome));
+            }
+
+            return giocatori;
+        }
+
+        static void Asta()
+        {
+            Console.WriteLine("Caricamento dei giocatori, Attendere...");
+            string[] inputCalciatori = File.ReadAllLines("calciatori.txt");
+            List<Calciatore> listaCalciatori = new List<Calciatore>();
+            for(int i = 0; i < inputCalciatori.Length; i++)
+            {
+                listaCalciatori.Add(new Calciatore(inputCalciatori[i].Split(",")[0], inputCalciatori[i].Split(",")[1]));
+            }
+            Console.Clear();
+            Console.WriteLine("Caricamento Completato.");
+            Console.WriteLine("Inizio serializzazione lista...");
+            string output = JsonConvert.SerializeObject(listaCalciatori, Formatting.Indented);
+            Console.WriteLine("Serializzazione completata.");
+            File.WriteAllText("newCalciatori.txt", output);
+            Console.WriteLine("Scrittura su file completata.");
+            if(partitaInCorso != null)
+            {
+                Console.Write("Questa è la lista dei giocatori che parteciperanno all'asta:");
+                for (int i = 0; i < partitaInCorso.GetGiocatori().Count; i++)
+                {
+                    Console.WriteLine(i + 1 + " - " + partitaInCorso.GetGiocatori()[i].nome);
+                }
+            }
+            
+
+
+        }
+        #endregion
     }
 }
