@@ -33,6 +33,11 @@ namespace fantacalcio
                 this.nome = nome;
                 this.ruolo = ruolo;
             }
+
+            public override string ToString()
+            {
+                return $"Nome: {nome}\nRuolo: {ruolo}";
+            }
         }
 
         //coloro che giocano al fantacalcio, hanno un nome, un punteggio, dei crediti, una lista di giocatori posseduti, possono comprare giocatori
@@ -40,10 +45,54 @@ namespace fantacalcio
         {
             public string nome { get; }         //identifica il giocatore 
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
-            public int fantaMilioni { get; }    //crediti a disposizione del giocatore, usati per comprare i calciatori
+            int fantaMilioni;                   //crediti a disposizione del giocatore, usati per comprare i calciatori
+            List<Calciatore> squadra;
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
-                this.nome = nome;    
+                this.nome = nome;
+                fantaMilioni = 500;
+            }
+
+            public void AddCalciatore(Calciatore calciatore, int prezzo)
+            {
+                squadra.Add(calciatore);
+                fantaMilioni -= prezzo;
+            }
+
+            public List<Calciatore> GetSquadra()
+            {
+                return squadra;
+            }
+
+            public int GetFantamilioni()
+            {
+                return fantaMilioni;
+            }
+
+            public int GetGiocatoriRuolo(string ruolo)
+            {
+                int portieri = 0;
+                int difensori = 0;
+                int attaccanti = 0;
+                int centrocampisti = 0;
+                foreach(Calciatore calciatore in squadra)
+                {
+                    switch (calciatore.ruolo)
+                    {
+                        case "portiere":
+                            portieri++;
+                            break;
+                        case "attaccante":
+                            attaccanti++;
+                            break;
+                        case "centrocampista":
+                            centrocampisti++;
+                            break;
+                        case "difensore":
+                            difensori++;
+                            break;
+                    }
+                }
             }
         }
 
@@ -391,8 +440,9 @@ namespace fantacalcio
             //        Console.WriteLine(i + 1 + " - " + partitaInCorso.GetGiocatori()[i].nome);
             //    }
             //}
-
-            Console.WriteLine("Il gioco è ancora in via di sviluppo. Verrai riportato al menu principale.");
+            string fileCalciatori = File.ReadAllText("calciatori.txt");
+            List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
+            
             Menu();
             
         }
