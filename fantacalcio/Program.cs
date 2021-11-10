@@ -66,9 +66,84 @@ namespace fantacalcio
                 return giocatori;
             }
         }
+
+        class Salvataggio
+        {
+            public void CreaSalvataggio(Fantacalcio fantacalcio)
+            {
+
+                string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della partita
+                                                                                                                                                                * appena creata e la lista di giocatori registrati che le appartiene; entrambe
+                                                                                                                                                                * vengono convertite ad un file con estensione json tramite il metodo "SerializeObject"
+                                                                                                                                                                * della classe JsonConvert della libreria Newtonsoft.Json*/
+                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
+            }
+            string[] GetFileSalvataggi()
+            {
+                string[] salvataggi = Directory.GetFiles("saveFiles/", "*.json");   //ottiene tutte le directory dei file con estensione json nella cartella saveFiles
+                return salvataggi;
+            }
+            public List<Fantacalcio> GetPartite()
+            {
+                string[] salvataggi = GetFileSalvataggi();
+                List<Fantacalcio> partite = new List<Fantacalcio>();    //lista di partite esistenti
+
+                if (salvataggi.Length != 0)     //se esistono file di salvataggio
+                {
+                    for (int i = 0; i < salvataggi.Length; i++)
+                    {
+                        string input = File.ReadAllText(salvataggi[i]);
+                        string[] words = input.Split(";");
+
+                        string nomeSalvataggio = words[0];
+                        int fase = Int32.Parse(words[1]);
+                        List<Giocatore> giocatori = JsonConvert.DeserializeObject<List<Giocatore>>(words[2]);
+
+                        partite.Add(new Fantacalcio(nomeSalvataggio, giocatori, fase));
+                    }
+                    return partite;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            public string MostraSalvataggi()
+            {
+                if(GetPartite() == null)
+                {
+                    return "Non esistono file di salvataggio";
+                }
+                else
+                {
+                    List<Fantacalcio> partite = GetPartite();
+                    string stringaPartite = "";
+                    for (int i = 0; i < partite.Count; i++)
+                    {
+                        stringaPartite += i + 1 + " -> " + partite[i].nomeSalvataggio + "\n";
+                    }
+                    return stringaPartite;
+                }
+            }
+            public int EliminaSalvataggio(Fantacalcio partita)
+            {
+                string daEliminare = "saveFiles/" + partita.nomeSalvataggio + ".json";
+                if (File.Exists(daEliminare))
+                {
+                    File.Delete(daEliminare);
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
         #endregion
 
+        static string percorsoSalvataggi;
         static Fantacalcio partitaInCorso;  //assume il valore della partita caricata attualmente
+        static Salvataggio salvataggio = new Salvataggio();
 
         static void Main(string[] args)     //il main chiama solo il metodo che mostra il menù principale
         {
@@ -77,9 +152,10 @@ namespace fantacalcio
 
         static void Menu()
         {
+            Console.Clear();
             string risposta;    //contiene la risposta inserita dall'utente da tastiera
             bool nonValida;     //indica se la risposta inserita dall'utente rientra o meno nelle possibilità offerte
-            Console.Write("1 - Inizia nuova partita\n2 - Carica partita\nRisposta: "); //se l'utente inserisce 1 verrà iniziata la procedura di creazione di una partita, se inserisce 2 verrà mostrata una lista di salvataggi su cui l'utente potrà eseguire varie azioni
+            Console.Write("1 - Inizia nuova partita\n2 - Gestisci partite\nRisposta: "); //se l'utente inserisce 1 verrà iniziata la procedura di creazione di una partita, se inserisce 2 verrà mostrata una lista di salvataggi su cui l'utente potrà eseguire varie azioni
             do
             {
                 risposta = Console.ReadLine(); //si ottene una risposta da tastiera 
@@ -101,10 +177,45 @@ namespace fantacalcio
             
         }
 
-        #region GestioneFile
-        static void ControllaFile()
+        #region GestionePartita
+        /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
+        static void NuovaPartita()
         {
-            
+            Console.Clear();
+            //Salvataggio salvataggio = new Salvataggio();
+            string nomeTorneo;  //indica il nome del torneo, e verrà assegnato come nome al file
+
+            if(Directory.GetFiles("saveFiles/", "*.json").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
+            {
+                Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");  //viene comunicato all'utente che non può creare più di 3 file di salvataggio
+            }
+            else //se invece è possibile creare un file
+            {
+                Console.Write("Inserire il nome del torneo: "); //viene chiesto all'utente di inserire da tastiera il nome del torneo
+                do
+                {
+                    nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
+                } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine, la lista è vuota e serve solamente a chiamare la funzione
+
+                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
+
+                salvataggio.CreaSalvataggio(fantacalcio);
+                CaricaPartita(fantacalcio);
+            }   
+        }
+        static void CaricaFile()
+        {
+            List<Fantacalcio> partite = salvataggio.GetPartite();
+            if(partite == null)
+            {
+                Console.WriteLine("Non esistono file di salvataggio. Premi un tasto qualsiasi per continuare.");
+                Console.ReadKey();
+                Menu();
+            }
+            else
+            {
+                GestisciPartite(partite);
+            }
         }
 
         static void CaricaPartita(Fantacalcio partita)  //riceve in input una partita ricavata da un file di salvataggio
@@ -119,70 +230,6 @@ namespace fantacalcio
                     break;
             }
         }
-
-        /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
-        static void NuovaPartita()
-        {
-            string nomeTorneo;  //indica il nome del torneo, e verrà assegnato come nome al file
-            if(Directory.GetFiles("saveFiles/", "*.json").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
-            {
-                Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");  //viene comunicato all'utente che non può creare più di 3 file di salvataggio
-            }
-            else //se invece è possibile creare un file
-            {
-                Console.Write("Inserire il nome del torneo: "); //viene chiesto all'utente di inserire da tastiera il nome del torneo
-                do
-                {
-                    nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
-                } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine
-
-                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
-
-                string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della partita
-                                                                                                                                                                * appena creata e la lista di giocatori registrati che le appartiene; entrambe
-                                                                                                                                                                * vengono convertite ad un file con estensione json tramite il metodo "SerializeObject"
-                                                                                                                                                                * della classe JsonConvert della libreria Newtonsoft.Json*/
-
-                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
-                CaricaPartita(fantacalcio);
-            }   
-        }
-
-
-        static void CaricaFile()
-        {
-            string[] salvataggi = Directory.GetFiles("saveFiles/", "*.json");   //ottiene tutte le directory dei file con estensione json nella cartella saveFiles
-            if (salvataggi.Length != 0)     //se esistono file di salvataggio
-            {
-                List<Fantacalcio> partite = new List<Fantacalcio>();    //lista di partite esistenti
-
-                for(int i = 0; i < salvataggi.Length; i++)
-                {
-                    string input = File.ReadAllText(salvataggi[i]);
-                    string[] words = input.Split(";");
-
-                    string nomeSalvataggio = words[0];
-                    int fase = Int32.Parse(words[1]);
-                    List<Giocatore> giocatori = JsonConvert.DeserializeObject<List<Giocatore>>(words[2]);
-
-                    partite.Add(new Fantacalcio(nomeSalvataggio, giocatori, fase));
-                }
-
-                for(int i = 0; i < partite.Count; i++)
-                {
-                    Console.WriteLine(i + 1 +  " -> " + partite[i].nomeSalvataggio);
-                }
-
-                SelezionaFile(partite);
-
-            }
-            else
-            {
-                Console.WriteLine("Non esistono file di salvataggio.");
-                Menu();
-            }
-        }
-
         static string MostraPartite(List<Fantacalcio> partite)
         {
             string partiteDisponibili = "";
@@ -192,9 +239,67 @@ namespace fantacalcio
             }
             return partiteDisponibili;
         }
+        static void GestisciPartite(List<Fantacalcio> partite)
+        {
+            int indiceFile;
+            string idFileSelezionato;
+            Fantacalcio partitaSelezionata;
 
-        /* chiede di inserire un numero di giocatori uguale o maggiore di 2 e minore o uguale a 8,
-         * successivamente chiede di inserire i nomi dei giocatori, li mette in una lista */
+            bool nonValida = true;
+
+            Console.Clear();
+            Console.Write("Su quale salvataggio vuoi compiere un'azione?\n\nSalvataggi disponibili:\n" + MostraPartite(partite) + "\nRisposta: ");
+            idFileSelezionato = Console.ReadLine();
+
+            while (!int.TryParse(idFileSelezionato, out indiceFile) || indiceFile > partite.Count || indiceFile < 0)
+            {
+                Console.Write("\nRisposta non valida. Reinserire: ");
+                idFileSelezionato = Console.ReadLine();
+            }
+            partitaSelezionata = partite[Int32.Parse(idFileSelezionato) - 1];
+            Console.WriteLine("E' stato selezionato il file numero {0}, cosa vuoi fare?", idFileSelezionato);
+            Console.WriteLine("1 - Carica File\n2 - Elimina File\n3 - Annulla selezione");
+            Console.Write("Risposta: ");
+
+            do
+            {
+                nonValida = false;
+                string azione = Console.ReadLine();
+                switch (azione)
+                {
+                    case "1":
+                        CaricaPartita(partitaSelezionata);
+                        break;
+                    case "2":
+                        EliminaPartita(partitaSelezionata);
+                        break;
+                    case "3":
+                        GestisciPartite(partite);
+                        break;
+                    default:
+                        nonValida = true;
+                        Console.Write("\nRisposta non valida; Reinserire: ");
+                        break;
+
+                }
+            } while (nonValida == true);
+        }
+
+        static void EliminaPartita(Fantacalcio partita)
+        {
+            salvataggio.EliminaSalvataggio(partita);
+            switch (salvataggio.EliminaSalvataggio(partita))
+            {
+                case 1:
+                    Console.WriteLine("File eliminato. Premi un tasto qualsiasi per continuare.");
+                    break;
+                case -1:
+                    Console.WriteLine("File non esistente. Premi un tasto qualsiasi per continuare.");
+                    break;
+            }
+            Console.ReadKey();
+            CaricaFile();
+        }
 
         static bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
         {
@@ -229,73 +334,8 @@ namespace fantacalcio
                     }
                 }
             }
-
             return true;
         }
-
-        static void SelezionaFile(List<Fantacalcio> partite)
-        {
-            Console.Clear();
-            int indiceFile;
-            string idFileSelezionato;
-            Fantacalcio partitaSelezionata;
-            bool nonValida = true;
-            Console.Write("Su quale salvataggio vuoi compiere un'azione?\n\nSalvataggi disponibili:\n" + MostraPartite(partite) + "\nRisposta: ");
-            idFileSelezionato = Console.ReadLine();
-
-            while (!int.TryParse(idFileSelezionato, out indiceFile) || indiceFile > partite.Count || indiceFile < 0)
-            {
-                Console.WriteLine("Risposta non valida. Reinserire:");
-                idFileSelezionato = Console.ReadLine();
-            }
-            partitaSelezionata = partite[Int32.Parse(idFileSelezionato) - 1];
-            Console.WriteLine("E' stato selezionato il file numero {0}, cosa vuoi fare?", idFileSelezionato);
-            Console.WriteLine("1 - Carica File\n2 - Elimina File\n3 - Annulla selezione");
-            Console.Write("Risposta: ");
-
-            do
-            {
-                nonValida = false;
-                string azione = Console.ReadLine();
-                switch (azione)
-                {
-                    case "1":
-                        CaricaPartita(partitaSelezionata);
-                        break;
-                    case "2":
-                        EliminaFile(partitaSelezionata);
-                        break;
-                    case "3":
-                        SelezionaFile(partite);
-                        break;
-                    default:
-                        nonValida = true;
-                        Console.Write("Risposta non valida; Reinserire: ");
-                        break;
-
-                }
-            } while (nonValida == true);
-        }
-
-        static void EliminaFile(Fantacalcio partita)
-        {
-            string daEliminare = "saveFiles/" + partita.nomeSalvataggio + ".json";
-            if (File.Exists(daEliminare))
-            {
-                File.Delete(daEliminare);
-            }
-            else
-            {
-                Console.WriteLine("File non esistente.");
-            }
-            CaricaFile();
-        }
-
-        static void AzioniFile(string fileSelezionato)
-        {
-            
-        }
-
         #endregion
 
         #region Gioco
