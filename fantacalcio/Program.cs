@@ -46,7 +46,8 @@ namespace fantacalcio
             public string nome { get; }         //identifica il giocatore 
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
             public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
-            List<Calciatore> squadra = new List<Calciatore>();
+            List<Calciatore> rosa = new List<Calciatore>();
+
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
                 this.nome = nome;
@@ -55,27 +56,27 @@ namespace fantacalcio
 
             public void CaricaLista(List<Calciatore> calciatori)
             {
-                squadra = calciatori;
+                rosa = calciatori;
             }
 
             public void AddCalciatore(Calciatore calciatore, int prezzo)
             {
-                squadra.Add(calciatore);
+                rosa.Add(calciatore);
                 fantaMilioni -= prezzo;
             }
 
-            public List<Calciatore> GetSquadra()
+            public List<Calciatore> GetRosa()
             {
-                return squadra;
+                return rosa;
             }
-            public string GetStringSquadra()
+            public string GetStringRosa()
             {
-                string stringSquadra = "";
-                for(int i = 0; i < squadra.Count; i++)
+                string stringRosa = "";
+                for(int i = 0; i < rosa.Count; i++)
                 {
-                    stringSquadra += i + 1 + $" -> Nome: {squadra[i].nome}, Ruolo: {squadra[i].ruolo}\n";
+                    stringRosa += i + 1 + $" -> Nome: {rosa[i].nome}, Ruolo: {rosa[i].ruolo}\n";
                 }
-                return stringSquadra;
+                return stringRosa;
             }
             public override string ToString()
             {
@@ -88,9 +89,9 @@ namespace fantacalcio
                 int difensori = 0;
                 int attaccanti = 0;
                 int centrocampisti = 0;
-                if(squadra != null)
+                if(rosa != null)
                 {
-                    foreach(Calciatore calciatore in squadra)
+                    foreach(Calciatore calciatore in rosa)
                     {
                         switch (calciatore.ruolo)
                         {
@@ -120,7 +121,7 @@ namespace fantacalcio
                     case "difensore":
                         return difensori;
                     case "tot":
-                        return squadra.Count;
+                        return rosa.Count;
                     default:
                         return -1;
                 }
@@ -131,7 +132,7 @@ namespace fantacalcio
         class Fantacalcio
         {
             public string nomeSalvataggio { get; }      //nome del salvataggio che verrà assegnato al file di salvataggio
-            public int fase { get; }  //fase 0 -> appena creata, fase 1 -> asta finita, fase 2 -> 
+            public int fase { get; set; }  //fase 0 -> appena creata, fase 1 -> asta finita, fase 2 -> 
             List<Giocatore> giocatori = new List<Giocatore>();      //lista contenente i giocatori registrati nella partita corrente  
             
             public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori, int fase)   //metodo costruttore, ottiene in ingresso il nome del salvataggio e la lista dei giocatori registrati
@@ -190,8 +191,8 @@ namespace fantacalcio
                 for (int i = 0; i < giocatori.Count; i++)
                 {
                     string cartellaGiocatori = "saveFiles/" + fantacalcio.nomeSalvataggio + "/giocatori/" + giocatori[i].nome;
-                    string file = cartellaGiocatori + "/squadra.json";
-                    string listaCalciatori = JsonConvert.SerializeObject(giocatori[i].GetSquadra(), Formatting.Indented);
+                    string file = cartellaGiocatori + "/rosa.json";
+                    string listaCalciatori = JsonConvert.SerializeObject(giocatori[i].GetRosa(), Formatting.Indented);
                     if (!Directory.Exists(cartellaGiocatori))
                     {
                         Directory.CreateDirectory(cartellaGiocatori);
@@ -241,9 +242,9 @@ namespace fantacalcio
                         {
                             string cartellaGiocatori = "saveFiles/" + partite[i].nomeSalvataggio + "/giocatori/" + partite[i].GetGiocatori()[j].nome;
                             Giocatore giocatoreCorrente = partite[i].GetGiocatori()[j];
-                            if (File.Exists(cartellaGiocatori + "/squadra.json"))
+                            if (File.Exists(cartellaGiocatori + "/rosa.json"))
                             {
-                                string fileInput = File.ReadAllText(cartellaGiocatori + "/squadra.json");
+                                string fileInput = File.ReadAllText(cartellaGiocatori + "/rosa.json");
                                 List<Calciatore> listaCalciatori = JsonConvert.DeserializeObject<List<Calciatore>>(fileInput);
                                 partite[i].GetGiocatori()[j].CaricaLista(listaCalciatori);
                             }
@@ -373,6 +374,7 @@ namespace fantacalcio
                     Asta();
                     break;
                 case 1:
+                    SelezioneTitolari();
                     break;
             }
         }
@@ -514,9 +516,6 @@ namespace fantacalcio
         #region Asta
         static void Asta()
         {
-            bool astaFinita = false;
-            bool nonValida;
-            
             string fileCalciatori = File.ReadAllText("saveFiles/" + partitaInCorso.nomeSalvataggio + "/calciatoriDisponibili.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
             
@@ -529,8 +528,9 @@ namespace fantacalcio
                 Offerte(calciatoreEstratto, ref calciatoriDisponibili);
                 salvataggio.SalvaCalciatoriDisponibili(calciatoriDisponibili, partitaInCorso);
             }
-            
-            Menu();
+            partitaInCorso.fase = 1;
+            salvataggio.CreaSalvataggio(partitaInCorso);
+            SelezioneTitolari();
         }
 
         static bool controlloAsta()
@@ -586,11 +586,11 @@ namespace fantacalcio
                 Console.Write("\nRisposta: ");
                 indice = OttieniIndiceOfferente(giocatori, puntataMaggiore);
 
-                if(indice == 0)
+                if(indice == 0 && puntataMaggiore != 0)
                 {
                     break;
                 } 
-                else if(indice == giocatori.Count + 1)
+                else if(indice == giocatori.Count + 1 && puntataMaggiore == 0)
                 {
                     return;
                 }
@@ -748,7 +748,24 @@ namespace fantacalcio
         #endregion
 
         #region Pre-Partita
-
+        static void SelezioneTitolari()
+        {
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            Console.Clear();
+            Console.WriteLine("Ha inizio la selezione dei giocatori titolari.");
+            Console.WriteLine("Premi un qualsiasi tasto per continuare...");
+            Console.ReadKey();
+            
+            for(int i = 0; i < giocatori.Count; i++)
+            {
+                Console.Clear();
+                Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatori[i].nome.ToUpper());
+                Console.WriteLine("\nGiocatori disponibili:\n");
+                Console.Write(giocatori[i].GetStringRosa());
+                Console.ReadKey();
+            }
+            
+        }
         #endregion
         #endregion
     }
