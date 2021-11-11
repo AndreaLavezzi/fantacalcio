@@ -98,20 +98,18 @@ namespace fantacalcio
                             case "difensore":
                                 difensori++;
                                 break;
-                            default:
-                                return -1;
                         }
                     }
                 }
                 switch (ruolo)
                 {
-                    case "portieri":
+                    case "portiere":
                         return portieri;
-                    case "attaccanti":
+                    case "attaccante":
                         return attaccanti;
-                    case "centrocampisti":
+                    case "centrocampista":
                         return centrocampisti;
-                    case "difensori":
+                    case "difensore":
                         return difensori;
                     case "tot":
                         return squadra.Count;
@@ -531,17 +529,24 @@ namespace fantacalcio
 
                 giocatoreSelezionato = giocatori[indice - 1];
                 creditiGiocatore = giocatoreSelezionato.GetFantamilioni();
-
-                Console.Write("\n(Scrivere 'exit' per tornare indietro) Quanti soldi vuoi puntare? Risposta: ");
-                int soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
-                if(soldiPuntati != -1)
+                
+                if(!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo)))
                 {
-                    puntataMaggiore = soldiPuntati;
-                    maggiorOfferente = giocatoreSelezionato;
+                    Console.WriteLine("Non puoi comprare più calciatori di questo ruolo; premi un tasto per tornare indietro...");
+                }
+                else
+                {
+                    Console.Write("\n(Scrivere 'exit' per tornare indietro) Quanti soldi vuoi puntare? Risposta: ");
+                    int soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
+                    if (soldiPuntati != -1)
+                    {
+                        puntataMaggiore = soldiPuntati;
+                        maggiorOfferente = giocatoreSelezionato;
+                    }
                 }
             }
 
-            Console.WriteLine("\nL'asta per il calciatore: \n{0} \nE' stata vinta da {1} per la{2} cifra di {3} fantamilioni!", calciatore.ToString(), giocatoreSelezionato.nome.ToUpper(), StimaPrezzo(puntataMaggiore), puntataMaggiore);
+            Console.WriteLine("\nL'asta per il calciatore: \n{0} \nE' stata vinta da {1} per la{2} cifra di {3} fantamilioni!", calciatore.ToString(), maggiorOfferente.nome.ToUpper(), StimaPrezzo(puntataMaggiore), puntataMaggiore);
             Console.WriteLine("Premi un tasto per continuare...");
             Console.ReadKey();
             maggiorOfferente.AddCalciatore(calciatore, puntataMaggiore);
@@ -614,6 +619,32 @@ namespace fantacalcio
             } while (nonValida);
 
             return indice;
+        }
+
+        static bool PuoComprare(string ruoloCalciatore, int numCalciatoriPosseduti)
+        {
+            int calciatoriMassimi = 0;
+
+            switch (ruoloCalciatore)
+            {
+                case "attaccante":
+                    calciatoriMassimi = 6;
+                    break;
+                case "difensore":
+                    calciatoriMassimi = 8;
+                    break;
+                case "portiere":
+                    calciatoriMassimi = 3;
+                    break;
+                case "centrocampista":
+                    calciatoriMassimi = 8;
+                    break;
+            }
+            if (numCalciatoriPosseduti < calciatoriMassimi)
+            {
+                return true;
+            }
+            return false;
         }
 
         static string StimaPrezzo(int puntata)
