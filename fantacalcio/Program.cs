@@ -45,12 +45,17 @@ namespace fantacalcio
         {
             public string nome { get; }         //identifica il giocatore 
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
-            int fantaMilioni;                   //crediti a disposizione del giocatore, usati per comprare i calciatori
+            public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
             List<Calciatore> squadra = new List<Calciatore>();
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
                 this.nome = nome;
                 fantaMilioni = 500;
+            }
+
+            public void CaricaLista(List<Calciatore> calciatori)
+            {
+                squadra = calciatori;
             }
 
             public void AddCalciatore(Calciatore calciatore, int prezzo)
@@ -63,12 +68,15 @@ namespace fantacalcio
             {
                 return squadra;
             }
-
-            public int GetFantamilioni()
+            public string GetStringSquadra()
             {
-                return fantaMilioni;
+                string stringSquadra = "";
+                for(int i = 0; i < squadra.Count; i++)
+                {
+                    stringSquadra += i + 1 + $" -> Nome: {squadra[i].nome}, Ruolo: {squadra[i].ruolo}\n";
+                }
+                return stringSquadra;
             }
-
             public override string ToString()
             {
                 return $"Nome: {nome.ToUpper()}, Crediti: {fantaMilioni}";
@@ -153,18 +161,61 @@ namespace fantacalcio
         {
             public void CreaSalvataggio(Fantacalcio fantacalcio)
             {
+                string directorySalvataggi = "saveFiles/";
+                if (!Directory.Exists(directorySalvataggi))
+                {
+                    Directory.CreateDirectory(directorySalvataggi);
+                }
+                if (!Directory.Exists(directorySalvataggi + fantacalcio.nomeSalvataggio))
+                {
+                    Directory.CreateDirectory(directorySalvataggi + fantacalcio.nomeSalvataggio);
+                }
+                if(!File.Exists(directorySalvataggi + fantacalcio.nomeSalvataggio + "/calciatoriDisponibili.json"))
+                {
+                    File.WriteAllText(directorySalvataggi + fantacalcio.nomeSalvataggio + "/calciatoriDisponibili.json", File.ReadAllText("calciatori.json"));
+                }
+                string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della appena creata e la lista di giocatori registrati che le appartiene; vengono convertite ad un file con estensione json tramite il metodo "SerializeObject della classe JsonConvert della libreria Newtonsoft.Json*/
+                SalvaSquadre(fantacalcio);
 
-                string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della partita
-                                                                                                                                                                * appena creata e la lista di giocatori registrati che le appartiene; entrambe
-                                                                                                                                                                * vengono convertite ad un file con estensione json tramite il metodo "SerializeObject"
-                                                                                                                                                                * della classe JsonConvert della libreria Newtonsoft.Json*/
-                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + ".json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
+                File.WriteAllText(directorySalvataggi + fantacalcio.nomeSalvataggio + "/saveFile.json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
+            }
+            public void SalvaCalciatoriDisponibili(List<Calciatore> calciatoriDisponibili, Fantacalcio fantacalcio)
+            {
+                string output = JsonConvert.SerializeObject(calciatoriDisponibili, Formatting.Indented);
+                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/calciatoriDisponibili.json", output);
+            }
+            void SalvaSquadre(Fantacalcio fantacalcio)
+            {
+                List<Giocatore> giocatori = fantacalcio.GetGiocatori();
+                for (int i = 0; i < giocatori.Count; i++)
+                {
+                    string cartellaGiocatori = "saveFiles/" + fantacalcio.nomeSalvataggio + "/giocatori/" + giocatori[i].nome;
+                    string file = cartellaGiocatori + "/squadra.json";
+                    string listaCalciatori = JsonConvert.SerializeObject(giocatori[i].GetSquadra(), Formatting.Indented);
+                    if (!Directory.Exists(cartellaGiocatori))
+                    {
+                        Directory.CreateDirectory(cartellaGiocatori);
+                    }
+
+                    File.WriteAllText(file, listaCalciatori);
+                }
+            }
+            string[] GetCartelleSalvataggi()
+            {
+                string[] cartelleSalvataggi = Directory.GetDirectories("saveFiles/");
+                return cartelleSalvataggi;
             }
             string[] GetFileSalvataggi()
             {
-                string[] salvataggi = Directory.GetFiles("saveFiles/", "*.json");   //ottiene tutte le directory dei file con estensione json nella cartella saveFiles
+                string[] salvataggi = new string[GetCartelleSalvataggi().Length];
+
+                for(int i = 0; i < GetCartelleSalvataggi().Length; i++)
+                {
+                    salvataggi[i] = GetCartelleSalvataggi()[i] + "/saveFile.json";
+                }
                 return salvataggi;
             }
+
             public List<Fantacalcio> GetPartite()
             {
                 string[] salvataggi = GetFileSalvataggi();
@@ -182,6 +233,21 @@ namespace fantacalcio
                         List<Giocatore> giocatori = JsonConvert.DeserializeObject<List<Giocatore>>(words[2]);
 
                         partite.Add(new Fantacalcio(nomeSalvataggio, giocatori, fase));
+                    }
+
+                    for(int i = 0; i < partite.Count; i++)
+                    {
+                        for (int j = 0; j < partite[i].GetGiocatori().Count; j++)
+                        {
+                            string cartellaGiocatori = "saveFiles/" + partite[i].nomeSalvataggio + "/giocatori/" + partite[i].GetGiocatori()[j].nome;
+                            Giocatore giocatoreCorrente = partite[i].GetGiocatori()[j];
+                            if (File.Exists(cartellaGiocatori + "/squadra.json"))
+                            {
+                                string fileInput = File.ReadAllText(cartellaGiocatori + "/squadra.json");
+                                List<Calciatore> listaCalciatori = JsonConvert.DeserializeObject<List<Calciatore>>(fileInput);
+                                partite[i].GetGiocatori()[j].CaricaLista(listaCalciatori);
+                            }
+                        }
                     }
                     return partite;
                 }
@@ -209,10 +275,10 @@ namespace fantacalcio
             }
             public int EliminaSalvataggio(Fantacalcio partita)
             {
-                string daEliminare = "saveFiles/" + partita.nomeSalvataggio + ".json";
-                if (File.Exists(daEliminare))
+                string daEliminare = "saveFiles/" + partita.nomeSalvataggio;
+                if (Directory.Exists(daEliminare))
                 {
-                    File.Delete(daEliminare);
+                    Directory.Delete(daEliminare, true);
                     return 1;
                 }
                 return -1;
@@ -263,8 +329,7 @@ namespace fantacalcio
             Console.Clear();
             //Salvataggio salvataggio = new Salvataggio();
             string nomeTorneo;  //indica il nome del torneo, e verrà assegnato come nome al file
-
-            if(Directory.GetFiles("saveFiles/", "*.json").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
+            if(Directory.GetDirectories("saveFiles/").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
             {
                 Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");  //viene comunicato all'utente che non può creare più di 3 file di salvataggio
             }
@@ -279,8 +344,10 @@ namespace fantacalcio
                 Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
 
                 salvataggio.CreaSalvataggio(fantacalcio);
-                CaricaPartita(fantacalcio);
-            }   
+            }
+            Console.WriteLine("Premere un tasto per continuare...");
+            Console.ReadKey();
+            Menu();
         }
         static void CaricaFile()
         {
@@ -405,7 +472,7 @@ namespace fantacalcio
             {
                 foreach (Giocatore giocatore in giocatori)
                 {
-                    if (nomeDaControllare == giocatore.nome)
+                    if (nomeDaControllare.ToLower() == giocatore.nome.ToLower())
                     {
                         Console.Write("Inserire un nome che non sia già stato scelto: ");
                         return false;
@@ -450,7 +517,7 @@ namespace fantacalcio
             bool astaFinita = false;
             bool nonValida;
             
-            string fileCalciatori = File.ReadAllText("calciatori.json");
+            string fileCalciatori = File.ReadAllText("saveFiles/" + partitaInCorso.nomeSalvataggio + "/calciatoriDisponibili.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
             
             while (!controlloAsta())
@@ -460,6 +527,7 @@ namespace fantacalcio
 
                 Console.Clear();
                 Offerte(calciatoreEstratto, ref calciatoriDisponibili);
+                salvataggio.SalvaCalciatoriDisponibili(calciatoriDisponibili, partitaInCorso);
             }
             
             Menu();
@@ -528,11 +596,12 @@ namespace fantacalcio
                 }
 
                 giocatoreSelezionato = giocatori[indice - 1];
-                creditiGiocatore = giocatoreSelezionato.GetFantamilioni();
+                creditiGiocatore = giocatoreSelezionato.fantaMilioni;
                 
                 if(!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo)))
                 {
                     Console.WriteLine("Non puoi comprare più calciatori di questo ruolo; premi un tasto per tornare indietro...");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -551,6 +620,7 @@ namespace fantacalcio
             Console.ReadKey();
             maggiorOfferente.AddCalciatore(calciatore, puntataMaggiore);
             calciatoriDisponibili.Remove(calciatore);
+            salvataggio.CreaSalvataggio(partitaInCorso);
         }
 
         static int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore)
@@ -675,6 +745,10 @@ namespace fantacalcio
             }
             return "";
         }
+        #endregion
+
+        #region Pre-Partita
+
         #endregion
         #endregion
     }
