@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A8JU54KjO09Zg1k9i8LW4VqlL4M0oHYA+LuNrUyBVYyaJ+Dt16WQq8aABHX6P4HVRM7p766k4KKOmvUoQl6b7A==",
+  "dgSpecHash": "yrstwNJEITBxkYbdInUrHnvRevphqedlx9mps+Iriej6SE0Yc6WS6D+vcygW2807Xj8P09SVC1a8qYwTJM6i5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Studente\\Git Bash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
+  "projectFilePath": "C:\\Users\\HP\\GitBash\\fantacalcio\\fantacalcio\\fantacalcio.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Studente\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\HP\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -140,7 +140,7 @@ namespace fantacalcio
                 string stringaGiocatori = "";
                 for(int i = 0; i < giocatori.Count; i++)
                 {
-                    stringaGiocatori += i + 1 + " -> " + giocatori[i].ToString() + "\n";
+                    stringaGiocatori += "\n" + ( i + 1 ) + " -> " + giocatori[i].ToString();
                 }
                 return stringaGiocatori;
             }
@@ -446,52 +446,25 @@ namespace fantacalcio
 
             return giocatori;
         }
-
+        #region Asta
         static void Asta()
         {
-            //Console.WriteLine("Caricamento dei giocatori, Attendere...");
-            //string[] inputCalciatori = File.ReadAllLines("calciatori.txt");
-            //List<Calciatore> listaCalciatori = new List<Calciatore>();
-            //for(int i = 0; i < inputCalciatori.Length; i++)
-            //{
-            //    listaCalciatori.Add(new Calciatore(inputCalciatori[i].Split(",")[0], inputCalciatori[i].Split(",")[1]));
-            //}
-            //Console.Clear();
-            //Console.WriteLine("Caricamento Completato.");
-            //Console.WriteLine("Inizio serializzazione lista...");
-            //string output = JsonConvert.SerializeObject(listaCalciatori, Formatting.Indented);
-            //Console.WriteLine("Serializzazione completata.");
-            //File.WriteAllText("newCalciatori.txt", output);
-            //Console.WriteLine("Scrittura su file completata.");
-            //if(partitaInCorso != null)
-            //{
-            //    Console.Write("Questa è la lista dei giocatori che parteciperanno all'asta:");
-            //    for (int i = 0; i < partitaInCorso.GetGiocatori().Count; i++)
-            //    {
-            //        Console.WriteLine(i + 1 + " - " + partitaInCorso.GetGiocatori()[i].nome);
-            //    }
-            //}
-
             bool astaFinita = false;
             bool nonValida;
             
             string fileCalciatori = File.ReadAllText("calciatori.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
             
-            Console.Clear();
             while (!controlloAsta())
             {
                 Random random = new Random();
                 Calciatore calciatoreEstratto = calciatoriDisponibili[random.Next(0, calciatoriDisponibili.Count)];
-                Console.Clear();
-                string annuncioAsta = $"Ha inizio l'asta per: \n{calciatoreEstratto.ToString()}";
-                Offerte(calciatoreEstratto, annuncioAsta);
-                Console.ReadKey();
-            }
 
+                Console.Clear();
+                Offerte(calciatoreEstratto, ref calciatoriDisponibili);
+            }
             
             Menu();
-            
         }
 
         static bool controlloAsta()
@@ -507,80 +480,140 @@ namespace fantacalcio
             return true;
         }
 
-        static void Offerte(Calciatore calciatore, string annuncioAsta)
+        static void Offerte(Calciatore calciatore, ref List<Calciatore> calciatoriDisponibili)
         {
-            Console.WriteLine(annuncioAsta);
             int indice = -1;
-            int soldiPuntati = -1;
             int puntataMaggiore = 0;
-            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            Giocatore giocatoreSelezionato = new Giocatore("PLACEHOLDER");
             int creditiGiocatore;
 
-            while(indice != 0) //se si vuole effettuare una ulteriore puntata
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            Giocatore maggiorOfferente = new Giocatore("PLACEHOLDER");
+            Giocatore giocatoreSelezionato = new Giocatore("PLACEHOLDER");
+
+            
+
+            while (indice != 0) //se si vuole effettuare una ulteriore puntata
             {
+                Console.Clear();
+                
+
                 if (puntataMaggiore == 0) //e se si tratta della prima puntata
                 {
+                    Console.WriteLine($"Ha inizio l'asta per: \n{calciatore.ToString()}");
                     Console.WriteLine("\nQuale giocatore vuole fare un'offerta per questo calciatore?");
-
                 }
                 else
                 {
+                    Console.WriteLine($"Continua l'asta per: \n{calciatore.ToString()}");
+                    Console.WriteLine($"La puntata maggiore attuale è di {puntataMaggiore} fantamilioni da parte di {maggiorOfferente.nome.ToUpper()}");
                     Console.WriteLine("\nQuale giocatore vuole offrire di più?");
-                    Console.WriteLine("0 -> Nessuna ulteriore offerta");
+                    Console.Write("\n0 -> Nessuna ulteriore offerta");
                 }
 
-                Console.WriteLine(partitaInCorso.GetListaGiocatori());
-                Console.Write("Risposta: ");
+                Console.Write(partitaInCorso.GetListaGiocatori());
 
-                do
+                if(puntataMaggiore == 0)
                 {
-                    try
-                    {
-                        indice = Int32.Parse(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.Write("\nRisposta non valida. Reinserire: ");
-                    }
-                } while (indice < 0 || indice > giocatori.Count);
+                    Console.Write("\n" + (giocatori.Count + 1) + " -> Salta giocatore\n");
+                }
+
+                Console.Write("\nRisposta: ");
+                indice = OttieniIndiceOfferente(giocatori, puntataMaggiore);
+
                 if(indice == 0)
                 {
                     break;
+                } 
+                else if(indice == giocatori.Count + 1)
+                {
+                    return;
                 }
 
                 giocatoreSelezionato = giocatori[indice - 1];
                 creditiGiocatore = giocatoreSelezionato.GetFantamilioni();
 
-                Console.Write("\nQuanti soldi vuoi puntare? Risposta: ");
-                do
+                Console.Write("\n(Scrivere 'exit' per tornare indietro) Quanti soldi vuoi puntare? Risposta: ");
+                int soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
+                if(soldiPuntati != -1)
                 {
-                    try
-                    {
-                        soldiPuntati = Int32.Parse(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.Write("\nRisposta non valida. Reinserire: ");
-                    }
+                    puntataMaggiore = soldiPuntati;
+                    maggiorOfferente = giocatoreSelezionato;
+                }
+            }
 
-                    if (soldiPuntati > creditiGiocatore || creditiGiocatore - soldiPuntati < 25 - giocatoreSelezionato.GetGiocatoriRuolo("tot"))
+            Console.WriteLine("\nL'asta per il calciatore: \n{0} \nE' stata vinta da {1} per la{2} cifra di {3} fantamilioni!", calciatore.ToString(), giocatoreSelezionato.nome.ToUpper(), StimaPrezzo(puntataMaggiore), puntataMaggiore);
+            Console.WriteLine("Premi un tasto per continuare...");
+            Console.ReadKey();
+            maggiorOfferente.AddCalciatore(calciatore, puntataMaggiore);
+            calciatoriDisponibili.Remove(calciatore);
+        }
+
+        static int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore)
+        {
+            int soldiPuntati = 0;
+            bool nonValida;
+            do
+            {
+                nonValida = false;
+                string risposta = Console.ReadLine();
+                if(risposta.ToLower() == "exit")
+                {
+                    return -1;
+                } 
+                else if(!Int32.TryParse(risposta, out soldiPuntati))
+                {
+                    Console.Write("\n(Scrivere 'exit' per tornare indietro) Ciò che hai inserito non è un numero intero. Reinserire: ");
+                    nonValida = true;
+                }
+
+                if (!nonValida)
+                {
+                    if (soldiPuntati <= 0)
+                    {
+                        Console.Write("\nImpossibile inserire un numero di fantamilioni minore o uguale a 0. Reinserire: ");
+                        nonValida = true;
+                    }
+                    else if (soldiPuntati > creditiGiocatore)
                     {
                         Console.Write("\nImpossibile inserire un numero di fantamilioni maggiore di quelli posseduti. Reinserire: ");
-                        soldiPuntati = -1;
+                        nonValida = true;
                     }
-
-                    if(soldiPuntati <= puntataMaggiore)
+                    else if (soldiPuntati <= puntataMaggiore)
                     {
                         Console.Write("\nImpossibile inserire un numero di fantamilioni minore o uguale all'attuale puntata maggiore di {0} fantamilioni. \nReinserire: ", puntataMaggiore);
-                        soldiPuntati = -1;
+                        nonValida = true;
                     }
-                } while (soldiPuntati == -1);
+                }
+            } while (nonValida);
 
-                puntataMaggiore = soldiPuntati;
-            }
-            Console.WriteLine("\nL'asta per il calciatore: \n{0} \nE' stata vinta da {1} per la{2} cifra di {3} fantamilioni!", calciatore.ToString(), giocatoreSelezionato.nome.ToUpper(), StimaPrezzo(puntataMaggiore), puntataMaggiore);
-            giocatoreSelezionato.AddCalciatore(calciatore, puntataMaggiore);
+            return soldiPuntati;
+        }
+
+        static int OttieniIndiceOfferente(List<Giocatore> giocatori, int puntataMaggiore)
+        {
+            int indice = 0;
+            bool nonValida;
+
+            do
+            {
+                nonValida = false;
+                try
+                {
+                    indice = Int32.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.Write("\nRisposta non valida. Reinserire: ");
+                    nonValida = true;
+                }
+                if (!nonValida && (indice < 0 || puntataMaggiore == 0 && indice > giocatori.Count + 1 || puntataMaggiore != 0 && indice > giocatori.Count))
+                {
+                    Console.Write("Risposta non valida; inserire uno dei valori proposti: ");
+                    nonValida = true;
+                }
+            } while (nonValida);
+
+            return indice;
         }
 
         static string StimaPrezzo(int puntata)
@@ -599,7 +632,7 @@ namespace fantacalcio
             }
             else if(puntata >= 100 && puntata < 250)
             {
-                return " modica";
+                return " goliardica";
             }
             else if(puntata >= 250 && puntata < 500 && puntata != 420)
             {
@@ -611,6 +644,7 @@ namespace fantacalcio
             }
             return "";
         }
+        #endregion
         #endregion
     }
 }
