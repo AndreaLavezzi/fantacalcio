@@ -36,7 +36,7 @@ namespace fantacalcio
 
             public override string ToString()
             {
-                return $"Nome: {nome}\nRuolo: {ruolo}";
+                return $"Nome: {nome.ToUpper()}\nRuolo: {ruolo.ToUpper()}";
             }
         }
 
@@ -46,7 +46,7 @@ namespace fantacalcio
             public string nome { get; }         //identifica il giocatore 
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
             int fantaMilioni;                   //crediti a disposizione del giocatore, usati per comprare i calciatori
-            List<Calciatore> squadra;
+            List<Calciatore> squadra = new List<Calciatore>();
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
                 this.nome = nome;
@@ -69,29 +69,54 @@ namespace fantacalcio
                 return fantaMilioni;
             }
 
+            public override string ToString()
+            {
+                return $"Nome: {nome.ToUpper()}, Crediti: {fantaMilioni}";
+            }
+
             public int GetGiocatoriRuolo(string ruolo)
             {
                 int portieri = 0;
                 int difensori = 0;
                 int attaccanti = 0;
                 int centrocampisti = 0;
-                foreach(Calciatore calciatore in squadra)
+                if(squadra != null)
                 {
-                    switch (calciatore.ruolo)
+                    foreach(Calciatore calciatore in squadra)
                     {
-                        case "portiere":
-                            portieri++;
-                            break;
-                        case "attaccante":
-                            attaccanti++;
-                            break;
-                        case "centrocampista":
-                            centrocampisti++;
-                            break;
-                        case "difensore":
-                            difensori++;
-                            break;
+                        switch (calciatore.ruolo)
+                        {
+                            case "portiere":
+                                portieri++;
+                                break;
+                            case "attaccante":
+                                attaccanti++;
+                                break;
+                            case "centrocampista":
+                                centrocampisti++;
+                                break;
+                            case "difensore":
+                                difensori++;
+                                break;
+                            default:
+                                return -1;
+                        }
                     }
+                }
+                switch (ruolo)
+                {
+                    case "portieri":
+                        return portieri;
+                    case "attaccanti":
+                        return attaccanti;
+                    case "centrocampisti":
+                        return centrocampisti;
+                    case "difensori":
+                        return difensori;
+                    case "tot":
+                        return squadra.Count;
+                    default:
+                        return -1;
                 }
             }
         }
@@ -108,6 +133,16 @@ namespace fantacalcio
                 this.nomeSalvataggio = nomeSalvataggio;
                 this.giocatori = giocatori;
                 this.fase = fase;
+            }
+
+            public string GetListaGiocatori()
+            {
+                string stringaGiocatori = "";
+                for(int i = 0; i < giocatori.Count; i++)
+                {
+                    stringaGiocatori += i + 1 + " -> " + giocatori[i].ToString() + "\n";
+                }
+                return stringaGiocatori;
             }
 
             public List<Giocatore> GetGiocatori()   //metodo pubblico che ritorna la lista dei giocatori registrati nella partita corrente
@@ -182,10 +217,7 @@ namespace fantacalcio
                     File.Delete(daEliminare);
                     return 1;
                 }
-                else
-                {
-                    return -1;
-                }
+                return -1;
             }
         }
         #endregion
@@ -306,7 +338,7 @@ namespace fantacalcio
                 idFileSelezionato = Console.ReadLine();
             }
             partitaSelezionata = partite[Int32.Parse(idFileSelezionato) - 1];
-            Console.WriteLine("E' stato selezionato il file numero {0}, cosa vuoi fare?", idFileSelezionato);
+            Console.WriteLine("\nE' stato selezionato il file numero {0}, cosa vuoi fare?", idFileSelezionato);
             Console.WriteLine("1 - Carica File\n2 - Elimina File\n3 - Annulla selezione");
             Console.Write("Risposta: ");
 
@@ -336,7 +368,6 @@ namespace fantacalcio
 
         static void EliminaPartita(Fantacalcio partita)
         {
-            salvataggio.EliminaSalvataggio(partita);
             switch (salvataggio.EliminaSalvataggio(partita))
             {
                 case 1:
@@ -440,11 +471,145 @@ namespace fantacalcio
             //        Console.WriteLine(i + 1 + " - " + partitaInCorso.GetGiocatori()[i].nome);
             //    }
             //}
-            string fileCalciatori = File.ReadAllText("calciatori.txt");
+
+            bool astaFinita = false;
+            bool nonValida;
+            
+            string fileCalciatori = File.ReadAllText("calciatori.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
+            
+            Console.Clear();
+            while (!controlloAsta())
+            {
+                Random random = new Random();
+                Calciatore calciatoreEstratto = calciatoriDisponibili[random.Next(0, calciatoriDisponibili.Count)];
+                Console.Clear();
+                string annuncioAsta = $"Ha inizio l'asta per: \n{calciatoreEstratto.ToString()}";
+                Offerte(calciatoreEstratto, annuncioAsta);
+                Console.ReadKey();
+            }
+
             
             Menu();
             
+        }
+
+        static bool controlloAsta()
+        {
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            foreach(Giocatore giocatore in giocatori)
+            {
+                if(giocatore.GetGiocatoriRuolo("tot") < 25)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static void Offerte(Calciatore calciatore, string annuncioAsta)
+        {
+            Console.WriteLine(annuncioAsta);
+            int indice = -1;
+            int soldiPuntati = -1;
+            int puntataMaggiore = 0;
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            Giocatore giocatoreSelezionato = new Giocatore("PLACEHOLDER");
+            int creditiGiocatore;
+
+            while(indice != 0) //se si vuole effettuare una ulteriore puntata
+            {
+                if (puntataMaggiore == 0) //e se si tratta della prima puntata
+                {
+                    Console.WriteLine("\nQuale giocatore vuole fare un'offerta per questo calciatore?");
+
+                }
+                else
+                {
+                    Console.WriteLine("\nQuale giocatore vuole offrire di più?");
+                    Console.WriteLine("0 -> Nessuna ulteriore offerta");
+                }
+
+                Console.WriteLine(partitaInCorso.GetListaGiocatori());
+                Console.Write("Risposta: ");
+
+                do
+                {
+                    try
+                    {
+                        indice = Int32.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.Write("\nRisposta non valida. Reinserire: ");
+                    }
+                } while (indice < 0 || indice > giocatori.Count);
+                if(indice == 0)
+                {
+                    break;
+                }
+
+                giocatoreSelezionato = giocatori[indice - 1];
+                creditiGiocatore = giocatoreSelezionato.GetFantamilioni();
+
+                Console.Write("\nQuanti soldi vuoi puntare? Risposta: ");
+                do
+                {
+                    try
+                    {
+                        soldiPuntati = Int32.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.Write("\nRisposta non valida. Reinserire: ");
+                    }
+
+                    if (soldiPuntati > creditiGiocatore || creditiGiocatore - soldiPuntati < 25 - giocatoreSelezionato.GetGiocatoriRuolo("tot"))
+                    {
+                        Console.Write("\nImpossibile inserire un numero di fantamilioni maggiore di quelli posseduti. Reinserire: ");
+                        soldiPuntati = -1;
+                    }
+
+                    if(soldiPuntati <= puntataMaggiore)
+                    {
+                        Console.Write("\nImpossibile inserire un numero di fantamilioni minore o uguale all'attuale puntata maggiore di {0} fantamilioni. \nReinserire: ", puntataMaggiore);
+                        soldiPuntati = -1;
+                    }
+                } while (soldiPuntati == -1);
+
+                puntataMaggiore = soldiPuntati;
+            }
+            Console.WriteLine("\nL'asta per il calciatore: \n{0} \nE' stata vinta da {1} per la{2} cifra di {3} fantamilioni!", calciatore.ToString(), giocatoreSelezionato.nome.ToUpper(), StimaPrezzo(puntataMaggiore), puntataMaggiore);
+            giocatoreSelezionato.AddCalciatore(calciatore, puntataMaggiore);
+        }
+
+        static string StimaPrezzo(int puntata)
+        {
+            if(puntata < 10)
+            {
+                return " esigua";
+            }
+            else if(puntata > 10 && puntata < 100 && puntata != 69)
+            {
+                return " modesta";
+            }
+            else if(puntata == 69)
+            {
+                return " PAZZA";
+            }
+            else if(puntata >= 100 && puntata < 250)
+            {
+                return " modica";
+            }
+            else if(puntata >= 250 && puntata < 500 && puntata != 420)
+            {
+                return " altissima";
+            }
+            else if (puntata == 420)
+            {
+                return " SGRAVATA";
+            }
+            return "";
         }
         #endregion
     }
