@@ -1,0 +1,46 @@
+[
+  {
+    "nome": "padelli daniele",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "quarta lucas martinez",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bonucci leonardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pellegrini luca",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "krunic rade",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kingsley michael",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "koopmeiners teun",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sigurdsson arnor",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "lozano hirving",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "correa joaquin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "piccoli roberto",
+    "ruolo": "attaccante"
+  }
+]

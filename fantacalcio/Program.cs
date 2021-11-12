@@ -47,6 +47,7 @@ namespace fantacalcio
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
             public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
             List<Calciatore> rosa = new List<Calciatore>();
+            List<Calciatore> titolari = new List<Calciatore>();
 
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
@@ -64,10 +65,17 @@ namespace fantacalcio
                 rosa.Add(calciatore);
                 fantaMilioni -= prezzo;
             }
-
             public List<Calciatore> GetRosa()
             {
                 return rosa;
+            }
+            public List<Calciatore> GetTitolari()
+            {
+                return titolari;
+            }
+            public void AddTitolari(Calciatore calciatore)
+            {
+                titolari.Add(calciatore);
             }
             public string GetStringRosa()
             {
@@ -83,15 +91,36 @@ namespace fantacalcio
                 return $"Nome: {nome.ToUpper()}, Crediti: {fantaMilioni}";
             }
 
-            public int GetGiocatoriRuolo(string ruolo)
+            public int GetGiocatoriRuolo(string ruolo, string gruppo)
             {
                 int portieri = 0;
                 int difensori = 0;
                 int attaccanti = 0;
                 int centrocampisti = 0;
-                if(rosa != null)
+                if(gruppo == "r" && rosa != null)
                 {
                     foreach(Calciatore calciatore in rosa)
+                    {
+                        switch (calciatore.ruolo)
+                        {
+                            case "portiere":
+                                portieri++;
+                                break;
+                            case "attaccante":
+                                attaccanti++;
+                                break;
+                            case "centrocampista":
+                                centrocampisti++;
+                                break;
+                            case "difensore":
+                                difensori++;
+                                break;
+                        }
+                    }
+                }
+                if (gruppo == "t" && titolari != null)
+                {
+                    foreach (Calciatore calciatore in titolari)
                     {
                         switch (calciatore.ruolo)
                         {
@@ -193,6 +222,22 @@ namespace fantacalcio
                     string cartellaGiocatori = "saveFiles/" + fantacalcio.nomeSalvataggio + "/giocatori/" + giocatori[i].nome;
                     string file = cartellaGiocatori + "/rosa.json";
                     string listaCalciatori = JsonConvert.SerializeObject(giocatori[i].GetRosa(), Formatting.Indented);
+                    if (!Directory.Exists(cartellaGiocatori))
+                    {
+                        Directory.CreateDirectory(cartellaGiocatori);
+                    }
+
+                    File.WriteAllText(file, listaCalciatori);
+                }
+            }
+            public void SalvaTitolari(Fantacalcio fantacalcio)
+            {
+                List<Giocatore> giocatori = fantacalcio.GetGiocatori();
+                for (int i = 0; i < giocatori.Count; i++)
+                {
+                    string cartellaGiocatori = "saveFiles/" + fantacalcio.nomeSalvataggio + "/giocatori/" + giocatori[i].nome;
+                    string file = cartellaGiocatori + "/titolari.json";
+                    string listaCalciatori = JsonConvert.SerializeObject(giocatori[i].GetTitolari(), Formatting.Indented);
                     if (!Directory.Exists(cartellaGiocatori))
                     {
                         Directory.CreateDirectory(cartellaGiocatori);
@@ -376,6 +421,9 @@ namespace fantacalcio
                 case 1:
                     SelezioneTitolari();
                     break;
+                case 2:
+                    Menu();
+                    break;
             }
         }
         static string MostraPartite(List<Fantacalcio> partite)
@@ -538,7 +586,7 @@ namespace fantacalcio
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             foreach(Giocatore giocatore in giocatori)
             {
-                if(giocatore.GetGiocatoriRuolo("tot") < 25)
+                if(giocatore.GetGiocatoriRuolo("tot", "r") < 25)
                 {
                     return false;
                 }
@@ -598,7 +646,7 @@ namespace fantacalcio
                 giocatoreSelezionato = giocatori[indice - 1];
                 creditiGiocatore = giocatoreSelezionato.fantaMilioni;
                 
-                if(!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo)))
+                if(!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo, "r")))
                 {
                     Console.WriteLine("Non puoi comprare più calciatori di questo ruolo; premi un tasto per tornare indietro...");
                     Console.ReadKey();
@@ -758,15 +806,149 @@ namespace fantacalcio
             
             for(int i = 0; i < giocatori.Count; i++)
             {
+                int[] modulo = { 0, 0, 0};
+                bool success;
+                Giocatore giocatoreCorrente = giocatori[i];
                 Console.Clear();
-                Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatori[i].nome.ToUpper());
-                Console.WriteLine("\nGiocatori disponibili:\n");
-                Console.Write(giocatori[i].GetStringRosa());
-                Console.ReadKey();
+                Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatoreCorrente.nome.ToUpper());
+                Console.Write("\nInserisci il modulo che vuoi utilizzare (Esempio: 2-4-5 => 2 -> Difensori, 4 -> Centrocampisti, 5 => Attaccanti)\nRisposta: ");
+                do
+                {
+                    success = true;
+                    try
+                    {
+                        string risposta = Console.ReadLine();
+                        modulo = Array.ConvertAll(risposta.Split("-"), int.Parse);
+                        if (modulo.Length != 3)
+                        {
+                            Console.Write("\nInserire tre elementi separati da trattini: ");
+                            success = false;
+                        } else if(modulo[0] + modulo[1] + modulo[2] != 10)
+                        {
+                            Console.Write("\nLa somma dei numeri deve essere 10; reinserire: ");
+                            success = false;
+                        }else if(modulo[0] <= 0 || modulo[1] <= 0 || modulo[2] <= 0)
+                        {
+                            Console.Write("\nI numeri non possono essere 0 o minori; reinserire: ");
+                            success = false;
+                        }
+                    }
+                    catch
+                    {
+                        Console.Write("\nInserimento non valido; reinserire: ");
+                        success = false;
+                    }
+                } while (!success);
+
+                MostraGiocatoriRosa(giocatoreCorrente);
+
+                if (giocatoreCorrente.GetGiocatoriRuolo("portiere", "t") == 0)
+                {
+                    ControlloRuolo(giocatoreCorrente, "portiere");
+                }
+
+                MostraGiocatoriRosa(giocatoreCorrente);
+
+                while (giocatoreCorrente.GetGiocatoriRuolo("difensore", "t") < modulo[0])
+                {
+                    ControlloRuolo(giocatoreCorrente, "difensore");
+                }
+
+                MostraGiocatoriRosa(giocatoreCorrente);
+
+                while (giocatoreCorrente.GetGiocatoriRuolo("centrocampista", "t") < modulo[1])
+                {
+                    ControlloRuolo(giocatoreCorrente, "centrocampista");
+                }
+
+                MostraGiocatoriRosa(giocatoreCorrente);
+
+                while (giocatoreCorrente.GetGiocatoriRuolo("attaccante", "t") < modulo[2])
+                {
+                    ControlloRuolo(giocatoreCorrente, "attaccante");
+                }
+
             }
+            Console.Clear();
+            Console.WriteLine("La selezione dei titolari è stata completata. Ora inizierà la fase del torneo. Buona fortuna!");
+            salvataggio.SalvaTitolari(partitaInCorso);
+            partitaInCorso.fase = 2;
+            Console.WriteLine("Premi un tasto qualsiasi per continuare...");
+            Console.ReadKey();
             
         }
+
+        static void MostraGiocatoriRosa(Giocatore giocatoreCorrente)
+        {
+            Console.Clear();
+            Console.WriteLine("Giocatori disponibili:\n");
+            Console.Write(giocatoreCorrente.GetStringRosa());
+        }
+
+        static void ControlloRuolo(Giocatore giocatoreCorrente, string ruolo)
+        {
+            Calciatore calciatoreScelto;
+            bool success;
+            int indice;
+            Console.Write($"\nScegli un {ruolo} titolare: ");
+            do
+            {
+                success = true;
+                indice = OttieniIndice(giocatoreCorrente);
+                calciatoreScelto = giocatoreCorrente.GetRosa()[indice - 1];
+
+                if (calciatoreScelto.ruolo != ruolo)
+                {
+                    Console.Write($"\nIl calciatore selezionato non è un {ruolo}. Reinserire: ");
+                    success = false;
+                }
+                else
+                {
+                    foreach (Calciatore calciatore in giocatoreCorrente.GetTitolari())
+                    {
+                        if (calciatoreScelto.nome == calciatore.nome)
+                        {
+                            Console.Write("Impossibile inserire un giocatore già scelto. Reinserire: ");
+                            success = false;
+                        }
+                    }
+                }
+            } while (!success);
+            Console.WriteLine("Hai selezionato {0}!\nPremi un tasto per continuare...", calciatoreScelto.nome.ToUpper());
+            Console.ReadKey();
+            giocatoreCorrente.AddTitolari(giocatoreCorrente.GetRosa()[indice - 1]);
+        }
+
+        static int OttieniIndice(Giocatore giocatoreCorrente)
+        {
+            bool success;
+            int indice;
+
+            do
+            {
+                success = Int32.TryParse(Console.ReadLine(), out indice);
+                if (indice > giocatoreCorrente.GetRosa().Count || indice < 1)
+                {
+                    Console.Write("\nRisposta non valida, reinserire: ");
+                    success = false;
+                }
+            } while (!success);
+
+            return indice;
+        }
+
         #endregion
+
+        #region Partite
+        static void GeneraAbbinamenti()
+        {
+            for(int i = 0; i < partitaInCorso.GetGiocatori().Count; i++)
+            {
+
+            }
+        }
+        #endregion
+
         #endregion
     }
 }
