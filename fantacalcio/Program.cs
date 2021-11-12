@@ -422,7 +422,7 @@ namespace fantacalcio
                     SelezioneTitolari();
                     break;
                 case 2:
-                    Menu();
+                    GeneraAbbinamenti();
                     break;
             }
         }
@@ -840,28 +840,21 @@ namespace fantacalcio
                     }
                 } while (!success);
 
-                MostraGiocatoriRosa(giocatoreCorrente);
 
                 if (giocatoreCorrente.GetGiocatoriRuolo("portiere", "t") == 0)
                 {
                     ControlloRuolo(giocatoreCorrente, "portiere");
                 }
 
-                MostraGiocatoriRosa(giocatoreCorrente);
-
                 while (giocatoreCorrente.GetGiocatoriRuolo("difensore", "t") < modulo[0])
                 {
                     ControlloRuolo(giocatoreCorrente, "difensore");
                 }
 
-                MostraGiocatoriRosa(giocatoreCorrente);
-
                 while (giocatoreCorrente.GetGiocatoriRuolo("centrocampista", "t") < modulo[1])
                 {
                     ControlloRuolo(giocatoreCorrente, "centrocampista");
                 }
-
-                MostraGiocatoriRosa(giocatoreCorrente);
 
                 while (giocatoreCorrente.GetGiocatoriRuolo("attaccante", "t") < modulo[2])
                 {
@@ -873,6 +866,7 @@ namespace fantacalcio
             Console.WriteLine("La selezione dei titolari è stata completata. Ora inizierà la fase del torneo. Buona fortuna!");
             salvataggio.SalvaTitolari(partitaInCorso);
             partitaInCorso.fase = 2;
+            salvataggio.CreaSalvataggio(partitaInCorso);
             Console.WriteLine("Premi un tasto qualsiasi per continuare...");
             Console.ReadKey();
             
@@ -890,6 +884,7 @@ namespace fantacalcio
             Calciatore calciatoreScelto;
             bool success;
             int indice;
+            MostraGiocatoriRosa(giocatoreCorrente);
             Console.Write($"\nScegli un {ruolo} titolare: ");
             do
             {
@@ -942,9 +937,24 @@ namespace fantacalcio
         #region Partite
         static void GeneraAbbinamenti()
         {
-            for(int i = 0; i < partitaInCorso.GetGiocatori().Count; i++)
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            //g1 g2, g3, g4 a due a due
+            //i = 0 
+            for(int i = 1; i < giocatori.Count; i++)
             {
-
+                for(int j = 0; j < giocatori.Count; j = j + 2)
+                {
+                    int team1 = j;
+                    int team2 = j + i;
+                    if(team1 >= giocatori.Count)
+                    {
+                        team1 -= giocatori.Count;
+                    }else if(team2 >= giocatori.Count)
+                    {
+                        team2 -= giocatori.Count;
+                    }
+                    Console.WriteLine(team1 + " " + team2);
+                }
             }
         }
         #endregion

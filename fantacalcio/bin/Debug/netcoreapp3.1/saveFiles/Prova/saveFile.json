@@ -1,4 +1,4 @@
-Prova;1;[
+Prova;2;[
   {
     "nome": "Gioc1",
     "punteggio": 0,
@@ -11,6 +11,11 @@ Prova;1;[
   },
   {
     "nome": "Gioc3",
+    "punteggio": 0,
+    "fantaMilioni": 179
+  },
+  {
+    "nome": "Gioc4",
     "punteggio": 0,
     "fantaMilioni": 179
   }
