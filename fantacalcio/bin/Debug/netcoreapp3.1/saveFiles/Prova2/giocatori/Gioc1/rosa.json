@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "buongiorno alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "simeone giovanni",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "colidio facundo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "piccoli roberto",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "okereke david",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "leao rafael",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kalombo sedrick",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "faraoni davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "gagliolo riccardo",
+    "ruolo": "difensore"
+  }
+]

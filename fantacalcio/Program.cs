@@ -561,6 +561,7 @@ namespace fantacalcio
 
             return giocatori;
         }
+
         #region Asta
         static void Asta()
         {
@@ -938,25 +939,20 @@ namespace fantacalcio
         static void GeneraAbbinamenti()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            //g1 g2, g3, g4 a due a due
-            //i = 0 
-            for(int i = 1; i < giocatori.Count; i++)
+            //g1 g2, g3, g4 
+            for(int i = 0; i < giocatori.Count; i++)
             {
-                for(int j = 0; j < giocatori.Count; j = j + 2)
+                for (int j = i; j < giocatori.Count; j++)
                 {
-                    int team1 = j;
-                    int team2 = j + i;
-                    if(team1 >= giocatori.Count)
+                    if(i != j)
                     {
-                        team1 -= giocatori.Count;
-                    }else if(team2 >= giocatori.Count)
-                    {
-                        team2 -= giocatori.Count;
+                        Console.WriteLine(i + " vs " + j);
                     }
-                    Console.WriteLine(team1 + " " + team2);
                 }
             }
         }
+
+        
         #endregion
 
         #endregion
