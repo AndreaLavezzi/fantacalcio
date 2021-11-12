@@ -46,13 +46,16 @@ namespace fantacalcio
             public string nome { get; }         //identifica il giocatore 
             public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
             public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
+            public bool primaPartita { get; set; }
             List<Calciatore> rosa = new List<Calciatore>();
             List<Calciatore> titolari = new List<Calciatore>();
+            List<Calciatore> squadra = new List<Calciatore>();
 
             public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
             {
                 this.nome = nome;
                 fantaMilioni = 500;
+                primaPartita = true;
             }
 
             public void CaricaLista(List<Calciatore> calciatori)
@@ -77,14 +80,37 @@ namespace fantacalcio
             {
                 titolari.Add(calciatore);
             }
-            public string GetStringRosa()
+            public void SetSquadraAttuale(List<Calciatore> squadra)
             {
-                string stringRosa = "";
-                for(int i = 0; i < rosa.Count; i++)
+                this.squadra = squadra;
+            }
+            public List<Calciatore> GetSquadraAttuale()
+            {
+                return squadra;
+            }
+            public string GetStringSquadra(string gruppo)
+            {
+                string stringa = "";
+                List<Calciatore> daControllare = new List<Calciatore>();
+
+                if (gruppo == "r" && rosa != null)
                 {
-                    stringRosa += i + 1 + $" -> Nome: {rosa[i].nome}, Ruolo: {rosa[i].ruolo}\n";
+                    daControllare = rosa;
                 }
-                return stringRosa;
+                else if (gruppo == "t" && titolari != null)
+                {
+                    daControllare = titolari;
+                }
+                else if (gruppo == "a" && squadra != null)
+                {
+                    daControllare = squadra;
+                }
+
+                for (int i = 0; i < daControllare.Count; i++)
+                {
+                    stringa += i + 1 + $" -> Nome: {daControllare[i].nome}, Ruolo: {daControllare[i].ruolo}\n";
+                }
+                return stringa;
             }
             public override string ToString()
             {
@@ -97,46 +123,35 @@ namespace fantacalcio
                 int difensori = 0;
                 int attaccanti = 0;
                 int centrocampisti = 0;
+                List<Calciatore> daControllare = new List<Calciatore>();
                 if(gruppo == "r" && rosa != null)
                 {
-                    foreach(Calciatore calciatore in rosa)
-                    {
-                        switch (calciatore.ruolo)
-                        {
-                            case "portiere":
-                                portieri++;
-                                break;
-                            case "attaccante":
-                                attaccanti++;
-                                break;
-                            case "centrocampista":
-                                centrocampisti++;
-                                break;
-                            case "difensore":
-                                difensori++;
-                                break;
-                        }
-                    }
+                    daControllare = rosa;
                 }
-                if (gruppo == "t" && titolari != null)
+                else if (gruppo == "t" && titolari != null)
                 {
-                    foreach (Calciatore calciatore in titolari)
+                    daControllare = titolari;
+                }
+                else if(gruppo == "a" && squadra != null)
+                {
+                    daControllare = squadra;
+                }
+                foreach (Calciatore calciatore in daControllare)
+                {
+                    switch (calciatore.ruolo)
                     {
-                        switch (calciatore.ruolo)
-                        {
-                            case "portiere":
-                                portieri++;
-                                break;
-                            case "attaccante":
-                                attaccanti++;
-                                break;
-                            case "centrocampista":
-                                centrocampisti++;
-                                break;
-                            case "difensore":
-                                difensori++;
-                                break;
-                        }
+                        case "portiere":
+                            portieri++;
+                            break;
+                        case "attaccante":
+                            attaccanti++;
+                            break;
+                        case "centrocampista":
+                            centrocampisti++;
+                            break;
+                        case "difensore":
+                            difensori++;
+                            break;
                     }
                 }
                 switch (ruolo)
@@ -303,6 +318,16 @@ namespace fantacalcio
                                 string fileInput = File.ReadAllText(cartellaGiocatori + "/rosa.json");
                                 List<Calciatore> listaCalciatori = JsonConvert.DeserializeObject<List<Calciatore>>(fileInput);
                                 partite[i].GetGiocatori()[j].CaricaLista(listaCalciatori);
+                            }
+
+                            if(File.Exists(cartellaGiocatori + "/titolari.json"))
+                            {
+                                string fileInput = File.ReadAllText(cartellaGiocatori + "/titolari.json");
+                                List<Calciatore> listaCalciatori = JsonConvert.DeserializeObject<List<Calciatore>>(fileInput);
+                                foreach(Calciatore calciatore in listaCalciatori)
+                                {
+                                    partite[i].GetGiocatori()[j].AddTitolari(calciatore);
+                                }   
                             }
                         }
                     }
@@ -888,7 +913,7 @@ namespace fantacalcio
         {
             Console.Clear();
             Console.WriteLine("Giocatori disponibili:\n");
-            Console.Write(giocatoreCorrente.GetStringRosa());
+            Console.Write(giocatoreCorrente.GetStringSquadra("r"));
         }
 
         static void ControlloRuolo(Giocatore giocatoreCorrente, string ruolo)
@@ -901,7 +926,7 @@ namespace fantacalcio
             do
             {
                 success = true;
-                indice = OttieniIndice(giocatoreCorrente);
+                indice = OttieniIndiceSquadra(giocatoreCorrente.GetRosa());
                 calciatoreScelto = giocatoreCorrente.GetRosa()[indice - 1];
 
                 if (calciatoreScelto.ruolo != ruolo)
@@ -926,7 +951,7 @@ namespace fantacalcio
             giocatoreCorrente.AddTitolari(giocatoreCorrente.GetRosa()[indice - 1]);
         }
 
-        static int OttieniIndice(Giocatore giocatoreCorrente)
+        static int OttieniIndiceSquadra(List<Calciatore> squadra)
         {
             bool success;
             int indice;
@@ -934,7 +959,7 @@ namespace fantacalcio
             do
             {
                 success = Int32.TryParse(Console.ReadLine(), out indice);
-                if (indice > giocatoreCorrente.GetRosa().Count || indice < 1)
+                if (indice > squadra.Count || indice < 1)
                 {
                     Console.Write("\nRisposta non valida, reinserire: ");
                     success = false;
@@ -981,14 +1006,27 @@ namespace fantacalcio
 
             for (int i = 0; i < abbinamenti.GetLength(0); i++)
             {
-                PrePartita(abbinamenti[i, 0], abbinamenti[i, 1]);
+                foreach(Giocatore giocatore in partitaInCorso.GetGiocatori())
+                {
+                    if(giocatore.nome == abbinamenti[i, 0].nome)
+                    {
+                        abbinamenti[i, 0] = giocatore;
+                    }
+                    else if(giocatore.nome == abbinamenti[i, 1].nome)
+                    {
+                        abbinamenti[i, 1] = giocatore;
+                    }
+                }
+                PrePartita(ref abbinamenti[i, 0], ref abbinamenti[i, 1]);
             }
         }
 
-        static void PrePartita(Giocatore giocatore1, Giocatore giocatore2)
+        static void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
             string nomeG1 = giocatore1.nome.ToUpper();
             string nomeG2 = giocatore2.nome.ToUpper();
+            bool success;
+            Console.Clear();
             Console.WriteLine("Sta per avere inizio la partita tra {0} e {1}", nomeG1, nomeG2);
             for(int i = 0; i < 2; i++)
             {
@@ -1004,15 +1042,143 @@ namespace fantacalcio
                     giocatoreCorrente = giocatore2;
                     nome = nomeG2;
                 }
-                Console.Write("\n{0}, Quale squadra vuoi usare per questa partita?\n1 -> Solo titolari\n2 - > Nuova formazione", nome);
-                switch (Console.ReadLine())
+                Console.Write("\n{0}, Quale squadra vuoi usare per questa partita?\n1 -> Solo titolari\n2 -> Nuova formazione", nome);
+                if (!giocatoreCorrente.primaPartita)
                 {
-                    case "1":
-                        break;
-                    case "2":
-                        break;
+                    Console.Write("\n3 -> Usa formazione partita precedente");
                 }
+                Console.Write("\nRisposta: ");
+
+                do
+                {
+                    success = true;
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            giocatoreCorrente.SetSquadraAttuale(giocatoreCorrente.GetTitolari());
+                            break;
+                        case "2":
+                            giocatoreCorrente.SetSquadraAttuale(ModificaSquadra(giocatoreCorrente));
+                            break;
+                        case "3":
+                            if (giocatoreCorrente.primaPartita)
+                            {
+                                Console.Write("Inserire uno dei valori proposti");
+                                success = false;
+                            }
+                            else
+                            {
+                                giocatoreCorrente.GetSquadraAttuale();
+                            }
+                            break;
+                        default:
+                            Console.Write("Inserire uno dei valori proposti");
+                            success = false;
+                            break;
+                    }
+                } while (!success);
+
+                if(i == 0)
+                {
+                    giocatore1 = giocatoreCorrente;
+                }
+                else
+                {
+                    giocatore2 = giocatoreCorrente;
+                }
+                
             }
+            Partita(ref giocatore1, ref giocatore2);
+        }
+
+        static List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
+        {
+            if (giocatoreCorrente.primaPartita)
+            {
+                giocatoreCorrente.SetSquadraAttuale(giocatoreCorrente.GetTitolari());
+            }
+            List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale();
+            List<Calciatore> rosaCalciatori = giocatoreCorrente.GetRosa();
+            Calciatore calciatore1, calciatore2;
+
+            int indice1, indice2;
+            while (true)
+            {
+                Console.WriteLine("Squadra corrente:\n" + giocatoreCorrente.GetStringSquadra("a"));
+                Console.WriteLine("Lista calciatori posseduti:\n" + giocatoreCorrente.GetStringSquadra("r"));
+
+                Console.Write("Vuoi effettuare uno scambio? Inserisci 'exit' per annullare, inserisci altro per continuare.\nRisposta: ");
+                if (Console.ReadLine().ToLower() == "exit")
+                {
+                    Console.Clear();
+                    return squadraAttuale;
+                }
+
+                Console.Write("\nQuale calciatore dalla squadra corrente vuoi scambiare? \nRisposta: ");
+
+                indice1 = OttieniIndiceSquadra(squadraAttuale);
+
+                Console.Write("\nCon quale calciatore lo vuoi scambiare? \nRisposta: ");
+
+                indice2 = OttieniIndiceSquadra(rosaCalciatori);
+
+                calciatore1 = squadraAttuale[indice1 - 1];
+                calciatore2 = rosaCalciatori[indice2 - 1];
+
+                bool nomeDoppio = false; ;
+                foreach (Calciatore calciatore in squadraAttuale)
+                {
+                    if (calciatore.nome == calciatore2.nome)
+                    {
+                        nomeDoppio = true;
+                        break;
+                    }
+                }
+
+                if (nomeDoppio)
+                {
+                    Console.WriteLine("Non è possibile scambiare un giocatore con un giocatore già presente nella squadra.");
+                }
+                else if (calciatore1.ruolo == "portiere" && calciatore2.ruolo != "portiere" || calciatore1.ruolo != "portiere" && calciatore2.ruolo == "portiere")
+                {
+                    Console.WriteLine("Non è possibile scambiare un portiere con qualcuno che non sia un portiere.");
+                }
+                else if (giocatoreCorrente.GetGiocatoriRuolo(calciatore1.ruolo, "a") == 1 && calciatore1.ruolo != calciatore2.ruolo)
+                {
+                    Console.WriteLine("Non è possibile avere nessun {0} nella squadra.", calciatore1.ruolo);
+                }
+                else
+                {
+                    Console.WriteLine("Stai per scambiare {0} con {1}. Premi INVIO per annullare; premi qualsiasi altro tasto per confermare.", calciatore1.nome.ToUpper(), calciatore2.nome.ToUpper());
+                    if (Console.ReadKey(true).Key == ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("Hai annullato lo scambio. Premi un tasto qualsiasi per continuare...");
+                    }
+                    else
+                    {
+                        squadraAttuale[indice1 - 1] = calciatore2;
+                        giocatoreCorrente.SetSquadraAttuale(squadraAttuale);
+                        Console.WriteLine("Scambio completato. Premi un tasto qualsiasi per continuare...");
+                    }
+
+                }
+                Console.ReadKey(true);
+                Console.Clear();
+            }
+        }
+        static void Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
+        {
+            giocatore1.
+        }
+
+        static string GetStringSquadra(List<Calciatore> squadra)
+        {
+            string stringSquadra = "";
+            for (int i = 0; i < squadra.Count; i++)
+            {
+                stringSquadra += i + 1 + $" -> Nome: {squadra[i].nome}, Ruolo: {squadra[i].ruolo}\n";
+            }
+            return stringSquadra;
         }
 
         #endregion
