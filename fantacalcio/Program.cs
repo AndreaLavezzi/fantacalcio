@@ -230,6 +230,11 @@ namespace fantacalcio
                     File.WriteAllText(file, listaCalciatori);
                 }
             }
+            public void SalvaAbbinamenti(Fantacalcio fantacalcio, Giocatore[,] abbinamenti)
+            {
+                string output = JsonConvert.SerializeObject(abbinamenti, Formatting.Indented);
+                File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/abbinamenti.json", output);
+            }
             public void SalvaTitolari(Fantacalcio fantacalcio)
             {
                 List<Giocatore> giocatori = fantacalcio.GetGiocatori();
@@ -939,17 +944,25 @@ namespace fantacalcio
         static void GeneraAbbinamenti()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            //g1 g2, g3, g4 
-            for(int i = 0; i < giocatori.Count; i++)
+            int numeroPartite = giocatori.Count * (giocatori.Count - 1) / 2;
+            int indicePartita = 0;
+            Giocatore[,] abbinamenti = new Giocatore[numeroPartite, 2];
+
+            for (int i = 0; i < giocatori.Count; i++)
             {
                 for (int j = i; j < giocatori.Count; j++)
                 {
                     if(i != j)
                     {
-                        Console.WriteLine(i + " vs " + j);
+                        Console.WriteLine(i + " VS " + j);
+
+                        abbinamenti[indicePartita, 0] = giocatori[i];
+                        abbinamenti[indicePartita, 1] = giocatori[j];
+                        indicePartita++;
                     }
                 }
             }
+            salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
         

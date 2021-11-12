@@ -1,0 +1,38 @@
+[
+  [
+    {
+      "nome": "Gioc1",
+      "punteggio": 0,
+      "fantaMilioni": 200
+    },
+    {
+      "nome": "Gioc2",
+      "punteggio": 0,
+      "fantaMilioni": 100
+    }
+  ],
+  [
+    {
+      "nome": "Gioc1",
+      "punteggio": 0,
+      "fantaMilioni": 200
+    },
+    {
+      "nome": "Gioc3",
+      "punteggio": 0,
+      "fantaMilioni": 179
+    }
+  ],
+  [
+    {
+      "nome": "Gioc2",
+      "punteggio": 0,
+      "fantaMilioni": 100
+    },
+    {
+      "nome": "Gioc3",
+      "punteggio": 0,
+      "fantaMilioni": 179
+    }
+  ]
+]
