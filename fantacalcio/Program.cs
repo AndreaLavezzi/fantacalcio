@@ -235,6 +235,12 @@ namespace fantacalcio
                 string output = JsonConvert.SerializeObject(abbinamenti, Formatting.Indented);
                 File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/abbinamenti.json", output);
             }
+            public Giocatore[,] CaricaAbbinamenti(Fantacalcio fantacalcio)
+            {
+                string input = File.ReadAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/abbinamenti.json");
+                Giocatore[,] abbinamenti = JsonConvert.DeserializeObject<Giocatore[,]>(input);
+                return abbinamenti;
+            }
             public void SalvaTitolari(Fantacalcio fantacalcio)
             {
                 List<Giocatore> giocatori = fantacalcio.GetGiocatori();
@@ -427,7 +433,7 @@ namespace fantacalcio
                     SelezioneTitolari();
                     break;
                 case 2:
-                    GeneraAbbinamenti();
+                    InizioTorneo();
                     break;
             }
         }
@@ -954,18 +960,61 @@ namespace fantacalcio
                 {
                     if(i != j)
                     {
-                        Console.WriteLine(i + " VS " + j);
-
                         abbinamenti[indicePartita, 0] = giocatori[i];
                         abbinamenti[indicePartita, 1] = giocatori[j];
                         indicePartita++;
                     }
                 }
             }
+
             salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
-        
+        static void InizioTorneo()
+        {
+            Giocatore[,] abbinamenti;
+            if(!File.Exists("saveFiles/" + partitaInCorso.nomeSalvataggio + "/abbinamenti.json"))
+            {
+                GeneraAbbinamenti();
+            }
+            abbinamenti = salvataggio.CaricaAbbinamenti(partitaInCorso);
+
+            for (int i = 0; i < abbinamenti.GetLength(0); i++)
+            {
+                PrePartita(abbinamenti[i, 0], abbinamenti[i, 1]);
+            }
+        }
+
+        static void PrePartita(Giocatore giocatore1, Giocatore giocatore2)
+        {
+            string nomeG1 = giocatore1.nome.ToUpper();
+            string nomeG2 = giocatore2.nome.ToUpper();
+            Console.WriteLine("Sta per avere inizio la partita tra {0} e {1}", nomeG1, nomeG2);
+            for(int i = 0; i < 2; i++)
+            {
+                Giocatore giocatoreCorrente;
+                string nome;
+                if(i == 0)
+                {
+                    giocatoreCorrente = giocatore1;
+                    nome = nomeG1;
+                }
+                else
+                {
+                    giocatoreCorrente = giocatore2;
+                    nome = nomeG2;
+                }
+                Console.Write("\n{0}, Quale squadra vuoi usare per questa partita?\n1 -> Solo titolari\n2 - > Nuova formazione", nome);
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        break;
+                    case "2":
+                        break;
+                }
+            }
+        }
+
         #endregion
 
         #endregion
