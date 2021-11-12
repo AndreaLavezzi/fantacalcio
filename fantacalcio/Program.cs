@@ -39,7 +39,6 @@ namespace fantacalcio
         {
             public string nome { get; }
             public string ruolo { get; }
-            int prezzo;
             public Calciatore(string nome, string ruolo)
             {
                 this.nome = nome;
@@ -98,7 +97,7 @@ namespace fantacalcio
             {
                 rosa = calciatori;
             }
-
+            
             public void AddCalciatore(Calciatore calciatore, int prezzo)
             {
                 rosa.Add(calciatore);
@@ -156,7 +155,18 @@ namespace fantacalcio
             {
                 return $"Nome: {nome.ToUpper()}, Crediti: {fantaMilioni}";
             }
-
+            public int CompareTo(Giocatore giocatore2)
+            {
+                if(this.punteggio > giocatore2.punteggio)
+                {
+                    return 1;
+                }
+                else if(this.punteggio < giocatore2.punteggio)
+                {
+                    return -1;
+                }
+                return 0;
+            }
             public int GetGiocatoriRuolo(string ruolo, string gruppo)
             {
                 int portieri = 0;
@@ -408,7 +418,6 @@ namespace fantacalcio
         }
         #endregion
 
-        static string percorsoSalvataggi;
         static Fantacalcio partitaInCorso;  //assume il valore della partita caricata attualmente
         static Salvataggio salvataggio = new Salvataggio();
 
@@ -1075,7 +1084,20 @@ namespace fantacalcio
                     }
                 }
                 PrePartita(ref abbinamenti[i, 0], ref abbinamenti[i, 1]);
+
+                for(int j = 0; j < partitaInCorso.GetGiocatori().Count; j++)
+                {
+                    if (partitaInCorso.GetGiocatori()[j].nome == abbinamenti[i, 0].nome)
+                    {
+                        partitaInCorso.GetGiocatori()[j] = abbinamenti[i, 0];
+                    }
+                    else if (partitaInCorso.GetGiocatori()[j].nome == abbinamenti[i, 1].nome)
+                    {
+                        partitaInCorso.GetGiocatori()[j] = abbinamenti[i, 1];
+                    }
+                }
             }
+            Classifica();
         }
 
         static void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
@@ -1254,16 +1276,38 @@ namespace fantacalcio
             Console.WriteLine("\nPremi un tasto qualsiasi per continuare...");
             Console.ReadKey(true);
         }
-
-        static string GetStringSquadra(List<Calciatore> squadra)
+        
+        static void Classifica()
         {
-            string stringSquadra = "";
-            for (int i = 0; i < squadra.Count; i++)
+            Console.Clear();
+            Console.WriteLine("CLASSIFICA\n");
+            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            giocatori = InsertionSort(giocatori);
+            for (int i = 0; i < giocatori.Count; i++)
             {
-                stringSquadra += i + 1 + $" -> Nome: {squadra[i].nome}, Ruolo: {squadra[i].ruolo}\n";
+                Console.Write(i + 1 + " -> " + giocatori[i].nome + " con {0} punti\n", giocatori[i].punteggio);
             }
-            return stringSquadra;
         }
+
+        static List<Giocatore> InsertionSort(List<Giocatore> giocatori)
+        {
+            for (int i = 0; i < giocatori.Count - 1; i++)
+            {
+                for (int j = i + 1; j > 0; j--)
+                {
+                    int t = giocatori[j - 1].CompareTo(giocatori[j]);
+                    if (t == -1)
+                    {
+                        Giocatore temp = giocatori[j - 1];
+                        giocatori[j - 1] = giocatori[j];
+                        giocatori[j] = temp;
+                    }
+                }
+            }
+            return giocatori;
+        }
+
+
 
         #endregion
 
