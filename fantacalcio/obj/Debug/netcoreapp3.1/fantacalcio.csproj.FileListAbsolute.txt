@@ -29,5 +29,4 @@ C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.
 C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.CoreCompileInputs.cache
 C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.csproj.CopyComplete
 C:\Users\HP\GitBash\fantacalcio\fantacalcio\obj\Debug\netcoreapp3.1\fantacalcio.genruntimeconfig.cache
-C:\Users\HP\GitBash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\RoundRobin.dll
 C:\Users\Studente\Git Bash\fantacalcio\fantacalcio\bin\Debug\netcoreapp3.1\RoundRobin.dll

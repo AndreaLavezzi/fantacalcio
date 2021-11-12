@@ -1,0 +1,112 @@
+[
+  {
+    "nome": "golSegnato",
+    "punteggio": 14.0,
+    "peso": 30
+  },
+  {
+    "nome": "assist",
+    "punteggio": 7.0,
+    "peso": 90
+  },
+  {
+    "nome": "ammonizione",
+    "punteggio": -2.0,
+    "peso": 30
+  },
+  {
+    "nome": "espulsione",
+    "punteggio": -5.0,
+    "peso": 20
+  },
+  {
+    "nome": "autogol",
+    "punteggio": -1.0,
+    "peso": 4
+  },
+  {
+    "nome": "rigoreGuadagnato",
+    "punteggio": 3.0,
+    "peso": 40
+  },
+  {
+    "nome": "rigoreCausato",
+    "punteggio": -3.0,
+    "peso": 20
+  },
+  {
+    "nome": "rigoreSbagliato",
+    "punteggio": -5.0,
+    "peso": 35
+  },
+  {
+    "nome": "reteInviolata",
+    "punteggio": 6.0,
+    "peso": 0
+  },
+  {
+    "nome": "passaggioRiuscito",
+    "punteggio": 1.0,
+    "peso": 150
+  },
+  {
+    "nome": "passaggioSbagliato",
+    "punteggio": -1.0,
+    "peso": 70
+  },
+  {
+    "nome": "palloneRecuperato",
+    "punteggio": 5.0,
+    "peso": 40
+  },
+  {
+    "nome": "pallonePerso",
+    "punteggio": -3.0,
+    "peso": 50
+  },
+  {
+    "nome": "tiroFuoriPorta",
+    "punteggio": 1.0,
+    "peso": 30
+  },
+  {
+    "nome": "tiroInPorta",
+    "punteggio": 3.0,
+    "peso": 40
+  },
+  {
+    "nome": "contrastoVinto",
+    "punteggio": 5.0,
+    "peso": 55
+  },
+  {
+    "nome": "contrastoPerso",
+    "punteggio": -2.0,
+    "peso": 35
+  },
+  {
+    "nome": "dribblingRiuscito",
+    "punteggio": 5.0,
+    "peso": 65
+  },
+  {
+    "nome": "salvataggio",
+    "punteggio": 3.0,
+    "peso": 30
+  },
+  {
+    "nome": "erroreDecisivo",
+    "punteggio": -3.0,
+    "peso": 20
+  },
+  {
+    "nome": "golSubito",
+    "punteggio": -5.0,
+    "peso": 0
+  },
+  {
+    "nome": "parata",
+    "punteggio": 2.0,
+    "peso": 0
+  }
+]

@@ -21,6 +21,18 @@ namespace fantacalcio
 {
     class Program
     {
+        class Azione
+        {
+            public string nome;
+            public double punteggio;
+            public int peso;
+            public Azione(string nome, double punteggio, int peso)
+            {
+                this.nome = nome;
+                this.punteggio = punteggio;
+                this.peso = peso;
+            }
+        }
         #region Classi
         //i calciatori, hanno un nome e un ruolo, viene inoltre salvato il prezzo a cui vengono comprati
         class Calciatore
@@ -33,6 +45,30 @@ namespace fantacalcio
                 this.nome = nome;
                 this.ruolo = ruolo;
             }
+            public double GeneraAzioni()
+            {
+                double punti = 0;
+                int pesoMassimo = 0;
+                List<Azione> azioni = JsonConvert.DeserializeObject<List<Azione>>(File.ReadAllText(ruolo + ".json"));
+                Random random = new Random();
+                int numeroAzioni = random.Next(100);
+                foreach(Azione azione in azioni)
+                {
+                    pesoMassimo += azione.peso;
+                }
+
+                for(int i = 0; i < numeroAzioni; i++)
+                {
+                    int azioneRandom = random.Next(azioni.Count);
+                    int eseguiAzione = random.Next(100);
+                    int probabilità = (int)Math.Round((double)(azioni[azioneRandom].peso * 100) / pesoMassimo);
+                    if(eseguiAzione <= probabilità)
+                    {
+                        punti += azioni[azioneRandom].punteggio;
+                    }
+                }
+                return punti;
+            }
 
             public override string ToString()
             {
@@ -44,7 +80,7 @@ namespace fantacalcio
         class Giocatore
         {
             public string nome { get; }         //identifica il giocatore 
-            public int punteggio { get; }       //punteggio che decreterà il vincitore finale della partita
+            public int punteggio { get; set; }       //punteggio che decreterà il vincitore finale della partita
             public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
             public bool primaPartita { get; set; }
             List<Calciatore> rosa = new List<Calciatore>();
@@ -67,6 +103,10 @@ namespace fantacalcio
             {
                 rosa.Add(calciatore);
                 fantaMilioni -= prezzo;
+            }
+            public void AddPunteggio(int punti)
+            {
+                punteggio += punti;
             }
             public List<Calciatore> GetRosa()
             {
@@ -1106,6 +1146,7 @@ namespace fantacalcio
                 
             }
             Partita(ref giocatore1, ref giocatore2);
+
         }
 
         static List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
@@ -1185,7 +1226,33 @@ namespace fantacalcio
         }
         static void Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
-            
+            double puntiG1 = 0;
+            double puntiG2 = 0;
+            foreach(Calciatore calciatore in giocatore1.GetSquadraAttuale())
+            {
+                puntiG1 += calciatore.GeneraAzioni();
+            }
+            foreach (Calciatore calciatore in giocatore2.GetSquadraAttuale())
+            {
+                puntiG2 += calciatore.GeneraAzioni();
+            }
+            if(puntiG1 == puntiG2)
+            {
+                Console.WriteLine("PAREGGIO!");
+                giocatore1.AddPunteggio(1);
+                giocatore2.AddPunteggio(1);
+            }else if(puntiG1 > puntiG2)
+            {
+                Console.WriteLine("VINCE {0} CON {1} PUNTI!", giocatore1.nome.ToUpper(), puntiG1);
+                giocatore1.AddPunteggio(3);
+            }
+            else
+            {
+                Console.WriteLine("VINCE {0} CON {1} PUNTI!!", giocatore2.nome.ToUpper(), puntiG2);
+                giocatore2.AddPunteggio(3);
+            }
+            Console.WriteLine("\nPremi un tasto qualsiasi per continuare...");
+            Console.ReadKey(true);
         }
 
         static string GetStringSquadra(List<Calciatore> squadra)
