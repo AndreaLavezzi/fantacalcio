@@ -1,0 +1,2274 @@
+[
+  {
+    "nome": "musso juan",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "rossi francesco",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "sportiello marco",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "bardi francesco",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "sarr",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "skorupski lukasz",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "aresti simone",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "cragno alessio",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "radunovic boris",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "furlan jacopo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "pratelli leandro",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "ujkani samir",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "vicario guglielmo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "brancolini federico",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "cerofolini michele",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "dragowski bartlomiej",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "rosati antonio",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "terracciano pietro",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "marchetti federico",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "mitrovic aleksander",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "semper adrian",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "sirigu salvatore",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "brazao gabriel",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "cordaz alex",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "handanovic samir",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "radu ionut",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "perin mattia",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "pinsoglio carlo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "szcesny wojciec",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "adamonis marius",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "strakosha thomas",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "maignan mike",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "tatarusanu ciprian",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "idasiak hubert",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "marfella davide",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "meret alex",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "boer pietro",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "fuzato daniel",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "rui patricio",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "belec vid",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "de matteis jacopo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "fiorillo vincenzo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "guerrieri guido",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "russo antonio",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "audero emil",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "falcone wladimiro",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "ravaglia nicola",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "consigli andrea",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "pegolo gianluca",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "satalino giacomo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "provedel ivan",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "rafael bittencourt",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "zoet jeroen",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "zovko petar",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "berisha etrit",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "gemello luca",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "milinkovic savic vanja",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "sava razvan",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "padelli daniele",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "piana edoardo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "silvestri marco",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "bertinato bruno",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "maenpaa niki",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "neri filippo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "pigozzo riccardo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "borghetto nicola",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "montipo lorenzo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "pandur ivor",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "demiral",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "djimsiti berat",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "gosens robin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hateboer hans",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "lovato matteo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "mattiello federico",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "palomino jose luis",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pezzella giuseppe",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "scalvini giorgio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "toloi rafael",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zappacosta davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "amey wisdom",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "binks luis",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bonifazi kevin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "corbo gabriele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de silvestri lorenzo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dijks mitchell",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hickey aaron",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "khailoti omar",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "mbaye ibrahima",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "paz nehuen",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "soumaro adama",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "altare giorgio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bellanova raoul",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "caceres martin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "carboni andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dalbert henrique",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "farago paolo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "godin diego",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "lykogiannis",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "obert adam",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "walukiewicz sebastian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zappa gabriele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "fiamozzi riccardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ismajli ardian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "luperto sebastiano",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "marchizza riccardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "parisi fabiano",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "romagnoli simone",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "stojanovic peter",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "tonelli lorenzo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "viti mattia",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "biraghi cristiano",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dalle mura christian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "igor dos santos",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "milenkovic nicola",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "nastasic matija",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "odriozola alvaro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "quarta lucas martinez",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "terzic aleksa",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "venuti lorenzo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bani mattia",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "biraschi davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "cambiaso andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "criscito domenico",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ghiglione paolo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "maksimovic nikola",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "masiello andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "onguene jerome",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vanheusden zinho",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vasquez johan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bastoni alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "d'ambrosio danilo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "darmian matteo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dimarco federico",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dumfries denzel",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kolarov alexandar",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ranocchia andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "alex sandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "danilo luiz da silva",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pellegrini luca",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "rugani daniele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "acerbi francesco",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "durmisi riza",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hysaj elseid",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kamenovic dimitrije",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "lazzari manuel",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "luis felipe ramos",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "lukaku jordan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "marusic adam",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "patric",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "radu stefan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vavro denis",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ballo-toure fode",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "calabria davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "conti andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "florenzi alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hernandez theo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kalulu pierre",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kjaer simon",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "romagnoli alessio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "tomori fikayo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "di lorenzo giovanni",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ghoulam faouzi",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "juan jesus",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "malcuit kevin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "manolas kostas",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "mario rui",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "rrahmani amir",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zanoli alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "calafiori riccardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ibanez roger",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "karsdorp rick",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kumbulla marash",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "mancini gianluca",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "reynolds bryan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "santon davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "smalling chris",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "spinazzola leonardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vina matias",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "aya ramzi",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bogdan luka",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "delli carri filippo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "gagliolo riccardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "gyomber norbert",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "jaroszynski pawel",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kechrida wajdi",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ranieri luca",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ruggeri matteo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "schiavone andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "strandberg stefan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "veseli frederic",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zortea nadir",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bereszynski",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "chabot julian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "colley omar",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "depaoli fabio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dragusin radu",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ferrari alex",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hermansen noah bech",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "murru nicola",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "yoshida maya",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ayhan kaan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "chiriches vlad",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ferrari gianmarco",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "goldaniga edoardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kyriakopoulos giorgos",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "muldur mert",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "paz yeferson",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "peluso federico",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "rogerio da silva",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "romagna filippo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "toljan jeremy",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "amian kelvin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bertola nicolo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "capradossi elio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dell'orco cristian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "erlic martin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ferrer salva",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "holm emil",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hristov petko",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kiwior jakub",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "nikolaou dimitiros",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ramos juan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "reca arkadiusz",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "sala jacopo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "aina ola",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ansaldi cristian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bremer gleison",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "buongiorno alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "djidji koffi",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "izzo armando",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "rodriguez ricardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "singo wilfried",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zima david",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de maio sebastien",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "molina nahuel",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "nuytinck bram",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "rodrigo becao",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "samir",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "soppy brandon",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "stryger larsen",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "udogie destiny",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zeegelar",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ampadu ethan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "caldara mattia",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ceccaroni pietro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ebuehi tyronne",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "felicioli gian filippo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "haps ridgeciano",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "mazzocchi pasquale",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "modolo marco",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "molinaro cristian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "schnegg david",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "svoboda michael",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "amione bruno",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "casale nicolo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ceccherini federico",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "cetin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "dawidowicz pawel",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "faraoni davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "frabotta gianluca",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "gunter koray",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ruegg kevin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "sutalo bosko",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de roon marten",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "freuler remo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "koopmeiners teun",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "malinovsky ruslan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "miranchuk aleksej",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mæhle joakim",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pasalic mario",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pessina matteo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "dominguez nicolas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kingsley michael",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "medel gary",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "orsolini riccardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "schouten jerdy",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "skov andreas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "soriano roberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "svanberg mattias",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "urbanski kacper",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "vignato emanuel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "biancu roberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "deiola alessandro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "grassi alberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "joao pedro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ladinetti riccardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "marin razvan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "nandez nahitan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "oliva christian",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pereiro gaston",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "rog marko",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "strootman kevin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "asllani kristjan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bahjrami nedim",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "baldanzi tommaso",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bandinelli filippo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "damiani samuele",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "di francesco federico",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "haas nicolas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "henderson liam",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ricci samuele",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zurkowski szymon",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "parolo marco esteri",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "amrabat sofyan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "benassi marco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bianco alessandro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bonaventura giacomo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "callejon jose maria",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "castrovilli gaetano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "duncan alfred",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "maleh youssef",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pulgar erick",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "saponara riccardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sottil riccardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "torreira lucas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "badelj",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "behrami valon",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cassata francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "fares mohamed",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "hernani",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "portanova manolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "radovanovic ivan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "rovella nicolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sturaro stefano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "toure abdoulaye",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "barella nicolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "brozovic marcelo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "calhanoglu hadam",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "gagliardini roberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "perisic ivan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sangalli mattia",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sensi stefano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "vecino matias",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "vidal arturo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "arthur",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bentancur rodrigo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bernardeschi federico",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "locatelli manuel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mckennie weston",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "nicolussi caviglia hans",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "palumbo martin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "rabiot adrien",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ramsey",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "akpa-akpro jean-daniel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "anderson djavan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "basic toma",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cataldi danilo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "dziczek patryk",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "escalante gonzalo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "felipe anderson",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "lombardi cristiano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "lucas leiva",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "luis alberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zaccagni mattia",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bakayoko tiemoue",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "brahim diaz",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "castillejo samu",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kessie franck",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "krunic rade",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "maldini daniel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "messias junior",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "saelemaekers alexis",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "elmas eljif",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "lobotka stanislav",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "politano matteo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ruiz fabian",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zambo anguissa",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zielinski piotor",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bove edoardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cristante bryan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "darboe ebrima",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "diawara amadou",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mkhitaryan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tripi filippo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "veretout jordan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "villar gonzalo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zalewski nicola",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "zaniolo nicolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "capezzi leonardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "coulibaly lassana",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "coulibaly mamadou",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "di tacchio francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kalombo sedrick",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kastanos grigoris",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "obi joel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "askildsen kristoffer",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ciervo riccardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "damsgaard",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ekdal albin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ihattaren mohamed",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "leris mehdi",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "thorsby morten",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "trimboli simone",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "verre valerio",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "artioli federico",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "djuricic filip",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "frattesi davide",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "harroui abdou",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "magnanelli francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "matheus henrique",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "maxime lopez",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "obiang pedro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "traore hamed",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "acampora gennaro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "agudelo kevin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bastoni simone",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bordin alessandro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bourabia mehdi",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "figoli matteo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "maggiore giulio",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mora luca",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sena leo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "sher aimar",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "baselli daniele",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "brekalo josip",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "karamoko ibrahim",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kone ben lhassine",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "linetty karol",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "lukic sasa",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mandragora rolando",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pobega tommaso",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "praet dennis",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "rincon tomas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "stojkovic dennis",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "verdi simone",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "warming magnus",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ballarini marco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "jajalo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kubala jan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "makengo jean-victor",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pereyra roberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "samardzic lazar",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "walace",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ala-myllymaki",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "aramu mattia",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "busio gianluca",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "crnigoj domen",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "dezi jacopo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "fiordilino luca",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "heymans daan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "johnsen dennis",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kiyine sofian",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pecile damiano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "peretz dor",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "taugordeau anthony",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tessmann tanner",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "vacca antonio junior",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "barak antonin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bessa daniel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cancellieri matteo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "hongla martin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ilic ivan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "lazovic darko",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "mane bachir",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tameze adrien",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "veloso miguel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "ilicic josip",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "muriel luis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "piccoli roberto",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "zapata duvan",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "arnautovic marko",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "barrow musa",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "cangiano gianmarco",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "falcinelli diego",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "sansone nicola",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "santander federico",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "van hooijdonk sydney",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "ceter damir",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "farias diego",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "keita balde",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pavoletti leonardo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "cutrone patrick",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "la mantia andrea",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "mancuso leonardo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pinamonti andrea",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kokorin aleksandr",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kouame christian",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "munteanu louis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "bianchi flavio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "buksa aleksander",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "caicedo felipe",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "destro mattia",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "ekuban caleb",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kallon yayah",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "males darian",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pandev goran",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "colidio facundo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "correa joaquin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "dzeko edin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "martinez lautaro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "sanchez alexis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "satriano martin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kaio jorge",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kean moise",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "adekanye bobby",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "immobile ciro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "moro raul",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "muriqi vedat",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pedro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "romero luka",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "colombo lorenzo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "giroud olivier",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "leao rafael",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pellegri pietro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "rebic ante",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "insigne lorenzo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "lozano hirving",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "mertens dries",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "osimehen victor",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "ounas adam",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "petagna andrea",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "mayoral borja",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "perez carles",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "riccardi alessio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "shomurodov eldor",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "bonazzoli federico",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "djuric",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gondo cedric",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "ribery frank",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "simy",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "vergani edoardo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "caputo francesco",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gabbiadini manolo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "torregrossa ernesto",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "berardi domenico",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "boga jeremie",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "defrel gregoire",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "raspadori giacomo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "scamacca gianluca",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "antiste janis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "colley ebrima",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gyasi emmanuel",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "manaj rey",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "mbala nzola",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "mraz samuel",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pinto vincenzo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "podgoreanu suf",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "salcedo eddie",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "strelec david",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "verde daniele",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "baeten thibo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "edera simone",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pjaca marko",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "rauti nicola",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "sanabria antonio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "zaza simone",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "beto betuncal",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "deulofeu gerard",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "forestieri fernando",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "ianesi simone",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "llorente fernando",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "micin petar",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "nestorovski ilija",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "okaka stefano",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pussetto ignacio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "teodorczyk lukasz",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "bjarkason bjarki",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "bocalon riccardo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "forte francesco",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "okereke david",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "sigurdsson arnor",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "zigoni gianmarco",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "caprari gianluca",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "di carmine samuel",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kalinic nikola",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "lasagna kevin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "simeone giovanni",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "perez nehuen",
+    "ruolo": "difensore"
+  }
+]

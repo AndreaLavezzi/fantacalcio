@@ -1,0 +1,46 @@
+[
+  {
+    "nome": "ospina david",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "cuadrado jaime",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "chiellini giorgio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de ligt matthijs",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de vrij stefan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "chiesa federico",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tonali sandro",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kulusevski dejan",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "dybala paulo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "morata alvaro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "el shaarawy stephan",
+    "ruolo": "attaccante"
+  }
+]

@@ -691,7 +691,19 @@ namespace fantacalcio
                 else
                 {
                     Console.Write("\n(Scrivere 'exit' per tornare indietro) Quanti soldi vuoi puntare? Risposta: ");
-                    int soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
+                    int soldiPuntati;
+                    bool success;
+                    do
+                    {
+                        success = true;
+                        soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
+                        if(soldiPuntati > giocatoreSelezionato.fantaMilioni - (25 - giocatoreSelezionato.GetGiocatoriRuolo("tot", "r")))
+                        {
+                            Console.Write("Non puoi inserire un numero di fantamilioni tale che ti renda incapacitato di comprare ulteriori giocatori; Reinserire: ");
+                            success = false;
+                        }
+
+                    } while (!success);
                     if (soldiPuntati != -1)
                     {
                         puntataMaggiore = soldiPuntati;
@@ -766,7 +778,7 @@ namespace fantacalcio
                     Console.Write("\nRisposta non valida. Reinserire: ");
                     nonValida = true;
                 }
-                if (!nonValida && (indice < 0 || puntataMaggiore == 0 && indice > giocatori.Count + 1 || puntataMaggiore != 0 && indice > giocatori.Count))
+                if (!nonValida && (indice < 0 || puntataMaggiore == 0 && indice > giocatori.Count + 1 || puntataMaggiore != 0 && indice > giocatori.Count || puntataMaggiore == 0 && indice == 0))
                 {
                     Console.Write("Risposta non valida; inserire uno dei valori proposti: ");
                     nonValida = true;
@@ -848,7 +860,7 @@ namespace fantacalcio
                 Giocatore giocatoreCorrente = giocatori[i];
                 Console.Clear();
                 Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatoreCorrente.nome.ToUpper());
-                Console.Write("\nInserisci il modulo che vuoi utilizzare (Esempio: 2-4-5 => 2 -> Difensori, 4 -> Centrocampisti, 5 => Attaccanti)\nRisposta: ");
+                Console.Write("\nInserisci il modulo che vuoi utilizzare (Esempio: 2-4-4 => 2 -> Difensori, 4 -> Centrocampisti, 4 => Attaccanti)\nRisposta: ");
                 do
                 {
                     success = true;
@@ -867,6 +879,11 @@ namespace fantacalcio
                         }else if(modulo[0] <= 0 || modulo[1] <= 0 || modulo[2] <= 0)
                         {
                             Console.Write("\nI numeri non possono essere 0 o minori; reinserire: ");
+                            success = false;
+                        }
+                        else if(modulo[2] > 6)
+                        {
+                            Console.Write("\nImpossibile mettere più di 6 in posizione 3 del modulo. Reinserire: ");
                             success = false;
                         }
                     }
@@ -1168,7 +1185,7 @@ namespace fantacalcio
         }
         static void Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
-            giocatore1.
+            
         }
 
         static string GetStringSquadra(List<Calciatore> squadra)
