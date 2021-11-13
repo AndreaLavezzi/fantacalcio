@@ -8,7 +8,7 @@
     },
     {
       "nome": "Giocatore2",
-      "punteggio": 0,
+      "punteggio": 3,
       "fantaMilioni": 475,
       "primaPartita": true
     }
@@ -44,7 +44,7 @@
   [
     {
       "nome": "Giocatore2",
-      "punteggio": 0,
+      "punteggio": 3,
       "fantaMilioni": 475,
       "primaPartita": true
     },
@@ -58,7 +58,7 @@
   [
     {
       "nome": "Giocatore2",
-      "punteggio": 0,
+      "punteggio": 3,
       "fantaMilioni": 475,
       "primaPartita": true
     },

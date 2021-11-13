@@ -1,0 +1,46 @@
+[
+  {
+    "nome": "neri filippo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "corbo gabriele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zima david",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "augello tommaso",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "smalling chris",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pellegrini lorenzo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bahjrami nedim",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kastanos grigoris",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "leao rafael",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "munteanu louis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "djuric",
+    "ruolo": "attaccante"
+  }
+]

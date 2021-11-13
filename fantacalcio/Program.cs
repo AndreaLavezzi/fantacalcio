@@ -666,6 +666,17 @@ namespace fantacalcio
             Salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
+        static void OrdinaAbbinamenti(ref Giocatore[,] abbinamenti, int numGiocatori)
+        {
+            for(int i = 0; i < numGiocatori/2; i++)
+            {
+                for(int j = i + 1; j < abbinamenti.GetLength(0); j++)
+                {
+                    
+                }
+            }
+        }
+
         static void InizioTorneo()
         {
             Giocatore[,] abbinamenti;
@@ -678,6 +689,7 @@ namespace fantacalcio
             for (int i; partitaInCorso.numeroPartita < abbinamenti.GetLength(0); partitaInCorso.numeroPartita++)
             {
                 i = partitaInCorso.numeroPartita;
+                
                 //trova i giocatori che stanno per giocare nella lista di giocatori della partita in corso
                 foreach(Giocatore giocatore in partitaInCorso.GetGiocatori())
                 {

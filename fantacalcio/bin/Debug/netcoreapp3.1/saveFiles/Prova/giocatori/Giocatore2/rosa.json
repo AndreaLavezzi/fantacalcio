@@ -1,0 +1,102 @@
+[
+  {
+    "nome": "neri filippo",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "corbo gabriele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zima david",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pellegrini lorenzo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bahjrami nedim",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cordaz alex",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "cragno alessio",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "augello tommaso",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "smalling chris",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kastanos grigoris",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "castrovilli gaetano",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "capezzi leonardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "schouten jerdy",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "stulac leo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "veseli frederic",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "hateboer hans",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zappa gabriele",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "correa joaquin",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "carboni andrea",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ruiz fabian",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "la mantia andrea",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "leao rafael",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "munteanu louis",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "djuric",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "santander federico",
+    "ruolo": "attaccante"
+  }
+]
