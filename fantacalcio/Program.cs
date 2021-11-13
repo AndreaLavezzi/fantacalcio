@@ -21,14 +21,7 @@ namespace fantacalcio
 {
     class Program
     {
-        
-        #region Classi
-
-
-        #endregion
-
         static Fantacalcio partitaInCorso;  //assume il valore della partita caricata attualmente
-        static Salvataggio salvataggio = new Salvataggio();
 
         static void Main(string[] args)     //il main chiama solo il metodo che mostra il menù principale
         {
@@ -83,7 +76,7 @@ namespace fantacalcio
 
                 Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
 
-                salvataggio.CreaSalvataggio(fantacalcio);
+                Salvataggio.CreaSalvataggio(fantacalcio);
             }
             Console.WriteLine("Premere un tasto per continuare...");
             Console.ReadKey();
@@ -91,7 +84,7 @@ namespace fantacalcio
         }
         static void CaricaFile()
         {
-            List<Fantacalcio> partite = salvataggio.GetPartite();
+            List<Fantacalcio> partite = Salvataggio.GetPartite();
             if(partite == null)
             {
                 Console.WriteLine("Non esistono file di salvataggio. Premi un tasto qualsiasi per continuare.");
@@ -177,7 +170,7 @@ namespace fantacalcio
 
         static void EliminaPartita(Fantacalcio partita)
         {
-            switch (salvataggio.EliminaSalvataggio(partita))
+            switch (Salvataggio.EliminaSalvataggio(partita))
             {
                 case 1:
                     Console.WriteLine("File eliminato. Premi un tasto qualsiasi per continuare.");
@@ -262,21 +255,21 @@ namespace fantacalcio
             string fileCalciatori = File.ReadAllText("saveFiles/" + partitaInCorso.nomeSalvataggio + "/calciatoriDisponibili.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
             
-            while (!controlloAsta())
+            while (!ControlloAsta())
             {
                 Random random = new Random();
                 Calciatore calciatoreEstratto = calciatoriDisponibili[random.Next(0, calciatoriDisponibili.Count)];
 
                 Console.Clear();
                 Offerte(calciatoreEstratto, ref calciatoriDisponibili);
-                salvataggio.SalvaCalciatoriDisponibili(calciatoriDisponibili, partitaInCorso);
+                Salvataggio.SalvaCalciatoriDisponibili(calciatoriDisponibili, partitaInCorso);
             }
             partitaInCorso.fase = 1;
-            salvataggio.CreaSalvataggio(partitaInCorso);
+            Salvataggio.CreaSalvataggio(partitaInCorso);
             SelezioneTitolari();
         }
 
-        static bool controlloAsta()
+        static bool ControlloAsta()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             foreach(Giocatore giocatore in giocatori)
@@ -375,7 +368,7 @@ namespace fantacalcio
             Console.ReadKey();
             maggiorOfferente.AddCalciatore(calciatore, puntataMaggiore);
             calciatoriDisponibili.Remove(calciatore);
-            salvataggio.CreaSalvataggio(partitaInCorso);
+            Salvataggio.CreaSalvataggio(partitaInCorso);
         }
 
         static int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore)
@@ -576,12 +569,11 @@ namespace fantacalcio
             }
             Console.Clear();
             Console.WriteLine("La selezione dei titolari è stata completata. Ora inizierà la fase del torneo. Buona fortuna!");
-            salvataggio.SalvaTitolari(partitaInCorso);
+            Salvataggio.SalvaTitolari(partitaInCorso);
             partitaInCorso.fase = 2;
-            salvataggio.CreaSalvataggio(partitaInCorso);
+            Salvataggio.CreaSalvataggio(partitaInCorso);
             Console.WriteLine("Premi un tasto qualsiasi per continuare...");
             Console.ReadKey();
-            
         }
 
         static void MostraGiocatoriRosa(Giocatore giocatoreCorrente)
@@ -667,7 +659,7 @@ namespace fantacalcio
                 }
             }
 
-            salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
+            Salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
         static void InizioTorneo()
@@ -677,7 +669,7 @@ namespace fantacalcio
             {
                 GeneraAbbinamenti();
             }
-            abbinamenti = salvataggio.CaricaAbbinamenti(partitaInCorso);
+            abbinamenti = Salvataggio.CaricaAbbinamenti(partitaInCorso);
 
             for (int i = 0; i < abbinamenti.GetLength(0); i++)
             {
@@ -889,7 +881,6 @@ namespace fantacalcio
         
         static void Classifica()
         {
-            Console.Clear();
             Console.WriteLine("CLASSIFICA\n");
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             giocatori = InsertionSort(giocatori);

@@ -8,7 +8,7 @@ namespace fantacalcio
 {
     class Salvataggio
     {
-        public void CreaSalvataggio(Fantacalcio fantacalcio)
+        static public void CreaSalvataggio(Fantacalcio fantacalcio)
         {
             string directorySalvataggi = "saveFiles/";
             if (!Directory.Exists(directorySalvataggi))
@@ -28,12 +28,12 @@ namespace fantacalcio
 
             File.WriteAllText(directorySalvataggi + fantacalcio.nomeSalvataggio + "/saveFile.json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
         }
-        public void SalvaCalciatoriDisponibili(List<Calciatore> calciatoriDisponibili, Fantacalcio fantacalcio)
+        static public void SalvaCalciatoriDisponibili(List<Calciatore> calciatoriDisponibili, Fantacalcio fantacalcio)
         {
             string output = JsonConvert.SerializeObject(calciatoriDisponibili, Formatting.Indented);
             File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/calciatoriDisponibili.json", output);
         }
-        void SalvaSquadre(Fantacalcio fantacalcio)
+        static void SalvaSquadre(Fantacalcio fantacalcio)
         {
             List<Giocatore> giocatori = fantacalcio.GetGiocatori();
             for (int i = 0; i < giocatori.Count; i++)
@@ -49,18 +49,18 @@ namespace fantacalcio
                 File.WriteAllText(file, listaCalciatori);
             }
         }
-        public void SalvaAbbinamenti(Fantacalcio fantacalcio, Giocatore[,] abbinamenti)
+        static public void SalvaAbbinamenti(Fantacalcio fantacalcio, Giocatore[,] abbinamenti)
         {
             string output = JsonConvert.SerializeObject(abbinamenti, Formatting.Indented);
             File.WriteAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/abbinamenti.json", output);
         }
-        public Giocatore[,] CaricaAbbinamenti(Fantacalcio fantacalcio)
+        static public Giocatore[,] CaricaAbbinamenti(Fantacalcio fantacalcio)
         {
             string input = File.ReadAllText("saveFiles/" + fantacalcio.nomeSalvataggio + "/abbinamenti.json");
             Giocatore[,] abbinamenti = JsonConvert.DeserializeObject<Giocatore[,]>(input);
             return abbinamenti;
         }
-        public void SalvaTitolari(Fantacalcio fantacalcio)
+        static public void SalvaTitolari(Fantacalcio fantacalcio)
         {
             List<Giocatore> giocatori = fantacalcio.GetGiocatori();
             for (int i = 0; i < giocatori.Count; i++)
@@ -76,23 +76,8 @@ namespace fantacalcio
                 File.WriteAllText(file, listaCalciatori);
             }
         }
-        string[] GetCartelleSalvataggi()
-        {
-            string[] cartelleSalvataggi = Directory.GetDirectories("saveFiles/");
-            return cartelleSalvataggi;
-        }
-        string[] GetFileSalvataggi()
-        {
-            string[] salvataggi = new string[GetCartelleSalvataggi().Length];
 
-            for (int i = 0; i < GetCartelleSalvataggi().Length; i++)
-            {
-                salvataggi[i] = GetCartelleSalvataggi()[i] + "/saveFile.json";
-            }
-            return salvataggi;
-        }
-
-        public List<Fantacalcio> GetPartite()
+        static public List<Fantacalcio> GetPartite()
         {
             string[] salvataggi = GetFileSalvataggi();
             List<Fantacalcio> partite = new List<Fantacalcio>();    //lista di partite esistenti
@@ -142,7 +127,7 @@ namespace fantacalcio
                 return null;
             }
         }
-        public string MostraSalvataggi()
+        static public string MostraSalvataggi()
         {
             if (GetPartite() == null)
             {
@@ -159,7 +144,7 @@ namespace fantacalcio
                 return stringaPartite;
             }
         }
-        public int EliminaSalvataggio(Fantacalcio partita)
+        static public int EliminaSalvataggio(Fantacalcio partita)
         {
             string daEliminare = "saveFiles/" + partita.nomeSalvataggio;
             if (Directory.Exists(daEliminare))
@@ -168,6 +153,22 @@ namespace fantacalcio
                 return 1;
             }
             return -1;
+        }
+        static string[] GetCartelleSalvataggi()
+        {
+            string[] cartelleSalvataggi = Directory.GetDirectories("saveFiles/");
+            return cartelleSalvataggi;
+        }
+
+        static string[] GetFileSalvataggi()
+        {
+            string[] salvataggi = new string[GetCartelleSalvataggi().Length];
+
+            for (int i = 0; i < GetCartelleSalvataggi().Length; i++)
+            {
+                salvataggi[i] = GetCartelleSalvataggi()[i] + "/saveFile.json";
+            }
+            return salvataggi;
         }
     }
 }
