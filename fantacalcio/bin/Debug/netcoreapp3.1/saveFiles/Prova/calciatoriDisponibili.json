@@ -24,7 +24,7 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "cragno alessio",
+    "nome": "aresti simone",
     "ruolo": "portiere"
   },
   {
@@ -36,7 +36,7 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "ujkani samir",
+    "nome": "pratelli leandro",
     "ruolo": "portiere"
   },
   {
@@ -88,15 +88,7 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "cordaz alex",
-    "ruolo": "portiere"
-  },
-  {
     "nome": "handanovic samir",
-    "ruolo": "portiere"
-  },
-  {
-    "nome": "radu ionut",
     "ruolo": "portiere"
   },
   {
@@ -120,6 +112,10 @@
     "ruolo": "portiere"
   },
   {
+    "nome": "strakosha thomas",
+    "ruolo": "portiere"
+  },
+  {
     "nome": "maignan mike",
     "ruolo": "portiere"
   },
@@ -137,10 +133,6 @@
   },
   {
     "nome": "marfella davide",
-    "ruolo": "portiere"
-  },
-  {
-    "nome": "meret alex",
     "ruolo": "portiere"
   },
   {
@@ -188,11 +180,15 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "ravaglia nicola",
+    "nome": "consigli andrea",
     "ruolo": "portiere"
   },
   {
-    "nome": "consigli andrea",
+    "nome": "pegolo gianluca",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "satalino giacomo",
     "ruolo": "portiere"
   },
   {
@@ -204,6 +200,10 @@
     "ruolo": "portiere"
   },
   {
+    "nome": "zoet jeroen",
+    "ruolo": "portiere"
+  },
+  {
     "nome": "zovko petar",
     "ruolo": "portiere"
   },
@@ -212,11 +212,11 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "milinkovic savic vanja",
+    "nome": "gemello luca",
     "ruolo": "portiere"
   },
   {
-    "nome": "sava razvan",
+    "nome": "milinkovic savic vanja",
     "ruolo": "portiere"
   },
   {
@@ -224,15 +224,7 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "silvestri marco",
-    "ruolo": "portiere"
-  },
-  {
     "nome": "bertinato bruno",
-    "ruolo": "portiere"
-  },
-  {
-    "nome": "lezzerini luca",
     "ruolo": "portiere"
   },
   {
@@ -240,11 +232,11 @@
     "ruolo": "portiere"
   },
   {
-    "nome": "neri filippo",
+    "nome": "pigozzo riccardo",
     "ruolo": "portiere"
   },
   {
-    "nome": "pigozzo riccardo",
+    "nome": "berardi alessandro",
     "ruolo": "portiere"
   },
   {
@@ -253,10 +245,6 @@
   },
   {
     "nome": "montipo lorenzo",
-    "ruolo": "portiere"
-  },
-  {
-    "nome": "pandur ivor",
     "ruolo": "portiere"
   },
   {
@@ -272,23 +260,11 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "hateboer hans",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "lovato matteo",
     "ruolo": "difensore"
   },
   {
     "nome": "mattiello federico",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "palomino jose luis",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "pezzella giuseppe",
     "ruolo": "difensore"
   },
   {
@@ -332,10 +308,6 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "mbaye ibrahima",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "paz nehuen",
     "ruolo": "difensore"
   },
@@ -352,15 +324,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "bellanova raoul",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "caceres martin",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "carboni andrea",
     "ruolo": "difensore"
   },
   {
@@ -369,6 +333,10 @@
   },
   {
     "nome": "dalbert henrique",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "farago paolo",
     "ruolo": "difensore"
   },
   {
@@ -385,6 +353,10 @@
   },
   {
     "nome": "walukiewicz sebastian",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "fiamozzi riccardo",
     "ruolo": "difensore"
   },
   {
@@ -424,15 +396,15 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "milenkovic nicola",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "nastasic matija",
     "ruolo": "difensore"
   },
   {
     "nome": "odriozola alvaro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "quarta lucas martinez",
     "ruolo": "difensore"
   },
   {
@@ -448,10 +420,6 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "biraschi davide",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "cambiaso andrea",
     "ruolo": "difensore"
   },
@@ -461,6 +429,10 @@
   },
   {
     "nome": "ghiglione paolo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "maksimovic nikola",
     "ruolo": "difensore"
   },
   {
@@ -481,6 +453,10 @@
   },
   {
     "nome": "vasquez johan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bastoni alessandro",
     "ruolo": "difensore"
   },
   {
@@ -520,7 +496,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "chiellini giorgio",
+    "nome": "bonucci leonardo",
     "ruolo": "difensore"
   },
   {
@@ -533,6 +509,14 @@
   },
   {
     "nome": "de ligt matthijs",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "de sciglio mattia",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pellegrini luca",
     "ruolo": "difensore"
   },
   {
@@ -560,10 +544,6 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "luis felipe ramos",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "lukaku jordan",
     "ruolo": "difensore"
   },
@@ -584,11 +564,11 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "ballo-toure fode",
+    "nome": "calabria davide",
     "ruolo": "difensore"
   },
   {
-    "nome": "calabria davide",
+    "nome": "conti andrea",
     "ruolo": "difensore"
   },
   {
@@ -640,10 +620,6 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "manolas kostas",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "mario rui",
     "ruolo": "difensore"
   },
@@ -664,6 +640,10 @@
     "ruolo": "difensore"
   },
   {
+    "nome": "karsdorp rick",
+    "ruolo": "difensore"
+  },
+  {
     "nome": "kumbulla marash",
     "ruolo": "difensore"
   },
@@ -677,10 +657,6 @@
   },
   {
     "nome": "santon davide",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "smalling chris",
     "ruolo": "difensore"
   },
   {
@@ -708,10 +684,6 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "kechrida wajdi",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "ruggeri matteo",
     "ruolo": "difensore"
   },
@@ -724,15 +696,11 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "veseli frederic",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "zortea nadir",
     "ruolo": "difensore"
   },
   {
-    "nome": "augello tommaso",
+    "nome": "bereszynski",
     "ruolo": "difensore"
   },
   {
@@ -757,10 +725,6 @@
   },
   {
     "nome": "hermansen noah bech",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "murru nicola",
     "ruolo": "difensore"
   },
   {
@@ -808,7 +772,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "toljan jeremy",
+    "nome": "amian kelvin",
     "ruolo": "difensore"
   },
   {
@@ -856,15 +820,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "reca arkadiusz",
-    "ruolo": "difensore"
-  },
-  {
     "nome": "sala jacopo",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "aina ola",
     "ruolo": "difensore"
   },
   {
@@ -873,10 +829,6 @@
   },
   {
     "nome": "bremer gleison",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "buongiorno alessandro",
     "ruolo": "difensore"
   },
   {
@@ -900,11 +852,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "zima david",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "de maio sebastien",
+    "nome": "molina nahuel",
     "ruolo": "difensore"
   },
   {
@@ -940,6 +888,10 @@
     "ruolo": "difensore"
   },
   {
+    "nome": "ampadu ethan",
+    "ruolo": "difensore"
+  },
+  {
     "nome": "caldara mattia",
     "ruolo": "difensore"
   },
@@ -956,11 +908,19 @@
     "ruolo": "difensore"
   },
   {
+    "nome": "haps ridgeciano",
+    "ruolo": "difensore"
+  },
+  {
     "nome": "mazzocchi pasquale",
     "ruolo": "difensore"
   },
   {
     "nome": "modolo marco",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "molinaro cristian",
     "ruolo": "difensore"
   },
   {
@@ -973,10 +933,6 @@
   },
   {
     "nome": "amione bruno",
-    "ruolo": "difensore"
-  },
-  {
-    "nome": "casale nicolo",
     "ruolo": "difensore"
   },
   {
@@ -1000,7 +956,7 @@
     "ruolo": "difensore"
   },
   {
-    "nome": "magnani giangiacomo",
+    "nome": "gunter koray",
     "ruolo": "difensore"
   },
   {
@@ -1020,7 +976,7 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "malinovsky ruslan",
+    "nome": "koopmeiners teun",
     "ruolo": "centrocampista"
   },
   {
@@ -1036,7 +992,11 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "pessina matteo",
+    "nome": "dominguez nicolas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kingsley michael",
     "ruolo": "centrocampista"
   },
   {
@@ -1045,10 +1005,6 @@
   },
   {
     "nome": "orsolini riccardo",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "schouten jerdy",
     "ruolo": "centrocampista"
   },
   {
@@ -1080,6 +1036,10 @@
     "ruolo": "centrocampista"
   },
   {
+    "nome": "joao pedro",
+    "ruolo": "centrocampista"
+  },
+  {
     "nome": "ladinetti riccardo",
     "ruolo": "centrocampista"
   },
@@ -1100,15 +1060,15 @@
     "ruolo": "centrocampista"
   },
   {
+    "nome": "rog marko",
+    "ruolo": "centrocampista"
+  },
+  {
     "nome": "strootman kevin",
     "ruolo": "centrocampista"
   },
   {
     "nome": "asllani kristjan",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "bahjrami nedim",
     "ruolo": "centrocampista"
   },
   {
@@ -1128,19 +1088,7 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "haas nicolas",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "henderson liam",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "ricci samuele",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "stulac leo",
     "ruolo": "centrocampista"
   },
   {
@@ -1172,7 +1120,7 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "castrovilli gaetano",
+    "nome": "duncan alfred",
     "ruolo": "centrocampista"
   },
   {
@@ -1192,23 +1140,15 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "torreira lucas",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "badelj",
     "ruolo": "centrocampista"
   },
   {
-    "nome": "cassata francesco",
+    "nome": "behrami valon",
     "ruolo": "centrocampista"
   },
   {
     "nome": "fares mohamed",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "hernani",
     "ruolo": "centrocampista"
   },
   {
@@ -1217,6 +1157,10 @@
   },
   {
     "nome": "portanova manolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "radovanovic ivan",
     "ruolo": "centrocampista"
   },
   {
@@ -1240,15 +1184,11 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "calhanoglu hadam",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "eriksen christian",
     "ruolo": "centrocampista"
   },
   {
-    "nome": "gagliardini roberto",
+    "nome": "perisic ivan",
     "ruolo": "centrocampista"
   },
   {
@@ -1280,10 +1220,6 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "chiesa federico",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "kulusevski dejan",
     "ruolo": "centrocampista"
   },
@@ -1292,11 +1228,11 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "mckennie weston",
+    "nome": "nicolussi caviglia hans",
     "ruolo": "centrocampista"
   },
   {
-    "nome": "nicolussi caviglia hans",
+    "nome": "palumbo martin",
     "ruolo": "centrocampista"
   },
   {
@@ -1313,10 +1249,6 @@
   },
   {
     "nome": "anderson djavan",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "basic toma",
     "ruolo": "centrocampista"
   },
   {
@@ -1341,10 +1273,6 @@
   },
   {
     "nome": "lombardi cristiano",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "lucas leiva",
     "ruolo": "centrocampista"
   },
   {
@@ -1377,6 +1305,10 @@
   },
   {
     "nome": "kessie franck",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "krunic rade",
     "ruolo": "centrocampista"
   },
   {
@@ -1416,7 +1348,15 @@
     "ruolo": "centrocampista"
   },
   {
+    "nome": "zielinski piotor",
+    "ruolo": "centrocampista"
+  },
+  {
     "nome": "bove edoardo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "cristante bryan",
     "ruolo": "centrocampista"
   },
   {
@@ -1432,18 +1372,6 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "pellegrini lorenzo",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "tripi filippo",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "veretout jordan",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "villar gonzalo",
     "ruolo": "centrocampista"
   },
@@ -1456,11 +1384,15 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "coulibaly mamadou",
+    "nome": "coulibaly lassana",
     "ruolo": "centrocampista"
   },
   {
     "nome": "di tacchio francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "kalombo sedrick",
     "ruolo": "centrocampista"
   },
   {
@@ -1497,6 +1429,10 @@
   },
   {
     "nome": "leris mehdi",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "thorsby morten",
     "ruolo": "centrocampista"
   },
   {
@@ -1552,15 +1488,7 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "agudelo kevin",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "bastoni simone",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "bordin alessandro",
     "ruolo": "centrocampista"
   },
   {
@@ -1612,11 +1540,11 @@
     "ruolo": "centrocampista"
   },
   {
-    "nome": "lukic sasa",
+    "nome": "mandragora rolando",
     "ruolo": "centrocampista"
   },
   {
-    "nome": "mandragora rolando",
+    "nome": "pobega tommaso",
     "ruolo": "centrocampista"
   },
   {
@@ -1625,6 +1553,10 @@
   },
   {
     "nome": "rincon tomas",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "stojkovic dennis",
     "ruolo": "centrocampista"
   },
   {
@@ -1688,19 +1620,15 @@
     "ruolo": "centrocampista"
   },
   {
+    "nome": "heymans daan",
+    "ruolo": "centrocampista"
+  },
+  {
     "nome": "kiyine sofian",
     "ruolo": "centrocampista"
   },
   {
-    "nome": "pecile damiano",
-    "ruolo": "centrocampista"
-  },
-  {
     "nome": "peretz dor",
-    "ruolo": "centrocampista"
-  },
-  {
-    "nome": "taugordeau anthony",
     "ruolo": "centrocampista"
   },
   {
@@ -1756,6 +1684,10 @@
     "ruolo": "attaccante"
   },
   {
+    "nome": "piccoli roberto",
+    "ruolo": "attaccante"
+  },
+  {
     "nome": "zapata duvan",
     "ruolo": "attaccante"
   },
@@ -1780,18 +1712,6 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "santander federico",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "van hooijdonk sydney",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "ceter damir",
-    "ruolo": "attaccante"
-  },
-  {
     "nome": "farias diego",
     "ruolo": "attaccante"
   },
@@ -1800,11 +1720,11 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "cutrone patrick",
+    "nome": "pavoletti leonardo",
     "ruolo": "attaccante"
   },
   {
-    "nome": "la mantia andrea",
+    "nome": "cutrone patrick",
     "ruolo": "attaccante"
   },
   {
@@ -1816,15 +1736,11 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "gonzalez nicolas",
+    "nome": "kokorin aleksandr",
     "ruolo": "attaccante"
   },
   {
     "nome": "kouame christian",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "munteanu louis",
     "ruolo": "attaccante"
   },
   {
@@ -1844,10 +1760,6 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "destro mattia",
-    "ruolo": "attaccante"
-  },
-  {
     "nome": "ekuban caleb",
     "ruolo": "attaccante"
   },
@@ -1857,6 +1769,10 @@
   },
   {
     "nome": "males darian",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pandev goran",
     "ruolo": "attaccante"
   },
   {
@@ -1884,6 +1800,14 @@
     "ruolo": "attaccante"
   },
   {
+    "nome": "kean moise",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "morata alvaro",
+    "ruolo": "attaccante"
+  },
+  {
     "nome": "adekanye bobby",
     "ruolo": "attaccante"
   },
@@ -1904,7 +1828,7 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "colombo lorenzo",
+    "nome": "romero luka",
     "ruolo": "attaccante"
   },
   {
@@ -1916,15 +1840,19 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "leao rafael",
-    "ruolo": "attaccante"
-  },
-  {
     "nome": "pellegri pietro",
     "ruolo": "attaccante"
   },
   {
+    "nome": "rebic ante",
+    "ruolo": "attaccante"
+  },
+  {
     "nome": "insigne lorenzo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "lozano hirving",
     "ruolo": "attaccante"
   },
   {
@@ -1972,10 +1900,6 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "djuric",
-    "ruolo": "attaccante"
-  },
-  {
     "nome": "gondo cedric",
     "ruolo": "attaccante"
   },
@@ -2004,7 +1928,7 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "berardi domenico",
+    "nome": "boga jeremie",
     "ruolo": "attaccante"
   },
   {
@@ -2016,15 +1940,7 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "scamacca gianluca",
-    "ruolo": "attaccante"
-  },
-  {
     "nome": "antiste janis",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "colley ebrima",
     "ruolo": "attaccante"
   },
   {
@@ -2037,10 +1953,6 @@
   },
   {
     "nome": "mbala nzola",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "mraz samuel",
     "ruolo": "attaccante"
   },
   {
@@ -2068,11 +1980,15 @@
     "ruolo": "attaccante"
   },
   {
+    "nome": "belotti andrea",
+    "ruolo": "attaccante"
+  },
+  {
     "nome": "edera simone",
     "ruolo": "attaccante"
   },
   {
-    "nome": "pjaca marko",
+    "nome": "rauti nicola",
     "ruolo": "attaccante"
   },
   {
@@ -2081,10 +1997,6 @@
   },
   {
     "nome": "zaza simone",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "beto betuncal",
     "ruolo": "attaccante"
   },
   {
@@ -2100,11 +2012,7 @@
     "ruolo": "attaccante"
   },
   {
-    "nome": "micin petar",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "nestorovski ilija",
+    "nome": "llorente fernando",
     "ruolo": "attaccante"
   },
   {
@@ -2140,6 +2048,10 @@
     "ruolo": "attaccante"
   },
   {
+    "nome": "sigurdsson arnor",
+    "ruolo": "attaccante"
+  },
+  {
     "nome": "zigoni gianmarco",
     "ruolo": "attaccante"
   },
@@ -2157,14 +2069,6 @@
   },
   {
     "nome": "lasagna kevin",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "ragusa antonino",
-    "ruolo": "attaccante"
-  },
-  {
-    "nome": "simeone giovanni",
     "ruolo": "attaccante"
   }
 ]

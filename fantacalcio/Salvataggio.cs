@@ -23,7 +23,7 @@ namespace fantacalcio
             {
                 File.WriteAllText(directorySalvataggi + fantacalcio.nomeSalvataggio + "/calciatoriDisponibili.json", File.ReadAllText("calciatori.json"));
             }
-            string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della appena creata e la lista di giocatori registrati che le appartiene; vengono convertite ad un file con estensione json tramite il metodo "SerializeObject della classe JsonConvert della libreria Newtonsoft.Json*/
+            string output = fantacalcio.nomeSalvataggio + ";" + fantacalcio.fase + ";" + fantacalcio.numeroPartita + ";" + JsonConvert.SerializeObject(fantacalcio.GetGiocatori(), Formatting.Indented);  /*viene creata una stringa che contiene il nome dell'istanza della appena creata e la lista di giocatori registrati che le appartiene; vengono convertite ad un file con estensione json tramite il metodo "SerializeObject della classe JsonConvert della libreria Newtonsoft.Json*/
             SalvaSquadre(fantacalcio);
 
             File.WriteAllText(directorySalvataggi + fantacalcio.nomeSalvataggio + "/saveFile.json", output);    //viene salvata la stringa convertita a json in un file con estensione .json
@@ -91,9 +91,10 @@ namespace fantacalcio
 
                     string nomeSalvataggio = words[0];
                     int fase = Int32.Parse(words[1]);
-                    List<Giocatore> giocatori = JsonConvert.DeserializeObject<List<Giocatore>>(words[2]);
+                    int numeroPartita = Int32.Parse(words[2]);
+                    List<Giocatore> giocatori = JsonConvert.DeserializeObject<List<Giocatore>>(words[3]);
 
-                    partite.Add(new Fantacalcio(nomeSalvataggio, giocatori, fase));
+                    partite.Add(new Fantacalcio(nomeSalvataggio, giocatori, fase, numeroPartita));
                 }
 
                 for (int i = 0; i < partite.Count; i++)
@@ -111,6 +112,7 @@ namespace fantacalcio
 
                         if (File.Exists(cartellaGiocatori + "/titolari.json"))
                         {
+                            Console.WriteLine($"Titolari del giocatore {partite[i].GetGiocatori()[j].nome} caricati.");
                             string fileInput = File.ReadAllText(cartellaGiocatori + "/titolari.json");
                             List<Calciatore> listaCalciatori = JsonConvert.DeserializeObject<List<Calciatore>>(fileInput);
                             foreach (Calciatore calciatore in listaCalciatori)

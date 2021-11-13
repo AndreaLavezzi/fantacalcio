@@ -1,38 +1,86 @@
 [
   [
     {
-      "nome": "Gioc1",
+      "nome": "Giocatore1",
       "punteggio": 0,
-      "fantaMilioni": 200
+      "fantaMilioni": 475,
+      "primaPartita": true
     },
     {
-      "nome": "Gioc2",
+      "nome": "Giocatore2",
       "punteggio": 0,
-      "fantaMilioni": 100
+      "fantaMilioni": 475,
+      "primaPartita": true
     }
   ],
   [
     {
-      "nome": "Gioc1",
+      "nome": "Giocatore1",
       "punteggio": 0,
-      "fantaMilioni": 200
+      "fantaMilioni": 475,
+      "primaPartita": true
     },
     {
-      "nome": "Gioc3",
+      "nome": "Giocatore3",
       "punteggio": 0,
-      "fantaMilioni": 179
+      "fantaMilioni": 475,
+      "primaPartita": true
     }
   ],
   [
     {
-      "nome": "Gioc2",
+      "nome": "Giocatore1",
       "punteggio": 0,
-      "fantaMilioni": 100
+      "fantaMilioni": 475,
+      "primaPartita": true
     },
     {
-      "nome": "Gioc3",
+      "nome": "Giocatore4",
       "punteggio": 0,
-      "fantaMilioni": 179
+      "fantaMilioni": 475,
+      "primaPartita": true
+    }
+  ],
+  [
+    {
+      "nome": "Giocatore2",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
+    },
+    {
+      "nome": "Giocatore3",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
+    }
+  ],
+  [
+    {
+      "nome": "Giocatore2",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
+    },
+    {
+      "nome": "Giocatore4",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
+    }
+  ],
+  [
+    {
+      "nome": "Giocatore3",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
+    },
+    {
+      "nome": "Giocatore4",
+      "punteggio": 0,
+      "fantaMilioni": 475,
+      "primaPartita": true
     }
   ]
 ]

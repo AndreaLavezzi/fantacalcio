@@ -74,7 +74,7 @@ namespace fantacalcio
                     nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
                 } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine, la lista è vuota e serve solamente a chiamare la funzione
 
-                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
+                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0, 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
 
                 Salvataggio.CreaSalvataggio(fantacalcio);
             }
@@ -110,6 +110,9 @@ namespace fantacalcio
                     break;
                 case 2:
                     InizioTorneo();
+                    break;
+                case 3:
+                    FinePartita();
                     break;
             }
         }
@@ -569,11 +572,12 @@ namespace fantacalcio
             }
             Console.Clear();
             Console.WriteLine("La selezione dei titolari è stata completata. Ora inizierà la fase del torneo. Buona fortuna!");
-            Salvataggio.SalvaTitolari(partitaInCorso);
             partitaInCorso.fase = 2;
+            Salvataggio.SalvaTitolari(partitaInCorso);
             Salvataggio.CreaSalvataggio(partitaInCorso);
             Console.WriteLine("Premi un tasto qualsiasi per continuare...");
             Console.ReadKey();
+            InizioTorneo();
         }
 
         static void MostraGiocatoriRosa(Giocatore giocatoreCorrente)
@@ -671,8 +675,10 @@ namespace fantacalcio
             }
             abbinamenti = Salvataggio.CaricaAbbinamenti(partitaInCorso);
 
-            for (int i = 0; i < abbinamenti.GetLength(0); i++)
+            for (int i; partitaInCorso.numeroPartita < abbinamenti.GetLength(0); partitaInCorso.numeroPartita++)
             {
+                i = partitaInCorso.numeroPartita;
+                //trova i giocatori che stanno per giocare nella lista di giocatori della partita in corso
                 foreach(Giocatore giocatore in partitaInCorso.GetGiocatori())
                 {
                     if(giocatore.nome == abbinamenti[i, 0].nome)
@@ -684,9 +690,12 @@ namespace fantacalcio
                         abbinamenti[i, 1] = giocatore;
                     }
                 }
-                PrePartita(ref abbinamenti[i, 0], ref abbinamenti[i, 1]);
 
-                for(int j = 0; j < partitaInCorso.GetGiocatori().Count; j++)
+                PrePartita(ref abbinamenti[i, 0], ref abbinamenti[i, 1]);
+                Partita(ref abbinamenti[i, 0], ref abbinamenti[i, 1]);
+
+                //Salva stato giocatori
+                for (int j = 0; j < partitaInCorso.GetGiocatori().Count; j++)
                 {
                     if (partitaInCorso.GetGiocatori()[j].nome == abbinamenti[i, 0].nome)
                     {
@@ -698,7 +707,7 @@ namespace fantacalcio
                     }
                 }
             }
-            Classifica();
+            FinePartita();
         }
 
         static void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
@@ -768,7 +777,6 @@ namespace fantacalcio
                 }
                 
             }
-            Partita(ref giocatore1, ref giocatore2);
 
         }
 
@@ -841,7 +849,6 @@ namespace fantacalcio
                         giocatoreCorrente.SetSquadraAttuale(squadraAttuale);
                         Console.WriteLine("Scambio completato. Premi un tasto qualsiasi per continuare...");
                     }
-
                 }
                 Console.ReadKey(true);
                 Console.Clear();
@@ -851,15 +858,26 @@ namespace fantacalcio
         {
             double puntiG1 = 0;
             double puntiG2 = 0;
+            bool success;
+            Console.WriteLine("Squadra di {0}", giocatore1.nome.ToUpper());
             foreach(Calciatore calciatore in giocatore1.GetSquadraAttuale())
             {
-                puntiG1 += calciatore.GeneraAzioni();
+                double punti = calciatore.GeneraAzioni();
+                Console.WriteLine(calciatore.ToString() + "\nPUNTI: {0}\n", punti);
+                puntiG1 += punti;
             }
+            Console.WriteLine("\nTotale: {0} PUNTI", puntiG1);
+
+            Console.WriteLine("\n\nSquadra di {0}", giocatore2.nome.ToUpper());
             foreach (Calciatore calciatore in giocatore2.GetSquadraAttuale())
             {
-                puntiG2 += calciatore.GeneraAzioni();
+                double punti = calciatore.GeneraAzioni();
+                Console.WriteLine(calciatore.ToString() + ": {0} punti", punti);
+                puntiG2 += punti;
             }
-            if(puntiG1 == puntiG2)
+            Console.WriteLine("\nTotale: {0} PUNTI", puntiG2);
+
+            if (puntiG1 == puntiG2)
             {
                 Console.WriteLine("\nPAREGGIO!");
                 giocatore1.AddPunteggio(1);
@@ -874,20 +892,46 @@ namespace fantacalcio
                 Console.WriteLine("\nVINCE {0} CON {1} PUNTI!!", giocatore2.nome.ToUpper(), puntiG2);
                 giocatore2.AddPunteggio(3);
             }
-            Console.Write("\n1 -> Visualizza classifica attuale\n2 -> Continua con la prossima partita");
-            Console.WriteLine("\nPremi un tasto qualsiasi per continuare...");
-            Console.ReadKey(true);
+            Salvataggio.CreaSalvataggio(partitaInCorso);
+            Console.Write("\n1 -> Visualizza classifica attuale\n2 -> Continua con la prossima partita\nRisposta: ");
+            do
+            {
+                success = true;
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Console.Write("\nCLASSIFICA ATTUALE:\n{0}", Classifica());
+                        Console.WriteLine("\nPremi un tasto qualsiasi per continuare...");
+                        Console.ReadKey(true);
+                        break;
+                    case "2":
+                        break;
+                    default:
+                        Console.Write("Inserisci uno dei valori proposti: ");
+                        success = false;
+                        break;
+                }
+            } while (!success);
+        }
+
+        static void FinePartita()
+        {
+            Console.Clear();
+            Console.Write("CLASSIFICA FINALE:\n {0}", Classifica());
+            partitaInCorso.fase = 3;
+            Salvataggio.CreaSalvataggio(partitaInCorso);
         }
         
-        static void Classifica()
+        static string Classifica()
         {
-            Console.WriteLine("CLASSIFICA\n");
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             giocatori = InsertionSort(giocatori);
+            string classifica = "";
             for (int i = 0; i < giocatori.Count; i++)
             {
-                Console.Write(i + 1 + " -> " + giocatori[i].nome + " con {0} punti\n", giocatori[i].punteggio);
+                classifica += i + 1 + " -> " + giocatori[i].nome + " con " + giocatori[i].punteggio + " punti\n";
             }
+            return classifica;
         }
 
         static List<Giocatore> InsertionSort(List<Giocatore> giocatori)

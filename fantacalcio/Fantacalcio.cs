@@ -10,13 +10,15 @@ namespace fantacalcio
     {
         public string nomeSalvataggio { get; }      //nome del salvataggio che verrà assegnato al file di salvataggio
         public int fase { get; set; }  //fase 0 -> appena creata, fase 1 -> asta finita, fase 2 -> 
+        public int numeroPartita { get; set; }
         List<Giocatore> giocatori = new List<Giocatore>();      //lista contenente i giocatori registrati nella partita corrente  
 
-        public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori, int fase)   //metodo costruttore, ottiene in ingresso il nome del salvataggio e la lista dei giocatori registrati
+        public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori, int fase, int numeroPartita)   //metodo costruttore, ottiene in ingresso il nome del salvataggio e la lista dei giocatori registrati
         {
             this.nomeSalvataggio = nomeSalvataggio;
             this.giocatori = giocatori;
             this.fase = fase;
+            this.numeroPartita = numeroPartita;
         }
 
         public string GetListaGiocatori()

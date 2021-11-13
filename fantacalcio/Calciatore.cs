@@ -11,7 +11,11 @@ namespace fantacalcio
     {
         public string nome { get; }
         public string ruolo { get; }
-
+        public Calciatore(string nome, string ruolo)
+        {
+            this.nome = nome;
+            this.ruolo = ruolo;
+        }
         public double GeneraAzioni()
         {
             double punti = 0;
