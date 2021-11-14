@@ -1,17 +1,20 @@
-﻿//Nickname: @Sandstorm
-//Data: 18/10/2021
-/*Consegna: Progettare un sistema di gestione del FANTACALCIO.
-* Il livello di complessità del regolamento dovrà essere gestito autonomamente e giustificato nella relazione.
+﻿/**
+ * \file    Program.cs
+ * \author  Sandstorm
+ * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \date    18/10/2021
+ * Consegna: Progettare un sistema di gestione del FANTACALCIO.
+ * Il livello di complessità del regolamento dovrà essere gestito autonomamente e giustificato nella relazione.
 
 
-* Funzionalità minime
-* - Almeno 2 giocatori
-* - gestione dei crediti per l'acquisto giocatori (all'inizio X crediti, ogni giocatore vale y1, y2, y3..yn crediti
-* - gestione settimanale con inserimento punteggio singolo giocatori.
-* - gestione della classifica parziale al termine di ogni aggiornamento settimanale.
+ * Funzionalità minime
+ * - Almeno 2 giocatori
+ * - gestione dei crediti per l'acquisto giocatori (all'inizio X crediti, ogni giocatore vale y1, y2, y3..yn crediti
+ * - gestione settimanale con inserimento punteggio singolo giocatori.
+ * - gestione della classifica parziale al termine di ogni aggiornamento settimanale.
 
 
-* Il progetto DEVE essere svolto in modalità CONSOLE.*/
+ * Il progetto DEVE essere svolto in modalità CONSOLE.*/
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -21,18 +24,37 @@ namespace fantacalcio
 {
     class Program
     {
-        static Fantacalcio partitaInCorso;  //assume il valore della partita caricata attualmente
+        /**
+         * \brief   Assume il valore della partita caricata attualmente
+         */ 
+        static Fantacalcio partitaInCorso;
 
-        static void Main(string[] args)     //il main chiama solo il metodo che mostra il menù principale
+        /**
+         * \fn      void Main()
+         * \brief   La funzione Main chiama il metodo Menu(), che mostra il menù principale.
+         * \details La variabile è globale in modo che tutti i metodi abbiano accesso ad essa. Quando viene caricata una partita di tipo Fantacalcio da un file verrà assegnato il valore di quella partita a questa variabile.
+         */
+        static void Main()  
         {
             Menu();
         }
 
+        /**
+         * \fn      void Menu()
+         * \brief   La funzione Menu permette all'utente di decidere se creare una nuova partita o visualizzare le partite esistenti.
+         * \param   string risposta: contiene l'indice dell'azione che l'utente vuole compiere
+         * \param   bool nonValida: indica se la risposta inserita dall'utente rientra o meno nelle possibilità offerte
+         * \details Alla chiamata della funzione viene pulita la console e vengono mostrate le opzioni possibili. In un ciclo do si 
+         * imposta la variabile NonValida a false e si chiede all'utente di inserire una risposta che sia "1" o "2". La risposta 
+         * viene controllata con un'istruzione switch: se è 1 viene chiamata la funzione NuovaPartita(), se è 2 viene chiamata la 
+         * funzione CaricaFile(). Nel caso default, quindi un caso non gestito, si comunica all'utente che la risposta non è valida 
+         * e si imposta la variabile nonValida a true. Il ciclo si ripete quando la variabile NonValida è settata a true. 
+         */
         static void Menu()
         {
             Console.Clear();
-            string risposta;    //contiene la risposta inserita dall'utente da tastiera
-            bool nonValida;     //indica se la risposta inserita dall'utente rientra o meno nelle possibilità offerte
+            string risposta;    
+            bool nonValida;     
             Console.Write("1 - Inizia nuova partita\n2 - Gestisci partite\nRisposta: "); //se l'utente inserisce 1 verrà iniziata la procedura di creazione di una partita, se inserisce 2 verrà mostrata una lista di salvataggi su cui l'utente potrà eseguire varie azioni
             do
             {
@@ -44,7 +66,7 @@ namespace fantacalcio
                         NuovaPartita();     //se l'utente inserisce "1" verrà iniziata la procedura di creazione di una nuova partita
                         break;  
                     case "2":
-                        CaricaFile();       //se l'utente inserisce "2" verrà mostrata la lista dei salvataggi esistenti su cui si potranno eseguire delle azioni)
+                        GestisciPartite();       //se l'utente inserisce "2" verrà mostrata la lista dei salvataggi esistenti su cui si potranno eseguire delle azioni)
                         break;
                     default:
                         nonValida = true;   //se l'utente inserisce qualcosa di non gestito, la risposta non sarà valida e verrà chiesto nuovamente l'inserimento di una risposta
@@ -56,13 +78,28 @@ namespace fantacalcio
         }
 
         #region GestionePartita
-        /*inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.*/
+        /**
+         * \fn      NuovaPartita()
+         * \brief   Inizia una nuova partita creando un oggetto di tipo "Fantacalcio" che rappresenta la partita.
+         * \param   string nomeTorneo: Nome del torneo che verrà assegnato al salvataggio
+         * \param   Fantacalcio fantacalcio: Salvataggio del torneo appena creato
+         * \details La funzione NuovaPartita() pulisce la console, e subito dopo controlla quanti file di salvataggio esistono. Se sono 
+         * più di tre, impedisce all'utente di creare nuovi file di salvataggio e viene comunicato di eliminare un salvataggio per crearne
+         * uno nuovo. Se invece esistono meno di tre file, viene chiesto all'utente di inserire il nome del torneo. Dentro a un ciclo do-while
+         * viene fatto inserire il nome, che viene immagazzinato nella variabile nomeTorneo. Il ciclo si ripete fino a che il controllo del nome
+         * effettuato con la funzione ControlloNome() non restituisce 'true'. Una volta terminato l'inserimento viene creata un'istanza della classe
+         * Fantacalcio, il cui costruttore chiede di inserire il nome del torneo, una lista di giocatori che partecipano al torneo (ritornati dalla 
+         * funzione di tipo List<Giocatore> CreaGiocatori()), la fase della partita e il numero di partite giocate nel torneo. L'istanza viene poi
+         * salvata su file dal metodo Salvataggio.CreaSalvataggio(), appartenente alla classe Salvataggio. Viene poi chiesto all'utente di premere 
+         * un tasto qualsiasi per continuare.
+         */
         static void NuovaPartita()
         {
-            Console.Clear();
-            //Salvataggio salvataggio = new Salvataggio();
+            Fantacalcio fantacalcio;
             string nomeTorneo;  //indica il nome del torneo, e verrà assegnato come nome al file
-            if(Directory.GetDirectories("saveFiles/").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
+
+            Console.Clear();
+            if (Directory.GetDirectories("saveFiles/").Length >= 3)  //se esistono già 3 file di salvataggio si impedisce di crearne di nuovi
             {
                 Console.WriteLine("Impossibile creare più di 3 file di salvataggio. Eliminarne per poterne creare di nuovi.");  //viene comunicato all'utente che non può creare più di 3 file di salvataggio
             }
@@ -72,9 +109,9 @@ namespace fantacalcio
                 do
                 {
                     nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
-                } while (!ControlloNome(-1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine, la lista è vuota e serve solamente a chiamare la funzione
+                } while (!ControlloNome(1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine, la lista è vuota e serve solamente a chiamare la funzione
 
-                Fantacalcio fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0, 0);     //viene creata un'istanza della classe salvataggio che rappresenta ciò che l'utente ha inserito
+                fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0, 0); 
 
                 Salvataggio.CreaSalvataggio(fantacalcio);
             }
@@ -82,21 +119,15 @@ namespace fantacalcio
             Console.ReadKey();
             Menu();
         }
-        static void CaricaFile()
-        {
-            List<Fantacalcio> partite = Salvataggio.GetPartite();
-            if(partite == null)
-            {
-                Console.WriteLine("Non esistono file di salvataggio. Premi un tasto qualsiasi per continuare.");
-                Console.ReadKey();
-                Menu();
-            }
-            else
-            {
-                GestisciPartite(partite);
-            }
-        }
 
+        /**
+         * \fn      void CaricaPartita(Fantacalcio partita)
+         * \brief   Ottiene come argomento una partita salvata, la imposta come partita in corso e chiama una funzione diversa in base alla fase della partita
+         * \param   Fantacalcio partita: Partita ricavata da un file di salvataggio
+         * \details La funzione imposta alla variabile globale partitaInCorso il valore di partita, poi in base alla fase della partita in corso
+         * l'istruzione switch chiama una funzione diversa; nel caso la fase sia 0 viene chiamata la funzione Asta(), nel caso la fase sia 1 viene
+         * chiamata la funzione SelezioneTitolari(), nel caso la fase sia 3, viene chiamata la funzione FinePartita().
+         */
         static void CaricaPartita(Fantacalcio partita)  //riceve in input una partita ricavata da un file di salvataggio
         {
             partitaInCorso = partita;   //imposta la partita come partita in corso
@@ -116,6 +147,18 @@ namespace fantacalcio
                     break;
             }
         }
+
+        /**
+         * \fn      string MostraPartite(List<Fantacalcio> partite)
+         * \brief   Ottiene i nomi delle partite salvate e li immagazzina nella variabile partiteDisponibili  
+         * \param   string partiteDisponibili: Stringa contenente una lista delle partite disponibili
+         * \return  int: La funzione ritorna una stringa contenente la lista di partite salvate
+         * \details La funzione contiene un ciclo for, che per ogni partita presente nella lista di partite aggiunge alla 
+         * stringa partiteDisponibili una riga contenente l'indice della partita, dato dal numero della iterazione corrente 
+         * del ciclo for sommato a 1, una freccia di corrispondenza e il nome della partita alla i-esima posizione della lista
+         * di partite; alla fine della riga è presente un carattere di new line. Una volta terminato il ciclo for, viene ritornata
+         * la stringa risultante.
+         */
         static string MostraPartite(List<Fantacalcio> partite)
         {
             string partiteDisponibili = "";
@@ -125,32 +168,63 @@ namespace fantacalcio
             }
             return partiteDisponibili;
         }
-        static void GestisciPartite(List<Fantacalcio> partite)
-        {
-            int indiceFile;
-            string idFileSelezionato;
-            Fantacalcio partitaSelezionata;
 
-            bool nonValida = true;
+        /**
+         * \fn      GestisciPartite()
+         * \brief   La funzione mostra, se ne esistono, le partite disponibili, e permette all'utente di eseguire varie azioni su di esse.
+         * \param   List<Fantacalcio> partite:
+         * \param   int indiceFile: contiene la posizione del salvataggio selezionato nella lista di partite
+         * \param   string idFileSelezionato: contiene l'id del salvataggio su cui l'utente vuole compiere un'azione. Corrisponde alla posizione del salvataggio nella lista di partite più 1
+         * \param   Fantacalcio partitaSelezionata: Contiene il salvataggio selezionato dall'utente su cui si vuole compiere un'azione
+         * \param   bool nonValida: Indica se la risposta inserita da tastiera dall'utente rientra nelle opzioni offerte
+         * \param   string azione: Indica l'indice dell'azione che l'utente vuole compiere sul salvataggio
+         * \details La funzione ottiene, tramite il metodo Salvataggio.GetPartite() della classe Salvataggio la lista di partite salvate.
+         * Successivamente controlla se la lista di partite è uguale a null, il che vuol dire che non esistono file di salvataggio. Se non
+         * ci sono partite salvate viene comunicato all'utente, che verrà riportato al menu principale. Se invece esistono partite salvate,
+         * la console viene pulita e in un ciclo while viene chiesto all'utente di inserire l'id del salvataggio su cui vuole agire. Una 
+         * volta inserito viene controllato che l'id sia un numero intero e che non sia un numero più alto del numero di partite salvate 
+         * o minore o uguale a 0. Il ciclo while si ripete finchè ciò che viene inserito non è valido. Quando il valore inserito è valido,
+         * si imposta alla variabile partitaSelezionata la partita in posizione dell'indice inserito dall'utente meno uno. Viene poi comunicato
+         * il nome del torneo selezionato, viene mostrata una lista di azioni eseguibili sul salvataggio e viene chiesto all'utente di inserire
+         * l'id dell'azione che vuole compiere. In un ciclo do-while l'utente può inserire ciò che desidera: se l'id inserito è 1, viene chiamata
+         * la funzione CaricaPartita() per impostare la partita selezionata come partita in corso, se l'id inserito è 2 viene chiamata la funzione 
+         * EliminaPartita() per eliminare la partita selezionata. Se l'id è 3 viene chiamata la funzione GestisciPartite() per annullare la selezione.
+         * Se viene inserito qualcosa che non rientra in ciò che viene proposto, viene settata la variabile nonValida a true e viene ripetuto il ciclo.
+         */
+        static void GestisciPartite()
+        {
+            List<Fantacalcio> partite = Salvataggio.GetPartite();
+            bool nonValida;
+            string idFileSelezionato;
+            int indiceFile;
+            Fantacalcio partitaSelezionata;
+            string azione;
+
+            if (partite == null)
+            {
+                Console.WriteLine("Non esistono file di salvataggio. Premi un tasto qualsiasi per continuare.");
+                Console.ReadKey();
+                Menu();
+            }
 
             Console.Clear();
             Console.Write("Su quale salvataggio vuoi compiere un'azione?\n\nSalvataggi disponibili:\n" + MostraPartite(partite) + "\nRisposta: ");
             idFileSelezionato = Console.ReadLine();
 
-            while (!int.TryParse(idFileSelezionato, out indiceFile) || indiceFile > partite.Count || indiceFile < 0)
+            while (!int.TryParse(idFileSelezionato, out indiceFile) || indiceFile > partite.Count || indiceFile <= 0)
             {
                 Console.Write("\nRisposta non valida. Reinserire: ");
                 idFileSelezionato = Console.ReadLine();
             }
             partitaSelezionata = partite[Int32.Parse(idFileSelezionato) - 1];
-            Console.WriteLine("\nE' stato selezionato il file numero {0}, cosa vuoi fare?", idFileSelezionato);
+            Console.WriteLine("\nE' stato selezionato il torneo {0}, cosa vuoi fare?", partitaSelezionata.nomeSalvataggio);
             Console.WriteLine("1 - Carica File\n2 - Elimina File\n3 - Annulla selezione");
             Console.Write("Risposta: ");
 
             do
             {
                 nonValida = false;
-                string azione = Console.ReadLine();
+                azione = Console.ReadLine();
                 switch (azione)
                 {
                     case "1":
@@ -160,7 +234,7 @@ namespace fantacalcio
                         EliminaPartita(partitaSelezionata);
                         break;
                     case "3":
-                        GestisciPartite(partite);
+                        GestisciPartite();
                         break;
                     default:
                         nonValida = true;
@@ -171,6 +245,15 @@ namespace fantacalcio
             } while (nonValida == true);
         }
 
+        /**
+         * \fn      EliminaPartita(Fantacalcio partita)
+         * \brief   Comunica il risultato riguardo all'eliminazione di una partita
+         * \param   Fantacalcio partita: la partita da eliminare
+         * \details In base al risultato ottenuto dal metodo Salvataggio.EliminaSalvataggio(), viene comunicato se la partita da eliminare è stata eliminata.
+         * Se il metodo chiamato ha restituito 1, viene comunicato che il file è stato eliminato con successo. Se il metodo ha restituito -1, viene comunicato 
+         * che il file o non esiste, o non è riuscita l'eliminazione del file. Viene poi chiesta da parte dell'utente la pressione di un tasto qualsiasi per
+         * tornare alla gestione delle partite.
+         */
         static void EliminaPartita(Fantacalcio partita)
         {
             switch (Salvataggio.EliminaSalvataggio(partita))
@@ -179,16 +262,34 @@ namespace fantacalcio
                     Console.WriteLine("File eliminato. Premi un tasto qualsiasi per continuare.");
                     break;
                 case -1:
-                    Console.WriteLine("File non esistente. Premi un tasto qualsiasi per continuare.");
+                    Console.WriteLine("File non esistente o eliminazione non avvenuta. Premi un tasto qualsiasi per continuare.");
                     break;
             }
             Console.ReadKey();
-            CaricaFile();
+            GestisciPartite();
         }
 
+        /**
+         * \fn      bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
+         * \brief   Controlla il nome inserito del giocatore o del torneo in modo che non contenga un certo numero o un certo tipo di caratteri, o che il nome esisti già.
+         * \param   int codice: Indica se bisogna controllare il nome di un giocatore o di un torneo. 0 = Giocatore, 1 = Torneo
+         * \param   string nomeDaControllare: Contiene il nome che bisogna controllare.
+         * \param   List<Giocatore> giocatori: Contiene la lista di giocatori attualmente iscritti al torneo
+         * \param   string caratteriSpeciali: Contiene i caratteri che non è possibile inserire nel nome
+         * \param   List<Fantacalcio> partite: Contiene le partite salvate
+         * \return  bool: La funzione ritorna true se il controllo è andato a buon fine, ritorna false se il controllo ha rilevato delle anomalie nel nome.
+         * \details La funzione controlla inizialmente la lunghezza del nome da controllare. Se è minore di 4 o maggiore di 12 caratteri, viene comunicato
+         * la lunghezza di caratteri che il nome dovrebbe avere, e la funzione ritorna false. Se il primo controllo va a buon fine, viene controllato, tramite
+         * un doppio ciclo for incapsulato ogni carattere del nome inserito, e se il nome contiene un carattere speciale viene comunicato quale carattere non
+         * è possibile inserire e la funzione ritorna false. In seguito, il codice inserito viene controllato da un'istruzione switch. Se il codice inserito è
+         * pari a 0, viene controllato che il nome inserito non corrisponda a uno dei nomi già inseriti da un giocatore. Se il codice è pari a 1, viene 
+         * controllato che il nome inserito non corrisponda a uno dei nomi dei salvataggi già creati. Se il codice inserito non è riconosicuto, viene comunicato
+         * e la funzione ritorna false.
+         */
         static bool ControlloNome(int codice, string nomeDaControllare, List<Giocatore> giocatori)
         {
             string caratteriSpeciali = "|\\!\"£$%&/()='?^<>[]{}*+@°#§ ";
+            List<Fantacalcio> partite;
 
             if (nomeDaControllare.Length < 4 || nomeDaControllare.Length > 12)
             {
@@ -202,22 +303,41 @@ namespace fantacalcio
                 {
                     if(nomeDaControllare[i].ToString() == caratteriSpeciali[j].ToString())
                     {
-                        Console.Write("Impossibile inserire nel nome il carattere \"{0}\". Reinserire: ", caratteriSpeciali[j].ToString());
+                        Console.Write("Impossibile inserire nel nome il carattere {0}. Reinserire: ", caratteriSpeciali[j].ToString());
                         return false;
                     }
                 }
             }
 
-            if(codice == 0)
+            switch (codice)
             {
-                foreach (Giocatore giocatore in giocatori)
-                {
-                    if (nomeDaControllare.ToLower() == giocatore.nome.ToLower())
+                case 0:
+                    foreach (Giocatore giocatore in giocatori)
                     {
-                        Console.Write("Inserire un nome che non sia già stato scelto: ");
-                        return false;
+                        if (nomeDaControllare.ToLower() == giocatore.nome.ToLower())
+                        {
+                            Console.Write("Inserire un nome che non sia già stato scelto: ");
+                            return false;
+                        }
                     }
-                }
+                    break;
+                case 1:
+                    partite = Salvataggio.GetPartite();
+                    if(partite != null)
+                    {
+                        foreach(Fantacalcio partita in partite)
+                        {
+                            if(nomeDaControllare.ToLower() == partita.nomeSalvataggio.ToLower())
+                            {
+                                Console.Write("Inserire un nome che non sia già stato scelto: ");
+                                return false;
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Attenzione! Codice non riconosciuto");
+                    return false;
             }
             return true;
         }

@@ -1,11 +1,16 @@
-﻿using System;
+﻿/**
+ * \file    Fantacalcio.cs
+ * \author  Sandstorm
+ * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \date    18/10/2021
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace fantacalcio
 {
     //classe che rappresenta una partita, ha un nome, una lista di giocatori registrati e un metodo che ritorna la lista di giocatori
-
     class Fantacalcio
     {
         public string nomeSalvataggio { get; }      //nome del salvataggio che verrà assegnato al file di salvataggio

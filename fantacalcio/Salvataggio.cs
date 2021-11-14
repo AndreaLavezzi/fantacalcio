@@ -1,13 +1,29 @@
-﻿using System;
+﻿/**
+ * \file    Salvataggio.cs
+ * \author  Sandstorm
+ * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \date    18/10/2021
+ */ 
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace fantacalcio
 {
+    /**
+     * \class Salvataggio
+     * \brief Classe che usa metodi statici per salvare su file o caricare informazioni da file
+     */
     class Salvataggio
     {
+        /**
+         * \fn void CreaSalvataggio
+         * \brief Salva le informazioni della partita che accetta come parametro in un file json
+         * \param string directorySalvataggi
+         * \param string output
+         */
         static public void CreaSalvataggio(Fantacalcio fantacalcio)
         {
             string directorySalvataggi = "saveFiles/";

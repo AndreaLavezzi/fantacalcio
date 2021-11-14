@@ -1,8 +1,13 @@
-﻿using System;
+﻿/**
+ * \file    Calciatore.cs
+ * \author  Sandstorm
+ * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \date    18/10/2021
+ */
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
-using System.Text;
 
 namespace fantacalcio
 {

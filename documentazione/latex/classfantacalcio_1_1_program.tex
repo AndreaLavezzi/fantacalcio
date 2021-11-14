@@ -1,0 +1,360 @@
+\hypertarget{classfantacalcio_1_1_program}{}\doxysection{Riferimenti per la classe fantacalcio.\+Program}
+\label{classfantacalcio_1_1_program}\index{fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsection*{Membri privati statici}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a6ee5a942719745f9fbf7c63e5fedeeee}{Main}} ()
+\begin{DoxyCompactList}\small\item\em La funzione Main chiama il metodo \mbox{\hyperlink{classfantacalcio_1_1_program_add587ddea1c1e20dc3264b63adc2c62d}{Menu()}}, che mostra il menù principale. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_add587ddea1c1e20dc3264b63adc2c62d}{Menu}} ()
+\begin{DoxyCompactList}\small\item\em La funzione Menu permette all\textquotesingle{}utente di decidere se creare una nuova partita o visualizzare le partite esistenti. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a3e43e426284a7162dc43385fe5e9a094}{Nuova\+Partita}} ()
+\begin{DoxyCompactList}\small\item\em Inizia una nuova partita creando un oggetto di tipo \char`\"{}\+Fantacalcio\char`\"{} che rappresenta la partita. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a93d92ed927aa9e4d710f6bd7de0beee6}{Carica\+Partita}} (\mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} partita)
+\begin{DoxyCompactList}\small\item\em Ottiene come argomento una partita salvata, la imposta come partita in corso e chiama una funzione diversa in base alla fase della partita. \end{DoxyCompactList}\item 
+static string \mbox{\hyperlink{classfantacalcio_1_1_program_aca73c8c014d50e5ba1fbe74d1155f242}{Mostra\+Partite}} (List$<$ \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} $>$ partite)
+\begin{DoxyCompactList}\small\item\em Ottiene i nomi delle partite salvate e li immagazzina nella variabile partite\+Disponibili ~\newline
+ \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a536b12a98a637ef0b31402729e3367d4}{Gestisci\+Partite}} ()
+\begin{DoxyCompactList}\small\item\em La funzione mostra, se ne esistono, le partite disponibili, e permette all\textquotesingle{}utente di eseguire varie azioni su di esse. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a0e332bfb0a804e65b1bb1d95b93c8c22}{Elimina\+Partita}} (\mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} partita)
+\begin{DoxyCompactList}\small\item\em Comunica il risultato riguardo all\textquotesingle{}eliminazione di una partita. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classfantacalcio_1_1_program_a7e5203f16d196ade698ae87c6de31703}{Controllo\+Nome}} (int codice, string nome\+Da\+Controllare, List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ giocatori)
+\begin{DoxyCompactList}\small\item\em Controlla il nome inserito del giocatore o del torneo in modo che non contenga un certo numero o un certo tipo di caratteri, o che il nome esisti già. \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ \mbox{\hyperlink{classfantacalcio_1_1_program_accdc0986fc5cf2db5b4410b69a09bccf}{Crea\+Giocatori}} ()
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_aa193e3a085ca11122d6ddb3a586068c7}{Asta}} ()
+\item 
+static bool \mbox{\hyperlink{classfantacalcio_1_1_program_aa67eb15a61da310a10f273f9abca46c2}{Controllo\+Asta}} ()
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_ad346e6d5e54f385eda63aeedbc7feeb0}{Offerte}} (\mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} calciatore, ref List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$ calciatori\+Disponibili)
+\item 
+static int \mbox{\hyperlink{classfantacalcio_1_1_program_a6516aa5edb1e861c61697ae8b0ad534c}{Inserimento\+Offerta}} (int crediti\+Giocatore, int puntata\+Maggiore)
+\item 
+static int \mbox{\hyperlink{classfantacalcio_1_1_program_a13887b535494d060186ae0eabd719e2a}{Ottieni\+Indice\+Offerente}} (List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ giocatori, int puntata\+Maggiore)
+\item 
+static bool \mbox{\hyperlink{classfantacalcio_1_1_program_ad056551ba711a02cbf5de2a3ae55f97b}{Puo\+Comprare}} (string ruolo\+Calciatore, int num\+Calciatori\+Posseduti)
+\item 
+static string \mbox{\hyperlink{classfantacalcio_1_1_program_a89c250bf7dddb5fe1cbd633d2866e439}{Stima\+Prezzo}} (int puntata)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a9dc6c617e57f0c899e2e3907484d0711}{Selezione\+Titolari}} ()
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_ab82816991e6f22e15ab37e969a4fbe99}{Mostra\+Giocatori\+Rosa}} (\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore\+Corrente)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a4301631bfd31d1a56d709aabf6afe92e}{Controllo\+Ruolo}} (\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore\+Corrente, string ruolo)
+\item 
+static int \mbox{\hyperlink{classfantacalcio_1_1_program_afe8b91aa078090af5ffa0f1092bc4e3c}{Ottieni\+Indice\+Squadra}} (List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$ squadra)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a6d997f81fbac3b0b1c112fc2c44dde27}{Genera\+Abbinamenti}} ()
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a287df215f5fbc155b372175efacda522}{Ordina\+Abbinamenti}} (ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}\mbox{[},\mbox{]} abbinamenti, int num\+Giocatori)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_aa1541e5207f596ccfd7a0e1af72fea5c}{Inizio\+Torneo}} ()
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a67687dd256a8e036908f1cf792693713}{Pre\+Partita}} (ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore1, ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore2)
+\item 
+static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$ \mbox{\hyperlink{classfantacalcio_1_1_program_ac740e27bd37b5322516a50d6c6aa29ea}{Modifica\+Squadra}} (\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore\+Corrente)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_a20f3aee584244afc790ea2099b0348d3}{Partita}} (ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore1, ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} giocatore2)
+\item 
+static void \mbox{\hyperlink{classfantacalcio_1_1_program_aa8f84b5711da3717ebb34e5027d76e16}{Fine\+Partita}} ()
+\item 
+static string \mbox{\hyperlink{classfantacalcio_1_1_program_a1443cfac714b65c4060c4aeafc3798a3}{Classifica}} ()
+\item 
+static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ \mbox{\hyperlink{classfantacalcio_1_1_program_a19265d358a978259fb60812e50969f3c}{Insertion\+Sort}} (List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ giocatori)
+\end{DoxyCompactItemize}
+\doxysubsection*{Attributi privati statici}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} \mbox{\hyperlink{classfantacalcio_1_1_program_afd9cd99e730ed8102fa7b8e083a143f2}{partita\+In\+Corso}}
+\begin{DoxyCompactList}\small\item\em Assume il valore della partita caricata attualmente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentazione delle funzioni membro}
+\mbox{\Hypertarget{classfantacalcio_1_1_program_aa193e3a085ca11122d6ddb3a586068c7}\label{classfantacalcio_1_1_program_aa193e3a085ca11122d6ddb3a586068c7}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Asta@{Asta}}
+\index{Asta@{Asta}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Asta()}{Asta()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Asta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a93d92ed927aa9e4d710f6bd7de0beee6}\label{classfantacalcio_1_1_program_a93d92ed927aa9e4d710f6bd7de0beee6}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!CaricaPartita@{CaricaPartita}}
+\index{CaricaPartita@{CaricaPartita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{CaricaPartita()}{CaricaPartita()}}
+{\footnotesize\ttfamily void fantacalcio.\+Program.\+Carica\+Partita (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}}]{partita }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Ottiene come argomento una partita salvata, la imposta come partita in corso e chiama una funzione diversa in base alla fase della partita. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}} & partita\+: Partita ricavata da un file di salvataggio\\
+\hline
+\end{DoxyParams}
+La funzione imposta alla variabile globale partita\+In\+Corso il valore di partita, poi in base alla fase della partita in corso l\textquotesingle{}istruzione switch chiama una funzione diversa; nel caso la fase sia 0 viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_aa193e3a085ca11122d6ddb3a586068c7}{Asta()}}, nel caso la fase sia 1 viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a9dc6c617e57f0c899e2e3907484d0711}{Selezione\+Titolari()}}, nel caso la fase sia 3, viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_aa8f84b5711da3717ebb34e5027d76e16}{Fine\+Partita()}}. \mbox{\Hypertarget{classfantacalcio_1_1_program_a1443cfac714b65c4060c4aeafc3798a3}\label{classfantacalcio_1_1_program_a1443cfac714b65c4060c4aeafc3798a3}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Classifica@{Classifica}}
+\index{Classifica@{Classifica}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Classifica()}{Classifica()}}
+{\footnotesize\ttfamily static string fantacalcio.\+Program.\+Classifica (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_aa67eb15a61da310a10f273f9abca46c2}\label{classfantacalcio_1_1_program_aa67eb15a61da310a10f273f9abca46c2}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!ControlloAsta@{ControlloAsta}}
+\index{ControlloAsta@{ControlloAsta}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{ControlloAsta()}{ControlloAsta()}}
+{\footnotesize\ttfamily static bool fantacalcio.\+Program.\+Controllo\+Asta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a7e5203f16d196ade698ae87c6de31703}\label{classfantacalcio_1_1_program_a7e5203f16d196ade698ae87c6de31703}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!ControlloNome@{ControlloNome}}
+\index{ControlloNome@{ControlloNome}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{ControlloNome()}{ControlloNome()}}
+{\footnotesize\ttfamily bool fantacalcio.\+Program.\+Controllo\+Nome (\begin{DoxyParamCaption}\item[{int}]{codice,  }\item[{string}]{nome\+Da\+Controllare,  }\item[{List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$}]{giocatori }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Controlla il nome inserito del giocatore o del torneo in modo che non contenga un certo numero o un certo tipo di caratteri, o che il nome esisti già. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em int} & codice\+: Indica se bisogna controllare il nome di un giocatore o di un torneo. 0 = \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}, 1 = Torneo \\
+\hline
+{\em string} & nome\+Da\+Controllare\+: Contiene il nome che bisogna controllare. \\
+\hline
+{\em List$<$\+Giocatore$>$} & giocatori\+: Contiene la lista di giocatori attualmente iscritti al torneo \\
+\hline
+{\em string} & caratteri\+Speciali\+: Contiene i caratteri che non è possibile inserire nel nome \\
+\hline
+{\em List$<$\+Fantacalcio$>$} & partite\+: Contiene le partite salvate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+bool\+: La funzione ritorna true se il controllo è andato a buon fine, ritorna false se il controllo ha rilevato delle anomalie nel nome.
+\end{DoxyReturn}
+La funzione controlla inizialmente la lunghezza del nome da controllare. Se è minore di 4 o maggiore di 12 caratteri, viene comunicato la lunghezza di caratteri che il nome dovrebbe avere, e la funzione ritorna false. Se il primo controllo va a buon fine, viene controllato, tramite un doppio ciclo for incapsulato ogni carattere del nome inserito, e se il nome contiene un carattere speciale viene comunicato quale carattere non è possibile inserire e la funzione ritorna false. In seguito, il codice inserito viene controllato da un\textquotesingle{}istruzione switch. Se il codice inserito è pari a 0, viene controllato che il nome inserito non corrisponda a uno dei nomi già inseriti da un giocatore. Se il codice è pari a 1, viene controllato che il nome inserito non corrisponda a uno dei nomi dei salvataggi già creati. Se il codice inserito non è riconosicuto, viene comunicato e la funzione ritorna false. \mbox{\Hypertarget{classfantacalcio_1_1_program_a4301631bfd31d1a56d709aabf6afe92e}\label{classfantacalcio_1_1_program_a4301631bfd31d1a56d709aabf6afe92e}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!ControlloRuolo@{ControlloRuolo}}
+\index{ControlloRuolo@{ControlloRuolo}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{ControlloRuolo()}{ControlloRuolo()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Controllo\+Ruolo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore\+Corrente,  }\item[{string}]{ruolo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_accdc0986fc5cf2db5b4410b69a09bccf}\label{classfantacalcio_1_1_program_accdc0986fc5cf2db5b4410b69a09bccf}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!CreaGiocatori@{CreaGiocatori}}
+\index{CreaGiocatori@{CreaGiocatori}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{CreaGiocatori()}{CreaGiocatori()}}
+{\footnotesize\ttfamily static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ fantacalcio.\+Program.\+Crea\+Giocatori (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a0e332bfb0a804e65b1bb1d95b93c8c22}\label{classfantacalcio_1_1_program_a0e332bfb0a804e65b1bb1d95b93c8c22}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!EliminaPartita@{EliminaPartita}}
+\index{EliminaPartita@{EliminaPartita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{EliminaPartita()}{EliminaPartita()}}
+{\footnotesize\ttfamily fantacalcio.\+Program.\+Elimina\+Partita (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}}]{partita }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Comunica il risultato riguardo all\textquotesingle{}eliminazione di una partita. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}} & partita\+: la partita da eliminare\\
+\hline
+\end{DoxyParams}
+In base al risultato ottenuto dal metodo \mbox{\hyperlink{classfantacalcio_1_1_salvataggio_ac6269d9683aed133fc94bd773acc678d}{Salvataggio.\+Elimina\+Salvataggio()}}, viene comunicato se la partita da eliminare è stata eliminata. Se il metodo chiamato ha restituito 1, viene comunicato che il file è stato eliminato con successo. Se il metodo ha restituito -\/1, viene comunicato che il file o non esiste, o non è riuscita l\textquotesingle{}eliminazione del file. Viene poi chiesta da parte dell\textquotesingle{}utente la pressione di un tasto qualsiasi per tornare alla gestione delle partite. \mbox{\Hypertarget{classfantacalcio_1_1_program_aa8f84b5711da3717ebb34e5027d76e16}\label{classfantacalcio_1_1_program_aa8f84b5711da3717ebb34e5027d76e16}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!FinePartita@{FinePartita}}
+\index{FinePartita@{FinePartita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{FinePartita()}{FinePartita()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Fine\+Partita (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a6d997f81fbac3b0b1c112fc2c44dde27}\label{classfantacalcio_1_1_program_a6d997f81fbac3b0b1c112fc2c44dde27}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!GeneraAbbinamenti@{GeneraAbbinamenti}}
+\index{GeneraAbbinamenti@{GeneraAbbinamenti}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{GeneraAbbinamenti()}{GeneraAbbinamenti()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Genera\+Abbinamenti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a536b12a98a637ef0b31402729e3367d4}\label{classfantacalcio_1_1_program_a536b12a98a637ef0b31402729e3367d4}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!GestisciPartite@{GestisciPartite}}
+\index{GestisciPartite@{GestisciPartite}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{GestisciPartite()}{GestisciPartite()}}
+{\footnotesize\ttfamily fantacalcio.\+Program.\+Gestisci\+Partite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La funzione mostra, se ne esistono, le partite disponibili, e permette all\textquotesingle{}utente di eseguire varie azioni su di esse. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em List$<$\+Fantacalcio$>$} & partite\+: \\
+\hline
+{\em int} & indice\+File\+: contiene la posizione del salvataggio selezionato nella lista di partite \\
+\hline
+{\em string} & id\+File\+Selezionato\+: contiene l\textquotesingle{}id del salvataggio su cui l\textquotesingle{}utente vuole compiere un\textquotesingle{}azione. Corrisponde alla posizione del salvataggio nella lista di partite più 1 \\
+\hline
+{\em \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}} & partita\+Selezionata\+: Contiene il salvataggio selezionato dall\textquotesingle{}utente su cui si vuole compiere un\textquotesingle{}azione \\
+\hline
+{\em bool} & non\+Valida\+: Indica se la risposta inserita da tastiera dall\textquotesingle{}utente rientra nelle opzioni offerte \\
+\hline
+{\em string} & azione\+: Indica l\textquotesingle{}indice dell\textquotesingle{}azione che l\textquotesingle{}utente vuole compiere sul salvataggio\\
+\hline
+\end{DoxyParams}
+La funzione ottiene, tramite il metodo \mbox{\hyperlink{classfantacalcio_1_1_salvataggio_a13162729bb141793a293be2a7e713f2d}{Salvataggio.\+Get\+Partite()}} della classe \mbox{\hyperlink{classfantacalcio_1_1_salvataggio}{Salvataggio}} la lista di partite salvate. Successivamente controlla se la lista di partite è uguale a null, il che vuol dire che non esistono file di salvataggio. Se non ci sono partite salvate viene comunicato all\textquotesingle{}utente, che verrà riportato al menu principale. Se invece esistono partite salvate, la console viene pulita e in un ciclo while viene chiesto all\textquotesingle{}utente di inserire l\textquotesingle{}id del salvataggio su cui vuole agire. Una volta inserito viene controllato che l\textquotesingle{}id sia un numero intero e che non sia un numero più alto del numero di partite salvate o minore o uguale a 0. Il ciclo while si ripete finchè ciò che viene inserito non è valido. Quando il valore inserito è valido, si imposta alla variabile partita\+Selezionata la partita in posizione dell\textquotesingle{}indice inserito dall\textquotesingle{}utente meno uno. Viene poi comunicato il nome del torneo selezionato, viene mostrata una lista di azioni eseguibili sul salvataggio e viene chiesto all\textquotesingle{}utente di inserire l\textquotesingle{}id dell\textquotesingle{}azione che vuole compiere. In un ciclo do-\/while l\textquotesingle{}utente può inserire ciò che desidera\+: se l\textquotesingle{}id inserito è 1, viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a93d92ed927aa9e4d710f6bd7de0beee6}{Carica\+Partita()}} per impostare la partita selezionata come partita in corso, se l\textquotesingle{}id inserito è 2 viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a0e332bfb0a804e65b1bb1d95b93c8c22}{Elimina\+Partita()}} per eliminare la partita selezionata. Se l\textquotesingle{}id è 3 viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a536b12a98a637ef0b31402729e3367d4}{Gestisci\+Partite()}} per annullare la selezione. Se viene inserito qualcosa che non rientra in ciò che viene proposto, viene settata la variabile non\+Valida a true e viene ripetuto il ciclo. \mbox{\Hypertarget{classfantacalcio_1_1_program_aa1541e5207f596ccfd7a0e1af72fea5c}\label{classfantacalcio_1_1_program_aa1541e5207f596ccfd7a0e1af72fea5c}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!InizioTorneo@{InizioTorneo}}
+\index{InizioTorneo@{InizioTorneo}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{InizioTorneo()}{InizioTorneo()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Inizio\+Torneo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a6516aa5edb1e861c61697ae8b0ad534c}\label{classfantacalcio_1_1_program_a6516aa5edb1e861c61697ae8b0ad534c}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!InserimentoOfferta@{InserimentoOfferta}}
+\index{InserimentoOfferta@{InserimentoOfferta}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{InserimentoOfferta()}{InserimentoOfferta()}}
+{\footnotesize\ttfamily static int fantacalcio.\+Program.\+Inserimento\+Offerta (\begin{DoxyParamCaption}\item[{int}]{crediti\+Giocatore,  }\item[{int}]{puntata\+Maggiore }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a19265d358a978259fb60812e50969f3c}\label{classfantacalcio_1_1_program_a19265d358a978259fb60812e50969f3c}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!InsertionSort@{InsertionSort}}
+\index{InsertionSort@{InsertionSort}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{InsertionSort()}{InsertionSort()}}
+{\footnotesize\ttfamily static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$ fantacalcio.\+Program.\+Insertion\+Sort (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$}]{giocatori }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a6ee5a942719745f9fbf7c63e5fedeeee}\label{classfantacalcio_1_1_program_a6ee5a942719745f9fbf7c63e5fedeeee}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Main@{Main}}
+\index{Main@{Main}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Main()}{Main()}}
+{\footnotesize\ttfamily void fantacalcio.\+Program.\+Main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La funzione Main chiama il metodo \mbox{\hyperlink{classfantacalcio_1_1_program_add587ddea1c1e20dc3264b63adc2c62d}{Menu()}}, che mostra il menù principale. 
+
+La variabile è globale in modo che tutti i metodi abbiano accesso ad essa. Quando viene caricata una partita di tipo \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} da un file verrà assegnato il valore di quella partita a questa variabile. \mbox{\Hypertarget{classfantacalcio_1_1_program_add587ddea1c1e20dc3264b63adc2c62d}\label{classfantacalcio_1_1_program_add587ddea1c1e20dc3264b63adc2c62d}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Menu@{Menu}}
+\index{Menu@{Menu}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}}
+{\footnotesize\ttfamily void fantacalcio.\+Program.\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La funzione Menu permette all\textquotesingle{}utente di decidere se creare una nuova partita o visualizzare le partite esistenti. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em string} & risposta\+: contiene l\textquotesingle{}indice dell\textquotesingle{}azione che l\textquotesingle{}utente vuole compiere \\
+\hline
+{\em bool} & non\+Valida\+: indica se la risposta inserita dall\textquotesingle{}utente rientra o meno nelle possibilità offerte\\
+\hline
+\end{DoxyParams}
+Alla chiamata della funzione viene pulita la console e vengono mostrate le opzioni possibili. In un ciclo do si imposta la variabile Non\+Valida a false e si chiede all\textquotesingle{}utente di inserire una risposta che sia \char`\"{}1\char`\"{} o \char`\"{}2\char`\"{}. La risposta viene controllata con un\textquotesingle{}istruzione switch\+: se è 1 viene chiamata la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a3e43e426284a7162dc43385fe5e9a094}{Nuova\+Partita()}}, se è 2 viene chiamata la funzione Carica\+File(). Nel caso default, quindi un caso non gestito, si comunica all\textquotesingle{}utente che la risposta non è valida e si imposta la variabile non\+Valida a true. Il ciclo si ripete quando la variabile Non\+Valida è settata a true. \mbox{\Hypertarget{classfantacalcio_1_1_program_ac740e27bd37b5322516a50d6c6aa29ea}\label{classfantacalcio_1_1_program_ac740e27bd37b5322516a50d6c6aa29ea}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!ModificaSquadra@{ModificaSquadra}}
+\index{ModificaSquadra@{ModificaSquadra}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{ModificaSquadra()}{ModificaSquadra()}}
+{\footnotesize\ttfamily static List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$ fantacalcio.\+Program.\+Modifica\+Squadra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore\+Corrente }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_ab82816991e6f22e15ab37e969a4fbe99}\label{classfantacalcio_1_1_program_ab82816991e6f22e15ab37e969a4fbe99}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!MostraGiocatoriRosa@{MostraGiocatoriRosa}}
+\index{MostraGiocatoriRosa@{MostraGiocatoriRosa}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{MostraGiocatoriRosa()}{MostraGiocatoriRosa()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Mostra\+Giocatori\+Rosa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore\+Corrente }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_aca73c8c014d50e5ba1fbe74d1155f242}\label{classfantacalcio_1_1_program_aca73c8c014d50e5ba1fbe74d1155f242}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!MostraPartite@{MostraPartite}}
+\index{MostraPartite@{MostraPartite}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{MostraPartite()}{MostraPartite()}}
+{\footnotesize\ttfamily string fantacalcio.\+Program.\+Mostra\+Partite (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} $>$}]{partite }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Ottiene i nomi delle partite salvate e li immagazzina nella variabile partite\+Disponibili ~\newline
+ 
+
+
+\begin{DoxyParams}{Parametri}
+{\em string} & partite\+Disponibili\+: Stringa contenente una lista delle partite disponibili \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+int\+: La funzione ritorna una stringa contenente la lista di partite salvate
+\end{DoxyReturn}
+La funzione contiene un ciclo for, che per ogni partita presente nella lista di partite aggiunge alla stringa partite\+Disponibili una riga contenente l\textquotesingle{}indice della partita, dato dal numero della iterazione corrente del ciclo for sommato a 1, una freccia di corrispondenza e il nome della partita alla i-\/esima posizione della lista di partite; alla fine della riga è presente un carattere di new line. Una volta terminato il ciclo for, viene ritornata la stringa risultante. \mbox{\Hypertarget{classfantacalcio_1_1_program_a3e43e426284a7162dc43385fe5e9a094}\label{classfantacalcio_1_1_program_a3e43e426284a7162dc43385fe5e9a094}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!NuovaPartita@{NuovaPartita}}
+\index{NuovaPartita@{NuovaPartita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{NuovaPartita()}{NuovaPartita()}}
+{\footnotesize\ttfamily fantacalcio.\+Program.\+Nuova\+Partita (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Inizia una nuova partita creando un oggetto di tipo \char`\"{}\+Fantacalcio\char`\"{} che rappresenta la partita. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em string} & nome\+Torneo\+: Nome del torneo che verrà assegnato al salvataggio \\
+\hline
+{\em \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}} & fantacalcio\+: \mbox{\hyperlink{classfantacalcio_1_1_salvataggio}{Salvataggio}} del torneo appena creato\\
+\hline
+\end{DoxyParams}
+La funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a3e43e426284a7162dc43385fe5e9a094}{Nuova\+Partita()}} pulisce la console, e subito dopo controlla quanti file di salvataggio esistono. Se sono più di tre, impedisce all\textquotesingle{}utente di creare nuovi file di salvataggio e viene comunicato di eliminare un salvataggio per crearne uno nuovo. Se invece esistono meno di tre file, viene chiesto all\textquotesingle{}utente di inserire il nome del torneo. Dentro a un ciclo do-\/while viene fatto inserire il nome, che viene immagazzinato nella variabile nome\+Torneo. Il ciclo si ripete fino a che il controllo del nome effettuato con la funzione \mbox{\hyperlink{classfantacalcio_1_1_program_a7e5203f16d196ade698ae87c6de31703}{Controllo\+Nome()}} non restituisce \textquotesingle{}true\textquotesingle{}. Una volta terminato l\textquotesingle{}inserimento viene creata un\textquotesingle{}istanza della classe \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}}, il cui costruttore chiede di inserire il nome del torneo, una lista di giocatori che partecipano al torneo (ritornati dalla funzione di tipo List$<$\+Giocatore$>$ \mbox{\hyperlink{classfantacalcio_1_1_program_accdc0986fc5cf2db5b4410b69a09bccf}{Crea\+Giocatori()}}), la fase della partita e il numero di partite giocate nel torneo. L\textquotesingle{}istanza viene poi salvata su file dal metodo \mbox{\hyperlink{classfantacalcio_1_1_salvataggio_a6128a937f04c57969d568e542415efb8}{Salvataggio.\+Crea\+Salvataggio()}}, appartenente alla classe \mbox{\hyperlink{classfantacalcio_1_1_salvataggio}{Salvataggio}}. Viene poi chiesto all\textquotesingle{}utente di premere un tasto qualsiasi per continuare. \mbox{\Hypertarget{classfantacalcio_1_1_program_ad346e6d5e54f385eda63aeedbc7feeb0}\label{classfantacalcio_1_1_program_ad346e6d5e54f385eda63aeedbc7feeb0}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Offerte@{Offerte}}
+\index{Offerte@{Offerte}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Offerte()}{Offerte()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Offerte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}}}]{calciatore,  }\item[{ref List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$}]{calciatori\+Disponibili }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a287df215f5fbc155b372175efacda522}\label{classfantacalcio_1_1_program_a287df215f5fbc155b372175efacda522}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!OrdinaAbbinamenti@{OrdinaAbbinamenti}}
+\index{OrdinaAbbinamenti@{OrdinaAbbinamenti}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{OrdinaAbbinamenti()}{OrdinaAbbinamenti()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Ordina\+Abbinamenti (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{abbinamenti\mbox{[},\mbox{]},  }\item[{int}]{num\+Giocatori }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a13887b535494d060186ae0eabd719e2a}\label{classfantacalcio_1_1_program_a13887b535494d060186ae0eabd719e2a}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!OttieniIndiceOfferente@{OttieniIndiceOfferente}}
+\index{OttieniIndiceOfferente@{OttieniIndiceOfferente}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{OttieniIndiceOfferente()}{OttieniIndiceOfferente()}}
+{\footnotesize\ttfamily static int fantacalcio.\+Program.\+Ottieni\+Indice\+Offerente (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}} $>$}]{giocatori,  }\item[{int}]{puntata\+Maggiore }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_afe8b91aa078090af5ffa0f1092bc4e3c}\label{classfantacalcio_1_1_program_afe8b91aa078090af5ffa0f1092bc4e3c}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!OttieniIndiceSquadra@{OttieniIndiceSquadra}}
+\index{OttieniIndiceSquadra@{OttieniIndiceSquadra}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{OttieniIndiceSquadra()}{OttieniIndiceSquadra()}}
+{\footnotesize\ttfamily static int fantacalcio.\+Program.\+Ottieni\+Indice\+Squadra (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classfantacalcio_1_1_calciatore}{Calciatore}} $>$}]{squadra }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a20f3aee584244afc790ea2099b0348d3}\label{classfantacalcio_1_1_program_a20f3aee584244afc790ea2099b0348d3}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!Partita@{Partita}}
+\index{Partita@{Partita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{Partita()}{Partita()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Partita (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore1,  }\item[{ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a67687dd256a8e036908f1cf792693713}\label{classfantacalcio_1_1_program_a67687dd256a8e036908f1cf792693713}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!PrePartita@{PrePartita}}
+\index{PrePartita@{PrePartita}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{PrePartita()}{PrePartita()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Pre\+Partita (\begin{DoxyParamCaption}\item[{ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore1,  }\item[{ref \mbox{\hyperlink{classfantacalcio_1_1_giocatore}{Giocatore}}}]{giocatore2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_ad056551ba711a02cbf5de2a3ae55f97b}\label{classfantacalcio_1_1_program_ad056551ba711a02cbf5de2a3ae55f97b}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!PuoComprare@{PuoComprare}}
+\index{PuoComprare@{PuoComprare}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{PuoComprare()}{PuoComprare()}}
+{\footnotesize\ttfamily static bool fantacalcio.\+Program.\+Puo\+Comprare (\begin{DoxyParamCaption}\item[{string}]{ruolo\+Calciatore,  }\item[{int}]{num\+Calciatori\+Posseduti }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a9dc6c617e57f0c899e2e3907484d0711}\label{classfantacalcio_1_1_program_a9dc6c617e57f0c899e2e3907484d0711}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!SelezioneTitolari@{SelezioneTitolari}}
+\index{SelezioneTitolari@{SelezioneTitolari}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{SelezioneTitolari()}{SelezioneTitolari()}}
+{\footnotesize\ttfamily static void fantacalcio.\+Program.\+Selezione\+Titolari (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfantacalcio_1_1_program_a89c250bf7dddb5fe1cbd633d2866e439}\label{classfantacalcio_1_1_program_a89c250bf7dddb5fe1cbd633d2866e439}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!StimaPrezzo@{StimaPrezzo}}
+\index{StimaPrezzo@{StimaPrezzo}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{StimaPrezzo()}{StimaPrezzo()}}
+{\footnotesize\ttfamily static string fantacalcio.\+Program.\+Stima\+Prezzo (\begin{DoxyParamCaption}\item[{int}]{puntata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Documentazione dei membri dato}
+\mbox{\Hypertarget{classfantacalcio_1_1_program_afd9cd99e730ed8102fa7b8e083a143f2}\label{classfantacalcio_1_1_program_afd9cd99e730ed8102fa7b8e083a143f2}} 
+\index{fantacalcio.Program@{fantacalcio.Program}!partitaInCorso@{partitaInCorso}}
+\index{partitaInCorso@{partitaInCorso}!fantacalcio.Program@{fantacalcio.Program}}
+\doxysubsubsection{\texorpdfstring{partitaInCorso}{partitaInCorso}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classfantacalcio_1_1_fantacalcio}{Fantacalcio}} fantacalcio.\+Program.\+partita\+In\+Corso\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Assume il valore della partita caricata attualmente. 
+
+
+
+La documentazione per questa classe è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_program_8cs}{Program.\+cs}}\end{DoxyCompactItemize}

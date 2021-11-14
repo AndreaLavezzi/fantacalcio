@@ -1,26 +1,14 @@
-Prova;2;0;[
+Prova;0;0;[
   {
-    "nome": "Giocatore1",
+    "nome": "Prova1",
     "punteggio": 0,
-    "fantaMilioni": 475,
+    "fantaMilioni": 500,
     "primaPartita": true
   },
   {
-    "nome": "Giocatore2",
-    "punteggio": 3,
-    "fantaMilioni": 475,
-    "primaPartita": true
-  },
-  {
-    "nome": "Giocatore3",
+    "nome": "Prova2",
     "punteggio": 0,
-    "fantaMilioni": 475,
-    "primaPartita": true
-  },
-  {
-    "nome": "Giocatore4",
-    "punteggio": 0,
-    "fantaMilioni": 475,
+    "fantaMilioni": 500,
     "primaPartita": true
   }
 ]

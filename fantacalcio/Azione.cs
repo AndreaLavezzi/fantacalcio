@@ -1,4 +1,10 @@
-﻿using System;
+﻿/**
+ * \file    Azione.cs
+ * \author  Sandstorm
+ * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \date    18/10/2021
+ */
+using System;
 using System.Collections.Generic;
 using System.Text;
 
