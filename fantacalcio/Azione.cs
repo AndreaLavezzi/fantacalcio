@@ -1,7 +1,7 @@
 ﻿/**
  * \file    Azione.cs
  * \author  Sandstorm
- * \brief   Sistema di gestione del gioco del FANTACALCIO
+ * \brief   Azioni compiute dai giocatori
  * \date    18/10/2021
  */
 using System;
@@ -10,6 +10,10 @@ using System.Text;
 
 namespace fantacalcio
 {
+    /**
+     * \class   Azione
+     * \brief   Azioni compiute dai giocatori
+     */
     class Azione
     {
         public string nome;

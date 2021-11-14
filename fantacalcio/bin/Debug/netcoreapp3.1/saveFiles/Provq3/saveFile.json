@@ -1,0 +1,26 @@
+Provq3;0;0;[
+  {
+    "nome": "Gioc1",
+    "punteggio": 0,
+    "fantaMilioni": 500,
+    "primaPartita": true
+  },
+  {
+    "nome": "Gioc2",
+    "punteggio": 0,
+    "fantaMilioni": 450,
+    "primaPartita": true
+  },
+  {
+    "nome": "Gioc3",
+    "punteggio": 0,
+    "fantaMilioni": 500,
+    "primaPartita": true
+  },
+  {
+    "nome": "Gioc4",
+    "punteggio": 0,
+    "fantaMilioni": 500,
+    "primaPartita": true
+  }
+]
