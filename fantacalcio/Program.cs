@@ -344,6 +344,20 @@ namespace fantacalcio
         #endregion
 
         #region Gioco
+        /**
+         * \fn      List<Giocatore> CreaGiocatori()
+         * \brief   Crea delle istanze della classe Giocatore e le inserisce in una lista, e alla fine restituisce la lista
+         * \param   int numeroGiocatori: Il numero di giocatori che parteciperanno al torneo
+         * \param   string nome: Il nome del giocatore
+         * \param   List<Giocatore> giocatori: Lista contenente i giocatori che pareciperanno al torneo
+         * \return  List<Giocatore>: La funzione ritorna una lista di giocatori
+         * \details Viene chiesto all'utente quanti giocatori parteciperanno al torneo e viene comunicato il numero minimo di giocatori che possono partecipare.
+         * In un ciclo while, che si ripete finchè ciò che l'utente inserisce non è un numero, o finchè il numero è minore di 2 o maggiore di 8, si comunica che
+         * l'inserimento non è valido e viene chiesto di reinserire il dato. Una volta ottenuto il numero di giocatori, in un ciclo for che si ripete per un numero
+         * di volte pari al numero di giocatori che partecipano al torneo si chiede, in un ciclo do-while, di inserire il nome del giocatore. Il ciclo si ripete
+         * finchè la funzione ControlloNome() restituisce false. Se l'inserimento è corretto, una nuova istanza della classe Giocatore con nome uguale a quello 
+         * inserito viene aggiunto alla lista di giocatori.
+         */
         static List<Giocatore> CreaGiocatori()
         {
             int numeroGiocatori;
@@ -364,7 +378,7 @@ namespace fantacalcio
                 {
                     nome = Console.ReadLine();
                 }
-                while (ControlloNome(0, nome, giocatori) == false);
+                while (!ControlloNome(0, nome, giocatori));
 
                 giocatori.Add(new Giocatore(nome));
             }
@@ -373,15 +387,32 @@ namespace fantacalcio
         }
 
         #region Asta
+        /**
+         * \fn      void Asta()
+         * \brief   Dà inizio all'asta che permette ai giocatori di comprare dei calciatori da aggiungere alla propria rosa
+         * \param   string fileCalciatori: Contenuto del file dei calciatori, che contiene una lista di calciatori disponibili convertita in un file .json
+         * \param   List<Calciatore> calciatoriDisponibili: Lista di calciatori disponibili, ottenuta dalla conversione del contenuto dei file in una lista di calciatori
+         * \param   Calciatore calciatoreEstratto: Calciatore estratto randomicamente dalla lista di calciatori disponibili, in modo da essere aquistato dai giocatori
+         * \details Viene letto il contenuto del file contenente i calciatori disponibili per l'acquisto, contenuto nella cartella del salvataggio corrente
+         * Viene poi convertito il contenuto del file json in una lista tramite il metodo JsonConvert.DeserializeObject() della classe JsonConvert, appartenente
+         * alla libreria Newtonsoft.JSON. In un ciclo while, che si ripete finchè la funzione ControlloAsta() restituisce false, si estrae un numero randomico. Viene poi
+         * chiamata la funzione Offerte() per permettere ai giocatori di offrire i propri crediti in modo da comprare il calciatore estratto. Una volta terminato
+         * l'acquisto, viene salvato il file dei calciatori disponibili all'acquisto, da cui è stato rimosso il calciatore che eventualmente è stato comprato.
+         * Una volta terminata l'asta, quindi dopo il ciclo while, viene impostata l'attributo "fase" della variabile partitaInCorso a 1, che indica che la partita è
+         * ora nella fase di selezione dei titolari. Viene successivamente salvato lo stato della partita tramite il metodo Salvataggio.CreaSalvataggio(). Alla fine,
+         * viene chiamata la funzione SelezioneTitolari().
+         */
         static void Asta()
         {
             string fileCalciatori = File.ReadAllText("saveFiles/" + partitaInCorso.nomeSalvataggio + "/calciatoriDisponibili.json");
             List<Calciatore> calciatoriDisponibili = JsonConvert.DeserializeObject<List<Calciatore>>(fileCalciatori);
-            
+            Calciatore calciatoreEstratto;
+
+
             while (!ControlloAsta())
             {
                 Random random = new Random();
-                Calciatore calciatoreEstratto = calciatoriDisponibili[random.Next(0, calciatoriDisponibili.Count)];
+                calciatoreEstratto = calciatoriDisponibili[random.Next(0, calciatoriDisponibili.Count)];
 
                 Console.Clear();
                 Offerte(calciatoreEstratto, ref calciatoriDisponibili);
@@ -392,6 +423,17 @@ namespace fantacalcio
             SelezioneTitolari();
         }
 
+        /**
+         * \fn      bool ControlloAsta()
+         * \brief   Controlla che ci siano ancora giocatori che debbano comprare dei calciatori
+         * \param   List<Giocatore> giocatori: Lista di giocatori registrati per il torneo
+         * \return  bool: Ritorna false se ci sono ancora giocatori che possiedono meno di 25 giocatori, altrimenti ritorna true.
+         * \details Viene popolata la lista di giocatori registrati restituita dal metodo Fantacalcio.GetGiocatori() appartenente alla classe Fantacalcio.
+         * Successivamente, in un ciclo foreach, viene controllato il numero di giocatori in ogni rosa di ogni giocatore, tramite il metodo 
+         * Giocatore.GetGiocatoriRuolo() della classe Giocatore, che restituisce il numero di giocatori totali della rosa del giocatore se nei parametri 
+         * passati al metodo vengono inserite le stringhe "tot" e "r". Se il metodo restituisce un numero minore di 25, la funzione ritorna false. Se la
+         * funzione termina il ciclo foreach senza ritornare nulla, ritorna true.
+         */
         static bool ControlloAsta()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
@@ -405,6 +447,9 @@ namespace fantacalcio
             return true;
         }
 
+        /**
+         * 
+         */
         static void Offerte(Calciatore calciatore, ref List<Calciatore> calciatoriDisponibili)
         {
             int indice = -1;
