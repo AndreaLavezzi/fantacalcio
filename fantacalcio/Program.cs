@@ -26,15 +26,15 @@ namespace fantacalcio
     {
         /**
          * \brief   Assume il valore della partita caricata attualmente
-         */ 
+         * \details La variabile è globale in modo che tutti i metodi abbiano accesso ad essa. Quando viene caricata una partita di tipo Fantacalcio da un file verrà assegnato il valore di quella partita a questa variabile.
+         */
         static Fantacalcio partitaInCorso;
 
         /**
          * \fn      void Main()
          * \brief   La funzione Main chiama il metodo Menu(), che mostra il menù principale.
-         * \details La variabile è globale in modo che tutti i metodi abbiano accesso ad essa. Quando viene caricata una partita di tipo Fantacalcio da un file verrà assegnato il valore di quella partita a questa variabile.
          */
-        static void Main()  
+        static void Main()
         {
             Menu();
         }
@@ -52,9 +52,9 @@ namespace fantacalcio
          */
         static void Menu()
         {
+            string risposta;
+            bool nonValida;
             Console.Clear();
-            string risposta;    
-            bool nonValida;     
             Console.Write("1 - Inizia nuova partita\n2 - Gestisci partite\nRisposta: "); //se l'utente inserisce 1 verrà iniziata la procedura di creazione di una partita, se inserisce 2 verrà mostrata una lista di salvataggi su cui l'utente potrà eseguire varie azioni
             do
             {
@@ -62,9 +62,9 @@ namespace fantacalcio
                 nonValida = false;  //la risposta è valida a meno che non si inserisca uno dei casi non gestiti dall'iterazione switch
                 switch (risposta)
                 {
-                    case "1": 
+                    case "1":
                         NuovaPartita();     //se l'utente inserisce "1" verrà iniziata la procedura di creazione di una nuova partita
-                        break;  
+                        break;
                     case "2":
                         GestisciPartite();       //se l'utente inserisce "2" verrà mostrata la lista dei salvataggi esistenti su cui si potranno eseguire delle azioni)
                         break;
@@ -74,7 +74,7 @@ namespace fantacalcio
                         break;
                 }
             } while (nonValida == true);    //il ciclo do-while si ripete finchè la risposta non è valida
-            
+
         }
 
         #region GestionePartita
@@ -111,7 +111,7 @@ namespace fantacalcio
                     nomeTorneo = Console.ReadLine();    //inserimento da tastiera del nome da parte dell'utente
                 } while (!ControlloNome(1, nomeTorneo, new List<Giocatore>()));    //il ciclo do-while si ripete finchè il controllo non va a buon fine, la lista è vuota e serve solamente a chiamare la funzione
 
-                fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0, 0); 
+                fantacalcio = new Fantacalcio(nomeTorneo, CreaGiocatori(), 0, 0);
 
                 Salvataggio.CreaSalvataggio(fantacalcio);
             }
@@ -195,10 +195,9 @@ namespace fantacalcio
         {
             List<Fantacalcio> partite = Salvataggio.GetPartite();
             bool nonValida;
-            string idFileSelezionato;
+            string idFileSelezionato, azione;
             int indiceFile;
             Fantacalcio partitaSelezionata;
-            string azione;
 
             if (partite == null)
             {
@@ -299,9 +298,9 @@ namespace fantacalcio
 
             for (int i = 0; i < nomeDaControllare.Length; i++)
             {
-                for(int j = 0; j < caratteriSpeciali.Length; j++)
+                for (int j = 0; j < caratteriSpeciali.Length; j++)
                 {
-                    if(nomeDaControllare[i].ToString() == caratteriSpeciali[j].ToString())
+                    if (nomeDaControllare[i].ToString() == caratteriSpeciali[j].ToString())
                     {
                         Console.Write("Impossibile inserire nel nome il carattere {0}. Reinserire: ", caratteriSpeciali[j].ToString());
                         return false;
@@ -323,11 +322,11 @@ namespace fantacalcio
                     break;
                 case 1:
                     partite = Salvataggio.GetPartite();
-                    if(partite != null)
+                    if (partite != null)
                     {
-                        foreach(Fantacalcio partita in partite)
+                        foreach (Fantacalcio partita in partite)
                         {
-                            if(nomeDaControllare.ToLower() == partita.nomeSalvataggio.ToLower())
+                            if (nomeDaControllare.ToLower() == partita.nomeSalvataggio.ToLower())
                             {
                                 Console.Write("Inserire un nome che non sia già stato scelto: ");
                                 return false;
@@ -370,7 +369,7 @@ namespace fantacalcio
             {
                 Console.Write("\nInserimento non valido. Reinserire: ");
             }
-            
+
             for (int i = 0; i < numeroGiocatori; i++)
             {
                 Console.Write("\nInserire il nome del giocatore numero {0}: ", i + 1);
@@ -437,9 +436,9 @@ namespace fantacalcio
         static bool ControlloAsta()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            foreach(Giocatore giocatore in giocatori)
+            foreach (Giocatore giocatore in giocatori)
             {
-                if(giocatore.GetGiocatoriRuolo("tot", "r") < 25)
+                if (giocatore.GetGiocatoriRuolo("tot", "r") < 25)
                 {
                     return false;
                 }
@@ -448,33 +447,64 @@ namespace fantacalcio
         }
 
         /**
-         * 
+         * \fn      Offerte(Calciatore calciatore, ref List<Calciatore> calciatoriDisponibili)
+         * \brief   Permette ai giocatori di offrire dei crediti in modo da comprare un calciatore. Il calciatore verrà aggiunto alla rosa del giocatore che offre di più.
+         * \param   Calciatore calciatore: Il calciatore che deve essere acquistato
+         * \param   ref List<Calciatore> calciatoriDisponibili: La lista di calciatori disponibili all'acquisto. La parola chiave "ref" permette di lavorare sul parametro originale.
+         * \param   int indice: Indice del giocatore che vuole puntare sul calciatore
+         * \param   int creditiGiocatore: Crediti posseduti dal giocatore che vuole puntare
+         * \param   int soldiPuntati: Crediti puntati dal giocatore 
+         * \param   int puntataMaggiore: Numero di crediti maggiore puntato attualmente
+         * \param   int calciatoriMancanti: Numero di calciatori che il giocatore può ancora comprare
+         * \param   List<Giocatore> giocatori: Lista di giocatori registrati che potranno fare un'offerta
+         * \param   Giocatore maggiorOfferente: Il giocatore che ha offerto il maggior numero di crediti
+         * \param   Giocatore giocatoreSelezionato: Il giocatore che vuole puntare dei crediti
+         * \details Inizialmente la funzione popola la lista di giocatori inserendo ciò che il metodo Fantacalcio.GetGiocatori() restituisce. In un ciclo 
+         * while che si ripete finchè l'indice del giocatore che vuole puntare dei soldi non è pari a 0, si pulisce la console e si controlla se l'iterazione
+         * corrente si tratta della prima controllando il valore della puntata maggiore; se è 0, vuol dire che nessun giocatore ha ancora effettuato una
+         * puntata. In questo caso viene mostrato un messaggio che comunica l'inizio dell'asta e il calciatore protagonista dell'asta. Se la puntata maggiore
+         * è invece diversa da 0, significa che un giocatore ha puntato dei crediti, quindi si mostra un messaggio che comunica la continuazione dell'asta e
+         * i dati del calciatore. Viene inoltre data l'opzione di terminare l'asta per il calciatore attuale inserendo 0. Viene mostrata poi la lista dei 
+         * giocatori con i rispettivi indici, e si controlla se sono state fatte puntate precedenti; se non sono state fatte, viene data la possibilità di
+         * cambiare il calciatore per cui si effettua l'asta. Successivamente viene chiesto all'utente di inserire un numero tra quelli comunicati, ottenuto
+         * tramite la funzione OttieniIndiceOfferente(), a cui viene passata la lista di giocatori e la puntata maggiore attuale. Se l'indice restituito è uguale
+         * a 0 ed è stata effettuata una puntata, quindi la puntata maggiore è diversa da 0, si interrompe il ciclo while, viene comunicato il vincitore dell'asta,
+         * viene aggiunto il calciatore alla rosa del giocatore che l'ha comprato tramite il metodo Giocatore.AddCalciatore() a cui viene passato il calciatore
+         * comprato e il prezzo a cui è stato comprato. Viene poi rimosso il calciatore dalla lista di calciatori disponibili e viene salvato su file lo stato
+         * della partita in corso tramite il metodo Salvataggio.CreaSalvataggio(). Se al momento dell'inserimento dell'indice, esso è pari al numero di giocatori
+         * nella lista di giocatori + 1 (ovvero l'indice che si inserisce per cambiare giocatore da comprare), viene interrotta la funzione. Una volta superati questi
+         * due controlli, si imposta il valore del giocatore selezionato col valore del giocatore in posizione indice - 1 della lista di giocatori, viene
+         * impostato il valore dei crediti del giocatore selezionato col valore dell'attributo fantaMilioni dello stesso e viene impostato il numero di calciatori 
+         * mancanti pari a 25 (numero di calciatori massimi) meno il numero di calciatori posseduti, ottenuto dal metodo Giocatore.GetGiocatoriRuolo(). Viene poi controllato che
+         * il giocatore selezionato possa effettivamente comprare ulteriori calciatori tramite la funzione PuoComprare(), a cui viene passato il ruolo del calciatore e
+         * il numero di calciatori che il giocatore selezionato ha in quel ruolo, restituito dal metodo Giocatore.GetGiocatoriRuolo(). Se il giocatore non può comprare
+         * calciatori di quel ruolo, viene comunicato all'utente e si torna all'inizio del ciclo while; se incece il giocatore può potenzialmente comprare il calciatore,
+         * viene chiesto di inserire il numero di soldi che si intende puntare in un ciclo do-while, che si ripete finchè la variabile di controllo "success" è pari a false.
+         * All'inizio del ciclo, questa variabile viene impostata a true, si ottiene il numero dei crediti puntati tramite la funzione InserimentoOfferta() a cui viene passato
+         * il numero di crediti posseduti dal giocatore, la attuale puntata maggiore e il numero di calciatori che il giocatore può ancora comprare. Se non è
+         * stato restituito e inserito nella variabile soldiPuntati un valore uguale a -1, si imposta il valore della puntataMaggiore al valore dei soldi puntati
+         * dal maggior offerente; la variabile maggiorOfferente viene posta poi uguale alla variabile giocatoreSelezionato.
          */
         static void Offerte(Calciatore calciatore, ref List<Calciatore> calciatoriDisponibili)
         {
-            int indice = -1;
-            int puntataMaggiore = 0;
-            int creditiGiocatore;
+            int creditiGiocatore, calciatoriMancanti, soldiPuntati, indice = -1, puntataMaggiore = 0;
 
+            Giocatore giocatoreSelezionato, maggiorOfferente = new Giocatore("PLACEHOLDER");
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            Giocatore maggiorOfferente = new Giocatore("PLACEHOLDER");
-            Giocatore giocatoreSelezionato = new Giocatore("PLACEHOLDER");
-
-            
 
             while (indice != 0) //se si vuole effettuare una ulteriore puntata
             {
                 Console.Clear();
-                
+
 
                 if (puntataMaggiore == 0) //e se si tratta della prima puntata
                 {
-                    Console.WriteLine($"Ha inizio l'asta per: \n{calciatore.ToString()}");
+                    Console.WriteLine($"Ha inizio l'asta per: \n{calciatore}");
                     Console.WriteLine("\nQuale giocatore vuole fare un'offerta per questo calciatore?");
                 }
                 else
                 {
-                    Console.WriteLine($"Continua l'asta per: \n{calciatore.ToString()}");
+                    Console.WriteLine($"Continua l'asta per: \n{calciatore}");
                     Console.WriteLine($"La puntata maggiore attuale è di {puntataMaggiore} fantamilioni da parte di {maggiorOfferente.nome.ToUpper()}");
                     Console.WriteLine("\nQuale giocatore vuole offrire di più?");
                     Console.Write("\n0 -> Nessuna ulteriore offerta");
@@ -482,7 +512,7 @@ namespace fantacalcio
 
                 Console.Write(partitaInCorso.GetListaGiocatori());
 
-                if(puntataMaggiore == 0)
+                if (puntataMaggiore == 0)
                 {
                     Console.Write("\n" + (giocatori.Count + 1) + " -> Salta giocatore\n");
                 }
@@ -490,19 +520,20 @@ namespace fantacalcio
                 Console.Write("\nRisposta: ");
                 indice = OttieniIndiceOfferente(giocatori, puntataMaggiore);
 
-                if(indice == 0 && puntataMaggiore != 0)
+                if (indice == 0 && puntataMaggiore != 0)
                 {
                     break;
-                } 
-                else if(indice == giocatori.Count + 1 && puntataMaggiore == 0)
+                }
+                else if (indice == giocatori.Count + 1 && puntataMaggiore == 0)
                 {
                     return;
                 }
 
                 giocatoreSelezionato = giocatori[indice - 1];
                 creditiGiocatore = giocatoreSelezionato.fantaMilioni;
-                
-                if(!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo, "r")))
+                calciatoriMancanti = 25 - giocatoreSelezionato.GetGiocatoriRuolo("tot", "r");
+
+                if (!PuoComprare(calciatore.ruolo, giocatoreSelezionato.GetGiocatoriRuolo(calciatore.ruolo, "r")))
                 {
                     Console.WriteLine("Non puoi comprare più calciatori di questo ruolo; premi un tasto per tornare indietro...");
                     Console.ReadKey();
@@ -510,19 +541,8 @@ namespace fantacalcio
                 else
                 {
                     Console.Write("\n(Scrivere 'exit' per tornare indietro) Quanti soldi vuoi puntare? Risposta: ");
-                    int soldiPuntati;
-                    bool success;
-                    do
-                    {
-                        success = true;
-                        soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore);
-                        if(soldiPuntati > giocatoreSelezionato.fantaMilioni - (25 - giocatoreSelezionato.GetGiocatoriRuolo("tot", "r")))
-                        {
-                            Console.Write("Non puoi inserire un numero di fantamilioni tale che ti renda incapacitato di comprare ulteriori giocatori; Reinserire: ");
-                            success = false;
-                        }
+                    soldiPuntati = InserimentoOfferta(creditiGiocatore, puntataMaggiore, calciatoriMancanti);
 
-                    } while (!success);
                     if (soldiPuntati != -1)
                     {
                         puntataMaggiore = soldiPuntati;
@@ -539,21 +559,42 @@ namespace fantacalcio
             Salvataggio.CreaSalvataggio(partitaInCorso);
         }
 
-        static int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore)
+        /**
+         * \fn      int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore, int giocatoriMancanti)
+         * \brief   Permette all'utente di inserire un valore intero come offerta per l'acquisto di un calciatore.
+         * \param   int creditiGiocatore: Crediti a disposizione del giocatore che vuole effettuare l'acquisto
+         * \param   int puntataMaggiore: Valore del maggior numero di soldi puntati attualmente per il calciatore in questione
+         * \param   int giocatoriMancanti: Numero di calciatori che il giocatore può ancora comprare
+         * \param   int soldiPuntati: Numero di soldi che il giocatore intende puntare
+         * \param   bool nonValida: Variabile di controllo dell'inserimento da tastiera da parte dell'utente, sarà true se l'inserimento non è valido, false se invece è valido
+         * \param   string risposta: Contiene l'inserimento da tastiera da parte dell'utente
+         * \return  int: Viene ritornato il numero di crediti puntati dal giocatore. Se invece il giocatore ha interrotto l'inserimento inserendo "exit", viene ritornato il valore -1
+         * \details In un ciclo do-while, che si ripete finchè la variabile nonValida è uguale a true, si imposta inizialmente quest'ultima variabile a false. Si ottiene poi la risposta
+         * da tastiera da parte dell'utente. Se la risposta è "exit", si interrompe la funzione ritornando il valore -1. Viene poi iniziato il controllo del valore inserito. I casi gestiti sono:
+         * \details L'inserimento non è un numero intero (se il metodo TryParse restituisce false, vuol dire che non è stato inserito un numero);
+         * \details Il numero di crediti da puntare è minore o uguale a 0;
+         * \details Il numero di crediti da puntare è maggiore dei crediti posseduti dal giocatore;
+         * \details Il numero di crediti da puntare è minore dell'attuale puntata maggiore;
+         * \details Il numero di crediti puntati potrebbe rendere impossibile comprare altri calciatori (ci si assicura che il giocatore possa puntare almeno un credito per calciatore);
+         * \details Se tutti i controlli vengono superati, viene ritornato il numero di crediti puntati. 
+         */
+        static int InserimentoOfferta(int creditiGiocatore, int puntataMaggiore, int calciatoriMancanti)
         {
-            int soldiPuntati = 0;
+            int soldiPuntati;
             bool nonValida;
+            string risposta;
             do
             {
                 nonValida = false;
-                string risposta = Console.ReadLine();
-                if(risposta.ToLower() == "exit")
+                risposta = Console.ReadLine();
+                if (risposta.ToLower() == "exit")
                 {
                     return -1;
-                } 
-                else if(!Int32.TryParse(risposta, out soldiPuntati))
+                }
+
+                if (!Int32.TryParse(risposta, out soldiPuntati))
                 {
-                    Console.Write("\n(Scrivere 'exit' per tornare indietro) Ciò che hai inserito non è un numero intero. Reinserire: ");
+                    Console.Write("\nCiò che hai inserito non è un numero intero. Reinserire: ");
                     nonValida = true;
                 }
 
@@ -574,7 +615,13 @@ namespace fantacalcio
                         Console.Write("\nImpossibile inserire un numero di fantamilioni minore o uguale all'attuale puntata maggiore di {0} fantamilioni. \nReinserire: ", puntataMaggiore);
                         nonValida = true;
                     }
+                    else if (soldiPuntati > creditiGiocatore - calciatoriMancanti)
+                    {
+                        Console.Write("Non puoi inserire un numero di fantamilioni tale che ti renda incapacitato di comprare ulteriori giocatori.\nReinserire: ");
+                        nonValida = true;
+                    }
                 }
+
             } while (nonValida);
 
             return soldiPuntati;
@@ -635,23 +682,23 @@ namespace fantacalcio
 
         static string StimaPrezzo(int puntata)
         {
-            if(puntata < 10)
+            if (puntata < 10)
             {
                 return " esigua";
             }
-            else if(puntata > 10 && puntata < 100 && puntata != 69)
+            else if (puntata > 10 && puntata < 100 && puntata != 69)
             {
                 return " modesta";
             }
-            else if(puntata == 69)
+            else if (puntata == 69)
             {
                 return " PAZZA";
             }
-            else if(puntata >= 100 && puntata < 250)
+            else if (puntata >= 100 && puntata < 250)
             {
                 return " goliardica";
             }
-            else if(puntata >= 250 && puntata < 500 && puntata != 420)
+            else if (puntata >= 250 && puntata < 500 && puntata != 420)
             {
                 return " altissima";
             }
@@ -667,15 +714,15 @@ namespace fantacalcio
         static void SelezioneTitolari()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            int[] modulo = { 0, 0, 0 };
+            bool success;
             Console.Clear();
             Console.WriteLine("Ha inizio la selezione dei giocatori titolari.");
             Console.WriteLine("Premi un qualsiasi tasto per continuare...");
             Console.ReadKey();
-            
-            for(int i = 0; i < giocatori.Count; i++)
+
+            for (int i = 0; i < giocatori.Count; i++)
             {
-                int[] modulo = { 0, 0, 0};
-                bool success;
                 Giocatore giocatoreCorrente = giocatori[i];
                 Console.Clear();
                 Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatoreCorrente.nome.ToUpper());
@@ -691,16 +738,18 @@ namespace fantacalcio
                         {
                             Console.Write("\nInserire tre elementi separati da trattini: ");
                             success = false;
-                        } else if(modulo[0] + modulo[1] + modulo[2] != 10)
+                        }
+                        else if (modulo[0] + modulo[1] + modulo[2] != 10)
                         {
                             Console.Write("\nLa somma dei numeri deve essere 10; reinserire: ");
                             success = false;
-                        }else if(modulo[0] <= 0 || modulo[1] <= 0 || modulo[2] <= 0)
+                        }
+                        else if (modulo[0] <= 0 || modulo[1] <= 0 || modulo[2] <= 0)
                         {
                             Console.Write("\nI numeri non possono essere 0 o minori; reinserire: ");
                             success = false;
                         }
-                        else if(modulo[2] > 6)
+                        else if (modulo[2] > 6)
                         {
                             Console.Write("\nImpossibile mettere più di 6 in posizione 3 del modulo. Reinserire: ");
                             success = false;
@@ -804,22 +853,20 @@ namespace fantacalcio
 
             return indice;
         }
-
         #endregion
 
         #region Partite
         static void GeneraAbbinamenti()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            int numeroPartite = giocatori.Count * (giocatori.Count - 1) / 2;
-            int indicePartita = 0;
+            int numeroPartite = giocatori.Count * (giocatori.Count - 1) / 2, indicePartita = 0;
             Giocatore[,] abbinamenti = new Giocatore[numeroPartite, 2];
 
             for (int i = 0; i < giocatori.Count; i++)
             {
                 for (int j = i; j < giocatori.Count; j++)
                 {
-                    if(i != j)
+                    if (i != j)
                     {
                         abbinamenti[indicePartita, 0] = giocatori[i];
                         abbinamenti[indicePartita, 1] = giocatori[j];
@@ -831,21 +878,21 @@ namespace fantacalcio
             Salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
-        static void OrdinaAbbinamenti(ref Giocatore[,] abbinamenti, int numGiocatori)
-        {
-            for(int i = 0; i < numGiocatori/2; i++)
-            {
-                for(int j = i + 1; j < abbinamenti.GetLength(0); j++)
-                {
-                    
-                }
-            }
-        }
+        //static void OrdinaAbbinamenti(ref Giocatore[,] abbinamenti, int numGiocatori)
+        //{
+        //    for(int i = 0; i < numGiocatori/2; i++)
+        //    {
+        //        for(int j = i + 1; j < abbinamenti.GetLength(0); j++)
+        //        {
+
+        //        }
+        //    }
+        //}
 
         static void InizioTorneo()
         {
             Giocatore[,] abbinamenti;
-            if(!File.Exists("saveFiles/" + partitaInCorso.nomeSalvataggio + "/abbinamenti.json"))
+            if (!File.Exists("saveFiles/" + partitaInCorso.nomeSalvataggio + "/abbinamenti.json"))
             {
                 GeneraAbbinamenti();
             }
@@ -854,15 +901,15 @@ namespace fantacalcio
             for (int i; partitaInCorso.numeroPartita < abbinamenti.GetLength(0); partitaInCorso.numeroPartita++)
             {
                 i = partitaInCorso.numeroPartita;
-                
+
                 //trova i giocatori che stanno per giocare nella lista di giocatori della partita in corso
-                foreach(Giocatore giocatore in partitaInCorso.GetGiocatori())
+                foreach (Giocatore giocatore in partitaInCorso.GetGiocatori())
                 {
-                    if(giocatore.nome == abbinamenti[i, 0].nome)
+                    if (giocatore.nome == abbinamenti[i, 0].nome)
                     {
                         abbinamenti[i, 0] = giocatore;
                     }
-                    else if(giocatore.nome == abbinamenti[i, 1].nome)
+                    else if (giocatore.nome == abbinamenti[i, 1].nome)
                     {
                         abbinamenti[i, 1] = giocatore;
                     }
@@ -889,16 +936,16 @@ namespace fantacalcio
 
         static void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
-            string nomeG1 = giocatore1.nome.ToUpper();
-            string nomeG2 = giocatore2.nome.ToUpper();
+            string nomeG1 = giocatore1.nome.ToUpper(), nomeG2 = giocatore2.nome.ToUpper();
             bool success;
+
             Console.Clear();
             Console.WriteLine("Sta per avere inizio la partita tra {0} e {1}", nomeG1, nomeG2);
-            for(int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Giocatore giocatoreCorrente;
                 string nome;
-                if(i == 0)
+                if (i == 0)
                 {
                     giocatoreCorrente = giocatore1;
                     nome = nomeG1;
@@ -944,7 +991,7 @@ namespace fantacalcio
                     }
                 } while (!success);
 
-                if(i == 0)
+                if (i == 0)
                 {
                     giocatore1 = giocatoreCorrente;
                 }
@@ -952,7 +999,7 @@ namespace fantacalcio
                 {
                     giocatore2 = giocatoreCorrente;
                 }
-                
+
             }
 
         }
@@ -963,8 +1010,7 @@ namespace fantacalcio
             {
                 giocatoreCorrente.SetSquadraAttuale(giocatoreCorrente.GetTitolari());
             }
-            List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale();
-            List<Calciatore> rosaCalciatori = giocatoreCorrente.GetRosa();
+            List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale(), rosaCalciatori = giocatoreCorrente.GetRosa();
             Calciatore calciatore1, calciatore2;
 
             int indice1, indice2;
@@ -1031,15 +1077,16 @@ namespace fantacalcio
                 Console.Clear();
             }
         }
+
         static void Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
-            double puntiG1 = 0;
-            double puntiG2 = 0;
+            double punti, puntiG1 = 0, puntiG2 = 0;
             bool success;
+
             Console.WriteLine("Squadra di {0}", giocatore1.nome.ToUpper());
-            foreach(Calciatore calciatore in giocatore1.GetSquadraAttuale())
+            foreach (Calciatore calciatore in giocatore1.GetSquadraAttuale())
             {
-                double punti = calciatore.GeneraAzioni();
+                punti = calciatore.GeneraAzioni();
                 Console.WriteLine(calciatore.ToString() + "\nPUNTI: {0}\n", punti);
                 puntiG1 += punti;
             }
@@ -1048,7 +1095,7 @@ namespace fantacalcio
             Console.WriteLine("\n\nSquadra di {0}", giocatore2.nome.ToUpper());
             foreach (Calciatore calciatore in giocatore2.GetSquadraAttuale())
             {
-                double punti = calciatore.GeneraAzioni();
+                punti = calciatore.GeneraAzioni();
                 Console.WriteLine(calciatore.ToString() + ": {0} punti", punti);
                 puntiG2 += punti;
             }
@@ -1059,7 +1106,8 @@ namespace fantacalcio
                 Console.WriteLine("\nPAREGGIO!");
                 giocatore1.AddPunteggio(1);
                 giocatore2.AddPunteggio(1);
-            }else if(puntiG1 > puntiG2)
+            }
+            else if (puntiG1 > puntiG2)
             {
                 Console.WriteLine("\nVINCE {0} CON {1} PUNTI!", giocatore1.nome.ToUpper(), puntiG1);
                 giocatore1.AddPunteggio(3);
@@ -1098,12 +1146,13 @@ namespace fantacalcio
             partitaInCorso.fase = 3;
             Salvataggio.CreaSalvataggio(partitaInCorso);
         }
-        
+
         static string Classifica()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             giocatori = InsertionSort(giocatori);
             string classifica = "";
+
             for (int i = 0; i < giocatori.Count; i++)
             {
                 classifica += i + 1 + " -> " + giocatori[i].nome + " con " + giocatori[i].punteggio + " punti\n";
@@ -1128,11 +1177,7 @@ namespace fantacalcio
             }
             return giocatori;
         }
-
-
-
         #endregion
-
         #endregion
     }
 }
