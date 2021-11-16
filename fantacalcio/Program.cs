@@ -627,6 +627,25 @@ namespace fantacalcio
             return soldiPuntati;
         }
 
+        /**
+         * \fn      int OttieniIndiceOfferente(List<Giocatore> giocatori, int puntataMaggiore)
+         * \brief   Ottiene da tastiera e ritorna l'indice del giocatore che desidera offrire crediti per l'acquisto di un calciatore
+         * \param   List<Giocatore> giocatori: Lista di giocatori che partecipano all'asta
+         * \param   int puntataMaggiore: Il maggior numero di crediti che è stato puntato
+         * \param   int indice: L'indice del giocatore che vuole offrire soldi
+         * \param   bool nonValida: Indica se la risposta ottenuta da tastiera rientra nelle opzioni offerte
+         * \return  int: La funzione ritorna l'indice del giocatore che vuole offrire dei soldi.
+         * \details In un ciclo do-while, che si ripete finchè la variabile nonValida è true, viene impostato inizialmente il valore di quest'ultima variabile a false; successivamente si prova
+         * a ottenere da tastiera un valore e convertirlo a int; se si ottiene un errore, si comunica all'utente che la risposta data non è valida e si imposta la variabile nonValida a true.
+         * Si passa poi a controllare che il valore inserito rientri nei valori proposti inizialmente. Questo controllo si fa solamente se la variabile nonValida è ancora a false.
+         * I casi gestiti sono:
+         * \details L'indice è minore di 0;
+         * \details La puntata maggiore è uguale a 0 (quindi nessun giocatore ha puntato soldi) e l'indice è maggiore del numero di giocatori + 1
+         * \details La puntata maggiore è diversa da 0 e l'indice è maggiore del numero di giocatori
+         * \details La puntata maggiore è uguale a 0 e l'indice è uguale a 0
+         * \details In ognuno di questi casi la variabile nonValida viene impostata a true, viene chiesto di reinserire l'indice e viene reiterato il ciclo do-while. Se viene superata la serie di
+         * controlli, viene ritornato il valore dell'indice
+         */
         static int OttieniIndiceOfferente(List<Giocatore> giocatori, int puntataMaggiore)
         {
             int indice = 0;
@@ -654,6 +673,17 @@ namespace fantacalcio
             return indice;
         }
 
+        /**
+         * \fn      bool PuoComprare(string ruoloCalciatore, int numCalciatoriPosseduti)
+         * \brief   Viene controllato se il giocatore ha raggiunto il massimo di giocatori acquistabili per un determinato ruolo
+         * \param   string ruoloCalciatore: Il ruolo del calciatore che deve essere comprato
+         * \param   int numCalciatoriPosseduti: Il numero di calciatori in un determinato ruolo che un giocatore possiede
+         * \param   int calciatoriMassimi: Il numero di calciatori massimi che un giocatore può possedere in un determinato ruolo
+         * \return  bool: Viene ritornato true se il giocatore può comprare ancora giocatori del ruolo specificato, altrimenti viene ritornato false.
+         * \details La funzione controlla con un'istruzione switch il ruolo del calciatore che deve essere comprato, e imposta il numero di calciatori massimi del ruolo specificato
+         * che il giocatore può acquistare. Il giocatore può possedere un massimo di 6 attaccanti, 8 difensori, 3 portieri e 8 centrocampisti. Tramite un if viene controllato se il numero di calciatori
+         * posseduti è minore del numero di calciatori massimi, e se lo è viene ritornato true. Se invece il numero di calciatori posseduti non è minore viene ritornato false.
+         */
         static bool PuoComprare(string ruoloCalciatore, int numCalciatoriPosseduti)
         {
             int calciatoriMassimi = 0;
@@ -679,7 +709,13 @@ namespace fantacalcio
             }
             return false;
         }
-
+        
+        /**
+         * \fn      string StimaPrezzo(int puntata)
+         * \brief   Controlla il prezzo a cui un calciatore viene comprato e ritorna una stringa che personalizza il messaggio di acquisto del calciatore. 
+         * \param   int puntata: Il numero di soldi a cui il calciatore è stato comprato
+         * \return  string: Viene ritornata la stringa in base al prezzo a cui il calciatore è stato comprato
+         */
         static string StimaPrezzo(int puntata)
         {
             if (puntata < 10)
@@ -711,11 +747,15 @@ namespace fantacalcio
         #endregion
 
         #region Pre-Partita
+        /**
+         * \fn          
+         */
         static void SelezioneTitolari()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
             int[] modulo = { 0, 0, 0 };
             bool success;
+
             Console.Clear();
             Console.WriteLine("Ha inizio la selezione dei giocatori titolari.");
             Console.WriteLine("Premi un qualsiasi tasto per continuare...");
