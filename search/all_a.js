@@ -8,5 +8,5 @@ var searchData=
   ['program_5',['Program',['../classfantacalcio_1_1_program.html',1,'fantacalcio']]],
   ['program_2ecs_6',['Program.cs',['../_program_8cs.html',1,'']]],
   ['punteggio_7',['punteggio',['../classfantacalcio_1_1_azione.html#ae04db5260488946ee6fac8ed594bf6df',1,'fantacalcio.Azione.punteggio()'],['../classfantacalcio_1_1_giocatore.html#a226eff73eab8cfb87a0b4433767eecab',1,'fantacalcio.Giocatore.punteggio()']]],
-  ['puocomprare_8',['PuoComprare',['../classfantacalcio_1_1_program.html#ad056551ba711a02cbf5de2a3ae55f97b',1,'fantacalcio::Program']]]
+  ['puocomprare_8',['PuoComprare',['../classfantacalcio_1_1_program.html#a1da6903af3b26d02bd0858878527aa98',1,'fantacalcio::Program']]]
 ];
