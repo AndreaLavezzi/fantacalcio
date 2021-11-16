@@ -748,13 +748,38 @@ namespace fantacalcio
 
         #region Pre-Partita
         /**
-         * \fn          
+         * \fn      void SelezioneTitolari()
+         * \brief   Permette all'utente di selezionare 11 calciatori che saranno i titolari della squadra
+         * \param   List<Giocatore> giocatori: La lista di giocatori registrati
+         * \param   int[] modulo: La formazione della squadra, che indica il numero di difensori, centrocampisti e attaccanti nella formazione principale
+         * \param   bool success: Variabile di controllo per gli inserimenti da tastiera, è true di default e viene impostata a false quando l'inserimento non è valido
+         * \param   string risposta: Risposta inserita da tastiera dall'utente
+         * \param   Giocatore giocatoreCorrente: Il giocatore che sta scegliendo i titolari
+         * \details Viene popolata la lista di giocatori tramite il metodo Fantacalcio.GetGiocatori(). Viene pulita poi la console, e si chiede di premere un tasto qualsiasi per iniziare la
+         * selezione dei giocatori titolari. In un ciclo for che si ripete per un numero di volte pari al numero di giocatori registrati, viene pulita la console e viene chiesto di inserire il
+         * modulo per la propria squadra, composto da tre numeri divisi da dei trattini. Il primo numero indica il numero di difensori, il secondo il numero di centrocampisti e il terzo il
+         * numero di attaccanti. Successivamente, in un ciclo do-while che si ripete finchè la variabile success è false, viene impostato inizialmente il valore di success a true. Viene effettuato
+         * un inserimento da tastiera da parte dell'utente, viene convertita la risposta in un array di interi tramite il metodo String.Split(). Viene poi fatto un controllo dell'array. Le situazioni gestite sono:
+         * \details Non è stato inserito il numero di dati richiesto (3 numeri interi divisi da trattini);
+         * \details La somma dei numeri inseriti non è 10 (numero di giocatori in campo meno il portiere)
+         * \details Uno dei numeri inseriti è minore o uguale a 0
+         * \details Il numero di attaccanti è maggiore di 6
+         * \details Se si dovesse riscontrare almeno uno di questi problemi, la variabile success verrebbe impostata a false e verrebbe reiterato il ciclo do-while. Se si riscontra un errore nella
+         * istruzione try, si comunica all'utente che c'è stato un errore e viene chiesto di reinserire il dato, impostando la variabile success a false. Finalmente si procede all'inserimento dei calciatori
+         * nella lista di titolari. Viene controllato il numero di portieri nella lista di titolari del giocatore corrente; se risulta essere 0, si chiama la funzione ControlloRuolo() passando come
+         * parametri il giocatore corrente e la stringa "portiere". Viene poi controllato il numero di difensori nella lista di titolari del giocatore. Finchè è minore del primo numero inserito per
+         * il modulo viene chiemata la funzione ControlloRuolo() passando come parametri il giocatore corrente e la stringa "difensore". Un procedimento analogo è svolto per i centrocampisti e gli attaccanti.
+         * Una volta terminati gli inserimenti, viene pulita la console e viene comunicato che la selezione dei titolari è conclusa, e di cliccare un tasto qualsiasi per iniziare il torneo. La fase della
+         * partita in corso viene impostata a 2, vengono salvati i titolari tramite il metodo Salvataggio.SalvaTitolari() e la partita tramite il metodo Salvataggio.CreaPartita(). Una volta premuto il 
+         * tasto a piacere viene chiamata la funzione IniziaTorneo().
          */
         static void SelezioneTitolari()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
+            Giocatore giocatoreCorrente;
             int[] modulo = { 0, 0, 0 };
             bool success;
+            string risposta;
 
             Console.Clear();
             Console.WriteLine("Ha inizio la selezione dei giocatori titolari.");
@@ -763,7 +788,7 @@ namespace fantacalcio
 
             for (int i = 0; i < giocatori.Count; i++)
             {
-                Giocatore giocatoreCorrente = giocatori[i];
+                giocatoreCorrente = giocatori[i];
                 Console.Clear();
                 Console.WriteLine("E' il turno di {0} di scegliere i titolari", giocatoreCorrente.nome.ToUpper());
                 Console.Write("\nInserisci il modulo che vuoi utilizzare (Esempio: 2-4-4 => 2 -> Difensori, 4 -> Centrocampisti, 4 => Attaccanti)\nRisposta: ");
@@ -772,7 +797,7 @@ namespace fantacalcio
                     success = true;
                     try
                     {
-                        string risposta = Console.ReadLine();
+                        risposta = Console.ReadLine();
                         modulo = Array.ConvertAll(risposta.Split("-"), int.Parse);
                         if (modulo.Length != 3)
                         {
@@ -789,7 +814,7 @@ namespace fantacalcio
                             Console.Write("\nI numeri non possono essere 0 o minori; reinserire: ");
                             success = false;
                         }
-                        else if (modulo[2] > 6)
+                        else if (modulo[2] > 6 )
                         {
                             Console.Write("\nImpossibile mettere più di 6 in posizione 3 del modulo. Reinserire: ");
                             success = false;
@@ -834,19 +859,30 @@ namespace fantacalcio
             InizioTorneo();
         }
 
-        static void MostraGiocatoriRosa(Giocatore giocatoreCorrente)
-        {
-            Console.Clear();
-            Console.WriteLine("Giocatori disponibili:\n");
-            Console.Write(giocatoreCorrente.GetStringSquadra("r"));
-        }
-
+        /**
+         * \fn      void ControlloRuolo(Giocatore giocatoreCorrente, string ruolo)
+         * \brief   Permette al giocatore di inserire nella lista di calciatori titolari un calciatore appartenente al giocatore.
+         * \param   Giocatore giocatoreCorrente: Il giocatore che deve effettuare la scelta dei titolari
+         * \param   string ruolo: Il ruolo del calciatore che il giocatore deve scegliere
+         * \param   Calciatore calciatoreScelto: Il calciatore scelto da inserire nella lista di calciatori titolari
+         * \param   bool success: Indica la riuscita dell'inserimento da tastiera da parte dell'utente di un dato. Vale true se l'inserimento è riuscito, false se non è riuscito.
+         * \param   int indice: Indice che corrisponde al calciatore da aggiungere alla lista di titolari
+         * \details Viene inizialmente mostrata la lista di calciatori posseduti dal giocatore restituita dalla funzione MostraCalciatoriRosa(). Viene poi comunicato il ruolo del giocatore del scegliere.
+         * In un ciclo do-while, che si ripete finchè la variabile success è false, viene inizialmente impostata quest'ultima a true. Viene poi ottenuto da tastiera l'indice del giocatore da aggiungere
+         * come titolare, ritornato dalla funzione OttieniIndiceSquadra(). Si imposta poi il valore di calciatoreScelto uguale a quello del calciatore in posizione indice - 1 nella lista di calciatori
+         * posseduti dal giocatore. Se il ruolo del calciatore scelto e il ruolo da scegliere non corrispondono, viene comunicata la non corrispondenza all'uente e si imposta la variabile success a false,
+         * per far reiterare il ciclo do-while. Se invece i ruoli corrispondono viene controllato che il calciatore selezionato non faccia già parte della lista di titolari tramite un ciclo foreach,
+         * in cui si comparano i nomi dei calciatori. Se questi combaciano, viene impostata la variabile success a false e viene chiesto di reinserire il calciatore. Una volta superati i controlli,
+         * il calciatore viene aggiunto alla lista di titolari tramite la funzione Giocatore.AddTitolari().
+         */
         static void ControlloRuolo(Giocatore giocatoreCorrente, string ruolo)
         {
             Calciatore calciatoreScelto;
             bool success;
             int indice;
-            MostraGiocatoriRosa(giocatoreCorrente);
+
+            Console.Clear();
+            Console.WriteLine(MostraCalciatoriRosa(giocatoreCorrente));
             Console.Write($"\nScegli un {ruolo} titolare: ");
             do
             {
@@ -876,6 +912,33 @@ namespace fantacalcio
             giocatoreCorrente.AddTitolari(giocatoreCorrente.GetRosa()[indice - 1]);
         }
 
+        /**
+         * \fn      string MostraGiocatoriRosa(Giocatore giocatoreCorrente)
+         * \brief   Ritorna una stringa contenente i calciatori nella rosa del giocatore passato come parametro
+         * \param   Giocatore giocatoreCorrente: Il giocatore di cui si deve mostrare la lista
+         * \param   string lista: La stringa contenente la lista di giocatori
+         * \return  string: La funzione ritorna una stringa contenente i calciatori nella rosa del giocatore
+         * \details La funzione aggiunge alla variabile lista la lista di calciatori nella rosa di un giocatore, ottenuta dal metodo Giocatore.GetStringSquadra() a cui viene passata la stringa
+         * "r", che indica che vogliamo ottenere la lista della rosa.
+         */
+        static string MostraCalciatoriRosa(Giocatore giocatoreCorrente)
+        {
+            string lista = "";
+            lista  += "Giocatori disponibili:\n" + giocatoreCorrente.GetStringSquadra("r");
+            return lista;
+        }
+
+        /**
+         * \fn      int OttieniIndiceSquadra(List<Calciatore> squadra)
+         * \brief   Ottiene da tastiera l'indice dei un calciatore in una squadra, e restituisce l'indice alla fine
+         * \param   List<Calciatore> squadra: La squadra di cui vogliamo scegliere un indice
+         * \param   bool success: Indica se l'inserimento da tastiera da parte dell'utente ha avuto esito positivo (true) o negativo (false)
+         * \param   int indice: L'indice del calciatore scelto dalla lista della squadra
+         * \return  int: La funzione ritorna l'indice del calciatore nella lista della squadra scelto dall'utente
+         * \details In un ciclo do-while si imposta il valore di success al valore restituito dal metodo Int32.TryParse() che prova a convertire ciò che ottiene da tastiera in un numero intero
+         * e cerca di inserirlo nella variabile indice. Se l'indice inserito è maggiore del numero di giocatori presenti nella squadra o minore di 1 viene comunicato che la risposta non è valida,
+         * viene chiesto di reinserirla e si imposta la variabile success a false. Alla fine viene ritornato l'indice selezionato
+         */
         static int OttieniIndiceSquadra(List<Calciatore> squadra)
         {
             bool success;
