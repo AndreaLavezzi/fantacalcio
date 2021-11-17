@@ -959,6 +959,17 @@ namespace fantacalcio
         #endregion
 
         #region Partite
+        /**
+         * \fn      void GeneraAbbinamenti()
+         * \brief   Popola un array bidimensionale con coppie tutte diverse di giocatori.
+         * \param   List<Giocatore> giocatori: La lista di giocatori che partecipano al torneo
+         * \param   int numeroPartite: Il numero di partite che verranno giocate
+         * \param   int indicePartita: Il numero della partita considerata.
+         * \param   Giocatore[,] abbinamenti: Array bidimensionale di giocatori, ogni coppia di giocatori è diversa.
+         * \details Inizialmente viene popolata la lista di giocatori tramite il metodo Fantacalcio.GetGiocatori(). Successivamente viene calcolato il numero di partite che verranno 
+         * giocate tramite la formula N * (N - 1) / 2 dove N è il numero di giocatori. In un doppio ciclo for viene poi popolato l'array, facendo in modo che un giocatore venga abbinato
+         * con se stesso. Alla fine, vengono salvati gli abbinamenti tramite il metodo Salvataggio.SalvaAbbinamenti().
+         */
         static void GeneraAbbinamenti()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
@@ -981,17 +992,17 @@ namespace fantacalcio
             Salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
         }
 
-        //static void OrdinaAbbinamenti(ref Giocatore[,] abbinamenti, int numGiocatori)
-        //{
-        //    for(int i = 0; i < numGiocatori/2; i++)
-        //    {
-        //        for(int j = i + 1; j < abbinamenti.GetLength(0); j++)
-        //        {
-
-        //        }
-        //    }
-        //}
-
+        /**
+         * \fn      void InizioTorneo()
+         * \brief   Itera attraverso l'array di abbinamenti eseguendo le partite e salvando i risultati.
+         * \param   Giocatore[,] abbinamenti: Array bidimensionale di giocatori, ogni coppia di giocatori è diversa.
+         * \details Viene controllato se esiste il file degli abbinamenti. Se non esiste, viene chiamata la funzione GeneraAbbinamenti(). Successivamente, viene popolato l'array di abbinamenti
+         * tramite il metodo Salvataggio.CaricaAbbinamenti(). In un ciclo for, che si ripete finchè il numero della partita in corso è minore della lunghezza dell'array nella dimensione 0 (che 
+         * rappresenta il numero di scontri tra giocatori), vengono dati ai giocatori nell'array bidimensionali i valori che hanno i giocatori nella lista di giocatori della partita in corso, in
+         * modo da passare anche gli attributi, come la lista di giocatori. Vengono poi chiamate le funzioni PrePartita() e Partita(), a cui vengono passati i due giocatori che si sfideranno insieme
+         * alla parola chiave "ref", che permette di modificare il parametro originale. Con un ciclo for vengono poi salvati gli stati dei giocatori che si sono sfidati, e successivamente viene
+         * salvato lo stato della partita attuale. Una volta terminate le sfide, viene chiamata la funzione FinePartita().
+         */
         static void InizioTorneo()
         {
             Giocatore[,] abbinamenti;
@@ -1033,21 +1044,41 @@ namespace fantacalcio
                         partitaInCorso.GetGiocatori()[j] = abbinamenti[i, 1];
                     }
                 }
+                Salvataggio.CreaSalvataggio(partitaInCorso);
             }
             FinePartita();
         }
 
+        /**
+         * \fn      void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
+         * \brief   Annuncia l'inizio di una partita e permette al giocatore di scegliere quale formazione utilizzare per la sfida imminente.
+         * \param   ref Giocatore giocatore1: Il primo giocatore
+         * \param   ref Giocatore giocatore2: Il secondo giocatore
+         * \param   Giocatore giocatoreCorrente: Il giocatore che deve fare una decisione
+         * \param   string nomeG1: Il nome in maiuscolo del primo giocatore 
+         * \param   string nomeG2: Il nome in maiuscolo del secondo giocatore
+         * \param   string nome: Il nome in maiuscolo del giocatore corrente
+         * \param   bool success: Variabile di controllo per l'input da tastiera dell'utente. Sarà impostata a false se l'input non è corretto, altrimenti sarà impostata a true.
+         * \details Inizialmente vengono inizializzate le variabili dei nomi del giocatore 1 e del giocatore 2, ottenuti dall'attributo "nome" dei giocatori e convertiti in maiuscolo.
+         * Viene poi pulita la console e annunciato l'inzio della sfida tra i due giocatori. In un ciclo for si fa un controllo dell'iterazione corrente: se si tratta della prima iterazione,
+         * il giocatore che compierà le azioni sarà il giocatore 1, altrimenti sarà il giocatore 2. Viene chiesto al giocatore corrente di decidere se usare la squadra di titolari, se cambiare formazione o,
+         * se non si tratta della sua prima partita, di usare la squadra usata nella partita precedente. La risposta è ottenuta in un ciclo do-while, che si ripete finchè la variabile di controllo "success"
+         * è settata a false. All'inizio dell'istruzione do viene settata la variabile success a true, ma nel caso il valore inserito non si tratti di uno dei valori proposti la variabile "success" viene 
+         * impostata a false, e quindi reiterato il ciclo. Nel caso l'utente inserisca 1, viene impostata la squadra attuale del giocatore uguale alla sua lista di titolari tramite il metodo 
+         * Giocatore.SetSquadraAttuale(). Se viene inserito 2, viene impostata la squadra attuale uguale alla lista restituita dalla funzione ModificaSquadra. Se non si tratta della prima partita del 
+         * giocatore, egli può inserire 3 e utilizzare la squadra attuale già caricata in precedenza. Una volta finite le eventuali modifiche viene posta la variabile del giocatore che ha effettuato le modifiche uguale alla variabile del giocatore
+         * corrente.
+         */
         static void PrePartita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
-            string nomeG1 = giocatore1.nome.ToUpper(), nomeG2 = giocatore2.nome.ToUpper();
+            string nomeG1 = giocatore1.nome.ToUpper(), nomeG2 = giocatore2.nome.ToUpper(), nome;
             bool success;
+            Giocatore giocatoreCorrente;
 
             Console.Clear();
             Console.WriteLine("Sta per avere inizio la partita tra {0} e {1}", nomeG1, nomeG2);
             for (int i = 0; i < 2; i++)
             {
-                Giocatore giocatoreCorrente;
-                string nome;
                 if (i == 0)
                 {
                     giocatoreCorrente = giocatore1;
@@ -1082,10 +1113,6 @@ namespace fantacalcio
                                 Console.Write("Inserire uno dei valori proposti");
                                 success = false;
                             }
-                            else
-                            {
-                                giocatoreCorrente.GetSquadraAttuale();
-                            }
                             break;
                         default:
                             Console.Write("Inserire uno dei valori proposti");
@@ -1107,16 +1134,29 @@ namespace fantacalcio
 
         }
 
+        /**
+         * \fn      List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
+         * \brief   Permette al giocatore di modificare la propria formazione,
+         * \param   Giocatore giocatoreCorrente: Il giocatore che sta modificando la propria squadra
+         * \param   List<Calciatore> squadraAttuale: La squadra attuale del giocatore
+         * \param   List<Calciatore> rosaCalciatori: La lista di calciatori posseduti dal giocatore
+         * \param   Calciatore calciatore1: Il calciatore da togliere dalla formazione
+         * \param   Calciatore calciatore2: Il calciatore da inserire nella formazione
+         * \param   int indice1: L'indice del calciatore da togliere dalla formazione inserito dall'utente
+         * \param   int indice2: L'indice del calciatore da inserire nella formazione inserito dall'utente
+         * \return  
+         */
         static List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
         {
+            List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale(), rosaCalciatori = giocatoreCorrente.GetRosa();
+            Calciatore calciatore1, calciatore2;
+            int indice1, indice2;
+
             if (giocatoreCorrente.primaPartita)
             {
                 giocatoreCorrente.SetSquadraAttuale(giocatoreCorrente.GetTitolari());
             }
-            List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale(), rosaCalciatori = giocatoreCorrente.GetRosa();
-            Calciatore calciatore1, calciatore2;
 
-            int indice1, indice2;
             while (true)
             {
                 Console.WriteLine("Squadra corrente:\n" + giocatoreCorrente.GetStringSquadra("a"));
@@ -1220,7 +1260,7 @@ namespace fantacalcio
                 Console.WriteLine("\nVINCE {0} CON {1} PUNTI!!", giocatore2.nome.ToUpper(), puntiG2);
                 giocatore2.AddPunteggio(3);
             }
-            Salvataggio.CreaSalvataggio(partitaInCorso);
+
             Console.Write("\n1 -> Visualizza classifica attuale\n2 -> Continua con la prossima partita\nRisposta: ");
             do
             {
