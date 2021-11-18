@@ -1144,13 +1144,24 @@ namespace fantacalcio
          * \param   Calciatore calciatore2: Il calciatore da inserire nella formazione
          * \param   int indice1: L'indice del calciatore da togliere dalla formazione inserito dall'utente
          * \param   int indice2: L'indice del calciatore da inserire nella formazione inserito dall'utente
-         * \return  
+         * \param   bool nomeDoppio: Controlla se il calciatore che si vuole inserire nella squadra è già presente nella formazione
+         * \return  List<Calciatori>: Ritorna una lista di calciatori modificata in base a quello che è stato deciso dall'utente.
+         * \details Viene popolata la lista della squadra attuale con ciò che il metodo Fantacalcio.GetSquadraAttuale() restituisce, mentre la lista di tutti i calciatori posseduti dal giocatore viene 
+         * popolata da ciò che il metodo Fantacalcio.GetRosa() restituisce. Viene poi controllato se si tratta della prima partita del giocatore: se sì, si imposta la squadra attuale uguale alla lista di
+         * calciatori titolari. In un ciclo while infinito viene viene chiesto all'utente se si vuole effettuare uno scambio. Se l'utente risponde "exit", la funzione viene interrotta. Se inserisce qualsiasi
+         * altra cosa, viene mostrata la squadra attuale e viene chiesto quale calciatore si vuole rimuovere dalla squadra. Per ottenere l'indice del calciatore si chiama la funzione OttieniIndiceSquadra(), che ritorna l'indice del calciatore 
+         * selezionato. Viene poi chiesto quale calciatore si vuole inserire nella squadra. Viene mostrata la rosa di calciatori e si ottiene l'indice del calciatore che deve essere inserito. Tramite un ciclo
+         * foreach viene poi comparato ogni calciatore nella squadra attuale, e se viene rilevato un nome uguale si imposta la variabile nomeDoppio a true e si interrompe il ciclo. Vengono poi effettuati dei controlli:
+         * \details E' stato rilevato un nome doppio;
+         * \details Si cerca di scambiare un portiere con un calciatore che non è un portiere, che risulterebbe in avere due portieri o nessun portiere in squadra;
+         * \details Lo scambio porterebbe a non avere nessun calciatore del ruolo del calciatore che è stato rimosso.
          */
         static List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
         {
             List<Calciatore> squadraAttuale = giocatoreCorrente.GetSquadraAttuale(), rosaCalciatori = giocatoreCorrente.GetRosa();
             Calciatore calciatore1, calciatore2;
             int indice1, indice2;
+            bool nomeDoppio;
 
             if (giocatoreCorrente.primaPartita)
             {
@@ -1159,9 +1170,6 @@ namespace fantacalcio
 
             while (true)
             {
-                Console.WriteLine("Squadra corrente:\n" + giocatoreCorrente.GetStringSquadra("a"));
-                Console.WriteLine("Lista calciatori posseduti:\n" + giocatoreCorrente.GetStringSquadra("r"));
-
                 Console.Write("Vuoi effettuare uno scambio? Inserisci 'exit' per annullare, inserisci altro per continuare.\nRisposta: ");
                 if (Console.ReadLine().ToLower() == "exit")
                 {
@@ -1169,9 +1177,13 @@ namespace fantacalcio
                     return squadraAttuale;
                 }
 
+                Console.WriteLine("Squadra corrente:\n" + giocatoreCorrente.GetStringSquadra("a"));
+
                 Console.Write("\nQuale calciatore dalla squadra corrente vuoi scambiare? \nRisposta: ");
 
                 indice1 = OttieniIndiceSquadra(squadraAttuale);
+
+                Console.WriteLine("Lista calciatori posseduti:\n" + giocatoreCorrente.GetStringSquadra("r"));
 
                 Console.Write("\nCon quale calciatore lo vuoi scambiare? \nRisposta: ");
 
@@ -1180,7 +1192,7 @@ namespace fantacalcio
                 calciatore1 = squadraAttuale[indice1 - 1];
                 calciatore2 = rosaCalciatori[indice2 - 1];
 
-                bool nomeDoppio = false; ;
+                nomeDoppio = false; 
                 foreach (Calciatore calciatore in squadraAttuale)
                 {
                     if (calciatore.nome == calciatore2.nome)
