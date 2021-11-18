@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['partita_0',['Partita',['../classfantacalcio_1_1_program.html#a20f3aee584244afc790ea2099b0348d3',1,'fantacalcio::Program']]],
+  ['partita_0',['Partita',['../classfantacalcio_1_1_program.html#a0bb8c9a4b2ba3ee57352f5fc9414565a',1,'fantacalcio::Program']]],
   ['partitaincorso_1',['partitaInCorso',['../classfantacalcio_1_1_program.html#afd9cd99e730ed8102fa7b8e083a143f2',1,'fantacalcio::Program']]],
   ['peso_2',['peso',['../classfantacalcio_1_1_azione.html#a5f88df0a75985f8f0745c5fc85677dec',1,'fantacalcio::Azione']]],
   ['prepartita_3',['PrePartita',['../classfantacalcio_1_1_program.html#a7dfc277488ec1d749c73f10479237104',1,'fantacalcio::Program']]],
