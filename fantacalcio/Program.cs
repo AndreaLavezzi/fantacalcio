@@ -1155,6 +1155,9 @@ namespace fantacalcio
          * \details E' stato rilevato un nome doppio;
          * \details Si cerca di scambiare un portiere con un calciatore che non è un portiere, che risulterebbe in avere due portieri o nessun portiere in squadra;
          * \details Lo scambio porterebbe a non avere nessun calciatore del ruolo del calciatore che è stato rimosso.
+         * \details In ognuno di questi casi, viene mostrato un messaggio di errore e viene impedito lo scambio. Se invece lo scambio può avvenire, vengono comunicati i nomi dei giocatori che stanno per essere scambiati.
+         * Se in questo momento il giocatore preme INVIO, lo scambio viene annullato, altrimenti, alla pressione di qualsiasi altro tasto, lo scambio prosegue. Viene poi chiesto di premere un tasto qualsiasi per continuare,
+         * e alla pressione viene pulita la console e viene ricominciato il ciclo.
          */
         static List<Calciatore> ModificaSquadra(Giocatore giocatoreCorrente)
         {

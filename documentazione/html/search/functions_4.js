@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generaabbinamenti_0',['GeneraAbbinamenti',['../classfantacalcio_1_1_program.html#a6d997f81fbac3b0b1c112fc2c44dde27',1,'fantacalcio::Program']]],
+  ['generaabbinamenti_0',['GeneraAbbinamenti',['../classfantacalcio_1_1_program.html#adee95ac58153830a1f34a7e8b72696b8',1,'fantacalcio::Program']]],
   ['generaazioni_1',['GeneraAzioni',['../classfantacalcio_1_1_calciatore.html#a439b1a7fc8663845a9958644d9084b09',1,'fantacalcio::Calciatore']]],
   ['gestiscipartite_2',['GestisciPartite',['../classfantacalcio_1_1_program.html#a536b12a98a637ef0b31402729e3367d4',1,'fantacalcio::Program']]],
   ['getcartellesalvataggi_3',['GetCartelleSalvataggi',['../classfantacalcio_1_1_salvataggio.html#a35635e8d62eea6b0b1182d6872da4353',1,'fantacalcio::Salvataggio']]],
