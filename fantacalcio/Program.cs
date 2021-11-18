@@ -22,6 +22,10 @@ using Newtonsoft.Json;
 
 namespace fantacalcio
 {
+    /**
+     * \class Program
+     * \brief Classe principale del programma, si occupa di interfacciarsi con l'utente
+     */
     class Program
     {
         /**
@@ -867,13 +871,13 @@ namespace fantacalcio
          * \param   Calciatore calciatoreScelto: Il calciatore scelto da inserire nella lista di calciatori titolari
          * \param   bool success: Indica la riuscita dell'inserimento da tastiera da parte dell'utente di un dato. Vale true se l'inserimento è riuscito, false se non è riuscito.
          * \param   int indice: Indice che corrisponde al calciatore da aggiungere alla lista di titolari
-         * \details Viene inizialmente mostrata la lista di calciatori posseduti dal giocatore restituita dalla funzione MostraCalciatoriRosa(). Viene poi comunicato il ruolo del giocatore del scegliere.
-         * In un ciclo do-while, che si ripete finchè la variabile success è false, viene inizialmente impostata quest'ultima a true. Viene poi ottenuto da tastiera l'indice del giocatore da aggiungere
-         * come titolare, ritornato dalla funzione OttieniIndiceSquadra(). Si imposta poi il valore di calciatoreScelto uguale a quello del calciatore in posizione indice - 1 nella lista di calciatori
-         * posseduti dal giocatore. Se il ruolo del calciatore scelto e il ruolo da scegliere non corrispondono, viene comunicata la non corrispondenza all'uente e si imposta la variabile success a false,
-         * per far reiterare il ciclo do-while. Se invece i ruoli corrispondono viene controllato che il calciatore selezionato non faccia già parte della lista di titolari tramite un ciclo foreach,
-         * in cui si comparano i nomi dei calciatori. Se questi combaciano, viene impostata la variabile success a false e viene chiesto di reinserire il calciatore. Una volta superati i controlli,
-         * il calciatore viene aggiunto alla lista di titolari tramite la funzione Giocatore.AddTitolari().
+         * \details Viene inizialmente mostrata la lista di calciatori posseduti dal giocatore restituita dal metodo Giocatore.GetStringSquadra() a cui viene passata la stringa "r", che indica di ricevere
+         * la rosa del giocatore. Viene poi comunicato il ruolo del giocatore del scegliere. In un ciclo do-while, che si ripete finchè la variabile success è false, viene inizialmente impostata quest'ultima 
+         * a true. Viene poi ottenuto da tastiera l'indice del giocatore da aggiungere come titolare, ritornato dalla funzione OttieniIndiceSquadra(). Si imposta poi il valore di calciatoreScelto uguale a quello
+         * del calciatore in posizione indice - 1 nella lista di calciatori posseduti dal giocatore. Se il ruolo del calciatore scelto e il ruolo da scegliere non corrispondono, viene comunicata la non corrispondenza
+         * all'uente e si imposta la variabile success a false, per far reiterare il ciclo do-while. Se invece i ruoli corrispondono viene controllato che il calciatore selezionato non faccia già parte della lista di
+         * titolari tramite un ciclo foreach, in cui si comparano i nomi dei calciatori. Se questi combaciano, viene impostata la variabile success a false e viene chiesto di reinserire il calciatore. Una volta superati 
+         * i controlli, il calciatore viene aggiunto alla lista di titolari tramite la funzione Giocatore.AddTitolari().
          */
         static void ControlloRuolo(Giocatore giocatoreCorrente, string ruolo)
         {
@@ -882,7 +886,7 @@ namespace fantacalcio
             int indice;
 
             Console.Clear();
-            Console.WriteLine(MostraCalciatoriRosa(giocatoreCorrente));
+            Console.WriteLine("Giocatori disponibili:\n{0}", giocatoreCorrente.GetStringSquadra("r"));
             Console.Write($"\nScegli un {ruolo} titolare: ");
             do
             {
@@ -910,22 +914,6 @@ namespace fantacalcio
             Console.WriteLine("Hai selezionato {0}!\nPremi un tasto per continuare...", calciatoreScelto.nome.ToUpper());
             Console.ReadKey();
             giocatoreCorrente.AddTitolari(giocatoreCorrente.GetRosa()[indice - 1]);
-        }
-
-        /**
-         * \fn      string MostraGiocatoriRosa(Giocatore giocatoreCorrente)
-         * \brief   Ritorna una stringa contenente i calciatori nella rosa del giocatore passato come parametro
-         * \param   Giocatore giocatoreCorrente: Il giocatore di cui si deve mostrare la lista
-         * \param   string lista: La stringa contenente la lista di giocatori
-         * \return  string: La funzione ritorna una stringa contenente i calciatori nella rosa del giocatore
-         * \details La funzione aggiunge alla variabile lista la lista di calciatori nella rosa di un giocatore, ottenuta dal metodo Giocatore.GetStringSquadra() a cui viene passata la stringa
-         * "r", che indica che vogliamo ottenere la lista della rosa.
-         */
-        static string MostraCalciatoriRosa(Giocatore giocatoreCorrente)
-        {
-            string lista = "";
-            lista  += "Giocatori disponibili:\n" + giocatoreCorrente.GetStringSquadra("r");
-            return lista;
         }
 
         /**
@@ -1236,6 +1224,22 @@ namespace fantacalcio
             }
         }
 
+        /**
+         * \fn      Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
+         * \brief   Avvia lo scontro tra i due giocatori
+         * \param   ref Giocatore giocatore1: Il primo giocatore della coppia 
+         * \param   ref Giocatore giocatore2: Il secondo giocatore della coppia
+         * \param   double punti: Punti fatti dal singolo calciatore
+         * \param   double puntiG1: Punti totali giocatore1
+         * \param   double puntiG2: Punti totali giocatore2
+         * \param   bool success: Variabile di controllo per gli inserimenti da tastiera da parte dell'utente. E' true se l'inserimento è andato a buon fine, altrimenti è false
+         * \details All'inizio, vengono generati i punti del giocatore 1. Per ogni calciatore nella squadra attuale del giocatore, viene chiamato il metodo Calciatore.GeneraAzioni(), che restituisce il punteggio
+         * ottenuto. Questo viene poi aggiunto al punteggio totale del giocatore. Alla fine del ciclo viene comunicato il totale dei punti fatti dal giocatore. Analogamente viene fatto lo stesso procedimento
+         * col giocatore 2. Una volta generati i punteggi, vengono comparati: se sono uguali, viene dichiarato il pareggio, e viene aggiunto un punto ad entrambi i giocatori tramite il metodo Giocatore.AddPunteggio().
+         * Se sono diversi, il giocatore col punteggio pià alto guadagna 3 punti. Viene poi chiesto all'utente se vuole visualizzare la classifica attuale o se vuole continuare con la prossima partita. In un ciclo do-while,
+         * che si ripete finchè la variabile success è false, viene inizialmente settata a true. L'utente inserisce poi la propria risposta: nel caso inserisca 1, viene mostrata la classifica ottenuta dal metodo Classifica(). 
+         * Nel caso si inserisca 2, il programma proseguirà semplicemente. Nel caso non si inserisca nessuno dei valori proposti, si comunica un messaggio di errore e viene impostata la variabile success a false.
+         */
         static void Partita(ref Giocatore giocatore1, ref Giocatore giocatore2)
         {
             double punti, puntiG1 = 0, puntiG2 = 0;
@@ -1297,6 +1301,12 @@ namespace fantacalcio
             } while (!success);
         }
 
+        /**
+         * \fn      void FinePartita()
+         * \brief   Mostra la classifica finale e termina la partita
+         * \details Viene inizialmente pulita la console. Poi, viene stampata a schermo la classifica, tramite la funzione di tipo string Classifica(). Viene poi settata la fase della partita in corso a 3, che indica che la partita è
+         * terminata. Infine, viene salvato su file lo stato della partita in corso.
+         */
         static void FinePartita()
         {
             Console.Clear();
@@ -1305,11 +1315,20 @@ namespace fantacalcio
             Salvataggio.CreaSalvataggio(partitaInCorso);
         }
 
+        /**
+         * \fn      string Classifica()
+         * \brief   Scrive in una stringa la classifica dei giocatori in base al punteggio
+         * \param   List<Giocatore> giocatori: La lista di giocatori registrati al torneo
+         * \param   string classifica: La stringa contenente la classifica
+         * \return  string: La funzione ritorna la stringa contenente la classfica in base al punteggio dei giocatori
+         * \details Inizialmente viene impostata la lista di giocatori uguale alla lista di giocatori della partita in corso. Viene poi passata come parametro alla funzione InsertionSort() che ordina la lista in base
+         * al punteggio. Con un ciclo for vengono poi inserite nella stringa le righe della classifica. Ogni riga contiente l'indice del giocatore, il suo nome e il suo punteggio. Viene infine ritornata la lista.
+         */
         static string Classifica()
         {
             List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            giocatori = InsertionSort(giocatori);
             string classifica = "";
+            giocatori = OrdinaGiocatori(giocatori);
 
             for (int i = 0; i < giocatori.Count; i++)
             {
@@ -1318,7 +1337,15 @@ namespace fantacalcio
             return classifica;
         }
 
-        static List<Giocatore> InsertionSort(List<Giocatore> giocatori)
+        /**
+         * \fn      List<Giocatore> OrdinaGiocatori(List<Giocatore> giocatori)
+         * \brief   Ordina la lista di giocatori che viene data in input alla funzione in base al punteggio di ciascuno
+         * \param   List<Giocatore> giocatori: La lista di giocatori da ordinare
+         * \param   Giocatore temp: Variabile di appoggio che permette di scambiare due giocatori
+         * \details Un ciclo for esterno che si ripete tante volte quanti giocatori sono presenti nella lista di giocatori, viene ripetuto un secondo ciclo for che compara un giocatore con il proprio precedente. Se il
+         * precedente risulta minore del successivo (e quindi il metodo Giocatore.CompareTo() restituisce -1) i due giocatori vengono scambiati. Alla fine, viene ritornata la lista di giocatori ordinata.
+         */
+        static List<Giocatore> OrdinaGiocatori(List<Giocatore> giocatori)
         {
             for (int i = 0; i < giocatori.Count - 1; i++)
             {
