@@ -11,25 +11,34 @@ namespace fantacalcio
     /**
      * \class   Giocatore
      * \brief   Rappresenta i giocatori che parteciperanno al torneo.
-     * \param   public string nome { get; }: Il nome del giocatore. Non può contenere caratteri speciali, non può essere più lungo di 12 caratteri o più corto di 4.
-     * \param   public int punteggio { get; set; }: Il punteggio del giocatore. Partita vinta: +3 punti, partita persa: 0 punti, partita pareggiata: +1 punto.
-     * \param   public int fantaMilioni { get; set; }: I crediti con cui il giocatore può acquistare i calciatori
-     * \param   public bool primaPartita {get; set; }: Indica se la partita che sta venendo giocata dal giocatore è la sua prima partita del torneo.
-     * \param   List<Calciatore> rosa: I calciatori posseduti dal giocatore
-     * \param   List<Calciatore> titolari: La lista di calciatori titolati scelti dal giocatore
-     * \param   List<Calciatore> squadra: La squadra che verrà usata in partita dal giocatore
      */
     class Giocatore
     {
-        public string nome { get; }         //identifica il giocatore 
-        public int punteggio { get; set; }       //punteggio che decreterà il vincitore finale della partita
-        public int fantaMilioni { get; set; }                   //crediti a disposizione del giocatore, usati per comprare i calciatori
-        public bool primaPartita { get; set; }
-        List<Calciatore> rosa = new List<Calciatore>();
-        List<Calciatore> titolari = new List<Calciatore>();
-        List<Calciatore> squadra = new List<Calciatore>();
+        /// \brief Il nome del giocatore. Non può contenere caratteri speciali, non può essere più lungo di 12 caratteri o più corto di 4.
+        public string nome { get; }
 
-        public Giocatore(string nome)       //metodo costruttore, riceve in ingresso il nome del giocatore 
+        /// \brief Il punteggio del giocatore. Partita vinta: +3 punti, partita persa: 0 punti, partita pareggiata: +1 punto.
+        public int punteggio { get; set; }
+
+        /// \brief I crediti con cui il giocatore può acquistare i calciatori
+        public int fantaMilioni { get; set; }
+
+        /// \brief Indica se la partita che sta venendo giocata dal giocatore è la sua prima partita del torneo.
+        public bool primaPartita { get; set; }
+
+        /// \brief I calciatori posseduti dal giocatore
+        List<Calciatore> rosa = new List<Calciatore>();
+
+        /// \brief La lista di calciatori titolati scelti dal giocatore
+        List<Calciatore> titolari = new List<Calciatore>();
+
+        /// \brief La squadra che verrà usata in partita dal giocatore
+        List<Calciatore> squadra = new List<Calciatore>(); 
+
+        /**
+         * \brief Metodo costruttore, riceve in input il nome e imposta i crediti iniziali a 500 e il valore di primaPartita a true.
+         */
+        public Giocatore(string nome)
         {
             this.nome = nome;
             fantaMilioni = 500;

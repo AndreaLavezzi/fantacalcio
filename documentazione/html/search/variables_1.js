@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nome_0',['nome',['../classfantacalcio_1_1_azione.html#a9b6a5c3ab3e3cbd735cc5e2fc46ac439',1,'fantacalcio::Azione']]]
+  ['partitaincorso_0',['partitaInCorso',['../classfantacalcio_1_1_program.html#afd9cd99e730ed8102fa7b8e083a143f2',1,'fantacalcio::Program']]]
 ];

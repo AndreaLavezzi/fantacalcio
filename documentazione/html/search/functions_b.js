@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tostring_0',['ToString',['../classfantacalcio_1_1_calciatore.html#a4739e5d56ab75132059516797b37ec53',1,'fantacalcio.Calciatore.ToString()'],['../classfantacalcio_1_1_giocatore.html#ade8e941fe7c9d803eea887f1a788ffa9',1,'fantacalcio.Giocatore.ToString()']]]
+  ['tostring_0',['ToString',['../classfantacalcio_1_1_calciatore.html#ae46420b860b11606fb6e2df8024a9434',1,'fantacalcio.Calciatore.ToString()'],['../classfantacalcio_1_1_giocatore.html#af3c893146223ecec8f9ea61e636ea303',1,'fantacalcio.Giocatore.ToString()']]]
 ];

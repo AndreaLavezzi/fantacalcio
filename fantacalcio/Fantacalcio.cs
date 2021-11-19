@@ -13,17 +13,20 @@ namespace fantacalcio
     /**
      * \class   Fantacalcio
      * \brief   Rappresenta una partita, contiene tutti i dati di essa
-     * \param   string nomeSalvataggio: Il nome del torneo. Il file di salvataggio del torneo avrà questo nome
-     * \param   int fase: Indica il momento a cui la partita è arrivata. 0 = Inizio Asta, 1 = Selezione titolari, 2 = Partite, 3 = Fine partita
-     * \param   int numeroPartita: Il numero della sfida tra giocatori a cui si è arrivati
-     * \param   List<Giocatore> giocatori: La lista di giocatori registrati al torneo
      */
     class Fantacalcio
     {
+        /// \brief string nomeSalvataggio: Il nome del torneo.Il file di salvataggio del torneo avrà questo nome
         public string nomeSalvataggio { get; }
+
+        /// \brief int fase: Indica il momento a cui la partita è arrivata. 0 = Inizio Asta, 1 = Selezione titolari, 2 = Partite, 3 = Fine partita
         public int fase { get; set; }
+
+        /// \brief Il numero della sfida tra giocatori a cui si è arrivati
         public int numeroPartita { get; set; }
-        List<Giocatore> giocatori = new List<Giocatore>();
+
+        /// \brief La lista di giocatori registrati al torneo
+        List<Giocatore> giocatori = new List<Giocatore>(); 
 
         /**
          * \fn      public Fantacalcio(string nomeSalvataggio, List<Giocatore> giocatori, int fase, int numeroPartita)

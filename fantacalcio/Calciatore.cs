@@ -14,13 +14,18 @@ namespace fantacalcio
     /**
      * \class   Calciatore
      * \brief   Rappresenta i calciatori, hanno un nome e un ruolo
-     * \param   public string nome { get; }: Attributo di sola lettura che contiene il nome del calciatore
-     * \param   public string ruolo { get; }: Attributo di sola lettura che contiene il ruolo del calciatore
      */
     class Calciatore
     {
+        /// \brief Attributo di sola lettura che contiene il nome del calciatore
         public string nome { get; }
-        public string ruolo { get; }
+
+        /// \brief Attributo di sola lettura che contiene il ruolo del calciatore
+        public string ruolo { get; } 
+
+        /**
+         * \brief Meotodo costruttore, riceve in input il nome e il ruolo del calciatore
+         */
         public Calciatore(string nome, string ruolo)
         {
             this.nome = nome;
