@@ -28,7 +28,22 @@ namespace fantacalcio
         }
         /**
          * \fn      public double GeneraAzioni()
-         * \brief   Genera un numero randomico di azioni, i cui punteggi verranno poi 
+         * \brief   Genera un numero randomico di azioni, i cui punteggi verranno poi aggiunti al punteggio totale del calciatore
+         * \param   double punti: I punti totali ottenuti dal calciatore
+         * \param   int pesoMassimo: Il totale della somma tra i pesi delle varie azioni possibili
+         * \param   List<Azione> azioni: Lista delle azioni disponibili in base al ruolo del calciatore
+         * \param   Random random: Istanza della classe Random che permette di generare numeri randomici
+         * \param   int numeroAzioni: Numero randomico di azioni da generare
+         * \param   int azioneRandom: L'indice dell'azione da eseguire nella lista di azioni
+         * \param   int eseguiAzione: Numero random tra 0 e 100
+         * \return  double: Ritorna il punteggio totale fatto dal calciatore
+         * \param   int probabilità: La percentuale di possibilità che una certa azione venga eseguita
+         * \details Il metodo ottiene dal file <ruolo>.json (dove <ruolo> è il ruolo del calciatore corrente) tramite il metodo DeserializeObject della classe JsonConvert, dalla libreria Newtonsoft.Json.
+         * Viene poi calcolato il peso massimo sommando i pesi di ogni azione nella lista delle azioni. In un ciclo for, che si ripete un numero di volte pari al numero di azioni, si estrae un numero random
+         * tra 0 e il numero di azioni disponibili, per estrarre l'azione da eseguire. Si estrae poi un numero random che indicherà se l'azione verrà eseguita o meno. Viene poi calcolata la probabilità che
+         * l'azione avvenga, moltiplicando il peso dell'azione estratta per 200 e poi dividendolo per il peso massimo, tutto dentro al metodo Math.Round() che arrotonda il valore double in un intero.
+         * Se il numero random eseguiAzione è minore o uguale alla probabilità, p'azione viene eseguita e viene aggiunto il punteggio dell'azione ai punti totali. Se non viene eseguita l'azione si decrementa
+         * il valore di i.
          */
         public double GeneraAzioni()
         {
@@ -46,7 +61,7 @@ namespace fantacalcio
             {
                 int azioneRandom = random.Next(azioni.Count);
                 int eseguiAzione = random.Next(100);
-                int probabilità = (int)Math.Round((double)(azioni[azioneRandom].peso * 100) / pesoMassimo);
+                int probabilità = (int)Math.Round((double)(azioni[azioneRandom].peso * 200) / pesoMassimo);
                 if (eseguiAzione <= probabilità)
                 {
                     punti += azioni[azioneRandom].punteggio;
@@ -59,6 +74,11 @@ namespace fantacalcio
             return punti;
         }
 
+        /**
+         * \fn      public override string ToString()
+         * \brief   Ritorna una stringa con le informazioni del calciatore
+         * \return  string: La stringa ritornata contiene il nome e il ruolo in maiuscolo del calciatore corrente
+         */
         public override string ToString()
         {
             return $"Nome: {nome.ToUpper()}\nRuolo: {ruolo.ToUpper()}";
