@@ -977,7 +977,7 @@ namespace fantacalcio
                 }
             }
 
-            Salvataggio.SalvaAbbinamenti(partitaInCorso, abbinamenti);
+            Salvataggio.SalvaAbbinamenti(partitaInCorso.nomeSalvataggio, abbinamenti);
         }
 
         /**
@@ -1288,7 +1288,7 @@ namespace fantacalcio
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        Console.Write("\nCLASSIFICA ATTUALE:\n{0}", Classifica());
+                        Console.Write("\nCLASSIFICA ATTUALE:\n{0}", partitaInCorso.Classifica());
                         Console.WriteLine("\nPremi un tasto qualsiasi per continuare...");
                         Console.ReadKey(true);
                         break;
@@ -1311,57 +1311,9 @@ namespace fantacalcio
         static void FinePartita()
         {
             Console.Clear();
-            Console.Write("CLASSIFICA FINALE:\n{0}", Classifica());
+            Console.Write("CLASSIFICA FINALE:\n{0}", partitaInCorso.Classifica());
             partitaInCorso.fase = 3;
             Salvataggio.CreaSalvataggio(partitaInCorso);
-        }
-
-        /**
-         * \fn      string Classifica()
-         * \brief   Scrive in una stringa la classifica dei giocatori in base al punteggio
-         * \param   List<Giocatore> giocatori: La lista di giocatori registrati al torneo
-         * \param   string classifica: La stringa contenente la classifica
-         * \return  string: La funzione ritorna la stringa contenente la classfica in base al punteggio dei giocatori
-         * \details Inizialmente viene impostata la lista di giocatori uguale alla lista di giocatori della partita in corso. Viene poi passata come parametro alla funzione InsertionSort() che ordina la lista in base
-         * al punteggio. Con un ciclo for vengono poi inserite nella stringa le righe della classifica. Ogni riga contiente l'indice del giocatore, il suo nome e il suo punteggio. Viene infine ritornata la lista.
-         */
-        static string Classifica()
-        {
-            List<Giocatore> giocatori = partitaInCorso.GetGiocatori();
-            string classifica = "";
-            giocatori = OrdinaGiocatori(giocatori);
-
-            for (int i = 0; i < giocatori.Count; i++)
-            {
-                classifica += i + 1 + " -> " + giocatori[i].nome + " con " + giocatori[i].punteggio + " punti\n";
-            }
-            return classifica;
-        }
-
-        /**
-         * \fn      List<Giocatore> OrdinaGiocatori(List<Giocatore> giocatori)
-         * \brief   Ordina la lista di giocatori che viene data in input alla funzione in base al punteggio di ciascuno
-         * \param   List<Giocatore> giocatori: La lista di giocatori da ordinare
-         * \param   Giocatore temp: Variabile di appoggio che permette di scambiare due giocatori
-         * \details Un ciclo for esterno che si ripete tante volte quanti giocatori sono presenti nella lista di giocatori, viene ripetuto un secondo ciclo for che compara un giocatore con il proprio precedente. Se il
-         * precedente risulta minore del successivo (e quindi il metodo Giocatore.CompareTo() restituisce -1) i due giocatori vengono scambiati. Alla fine, viene ritornata la lista di giocatori ordinata.
-         */
-        static List<Giocatore> OrdinaGiocatori(List<Giocatore> giocatori)
-        {
-            for (int i = 0; i < giocatori.Count - 1; i++)
-            {
-                for (int j = i + 1; j > 0; j--)
-                {
-                    int t = giocatori[j - 1].CompareTo(giocatori[j]);
-                    if (t == -1)
-                    {
-                        Giocatore temp = giocatori[j - 1];
-                        giocatori[j - 1] = giocatori[j];
-                        giocatori[j] = temp;
-                    }
-                }
-            }
-            return giocatori;
         }
         #endregion
         #endregion
