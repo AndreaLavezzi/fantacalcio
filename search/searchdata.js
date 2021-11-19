@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: "f",
   3: ".acfgps",
   4: "acefgimnopst",
-  5: "gnprst",
+  5: "gprst",
   6: "fnpr"
 };
 

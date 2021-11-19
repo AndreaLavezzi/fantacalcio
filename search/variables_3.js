@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rosa_0',['rosa',['../classfantacalcio_1_1_giocatore.html#a966f410ce12faf63ae42345503952292',1,'fantacalcio::Giocatore']]]
+  ['squadra_0',['squadra',['../classfantacalcio_1_1_giocatore.html#add9154df220a5e8df49ba1834d655df4',1,'fantacalcio::Giocatore']]]
 ];
