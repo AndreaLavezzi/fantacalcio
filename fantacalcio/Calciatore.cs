@@ -11,7 +11,12 @@ using System.IO;
 
 namespace fantacalcio
 {
-    //i calciatori, hanno un nome e un ruolo, viene inoltre salvato il prezzo a cui vengono comprati
+    /**
+     * \class   Calciatore
+     * \brief   Rappresenta i calciatori, hanno un nome e un ruolo
+     * \param   public string nome { get; }: Attributo di sola lettura che contiene il nome del calciatore
+     * \param   public string ruolo { get; }: Attributo di sola lettura che contiene il ruolo del calciatore
+     */
     class Calciatore
     {
         public string nome { get; }
@@ -21,6 +26,10 @@ namespace fantacalcio
             this.nome = nome;
             this.ruolo = ruolo;
         }
+        /**
+         * \fn      public double GeneraAzioni()
+         * \brief   Genera un numero randomico di azioni, i cui punteggi verranno poi 
+         */
         public double GeneraAzioni()
         {
             double punti = 0;
@@ -41,6 +50,10 @@ namespace fantacalcio
                 if (eseguiAzione <= probabilità)
                 {
                     punti += azioni[azioneRandom].punteggio;
+                }
+                else
+                {
+                    i--;
                 }
             }
             return punti;

@@ -1244,6 +1244,7 @@ namespace fantacalcio
         {
             double punti, puntiG1 = 0, puntiG2 = 0;
             bool success;
+            Console.Clear();
 
             Console.WriteLine("Squadra di {0}", giocatore1.nome.ToUpper());
             foreach (Calciatore calciatore in giocatore1.GetSquadraAttuale())
@@ -1258,7 +1259,7 @@ namespace fantacalcio
             foreach (Calciatore calciatore in giocatore2.GetSquadraAttuale())
             {
                 punti = calciatore.GeneraAzioni();
-                Console.WriteLine(calciatore.ToString() + ": {0} punti", punti);
+                Console.WriteLine(calciatore.ToString() + "\nPUNTI: {0} punti\n", punti);
                 puntiG2 += punti;
             }
             Console.WriteLine("\nTotale: {0} PUNTI", puntiG2);
@@ -1310,7 +1311,7 @@ namespace fantacalcio
         static void FinePartita()
         {
             Console.Clear();
-            Console.Write("CLASSIFICA FINALE:\n {0}", Classifica());
+            Console.Write("CLASSIFICA FINALE:\n{0}", Classifica());
             partitaInCorso.fase = 3;
             Salvataggio.CreaSalvataggio(partitaInCorso);
         }

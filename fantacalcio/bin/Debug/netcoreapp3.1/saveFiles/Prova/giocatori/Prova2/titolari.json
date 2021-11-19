@@ -1,0 +1,46 @@
+[
+  {
+    "nome": "bertinato bruno",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "gabelli leonardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vasquez johan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pezzella giuseppe",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "demiral",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "linetty karol",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "portanova manolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "brozovic marcelo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tessmann tanner",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "strelec david",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "teodorczyk lukasz",
+    "ruolo": "attaccante"
+  }
+]

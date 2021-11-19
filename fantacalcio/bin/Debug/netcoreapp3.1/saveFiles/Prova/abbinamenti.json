@@ -1,0 +1,16 @@
+[
+  [
+    {
+      "nome": "Prova1",
+      "punteggio": 0,
+      "fantaMilioni": 474,
+      "primaPartita": true
+    },
+    {
+      "nome": "Prova2",
+      "punteggio": 0,
+      "fantaMilioni": 457,
+      "primaPartita": true
+    }
+  ]
+]

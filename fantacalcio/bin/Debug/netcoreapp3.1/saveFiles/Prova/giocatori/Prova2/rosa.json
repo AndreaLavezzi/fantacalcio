@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "nome": "gabelli leonardo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "vasquez johan",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "pezzella giuseppe",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "demiral",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "altare giorgio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "bonifazi kevin",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kamenovic dimitrije",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "linetty karol",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "portanova manolo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "bertinato bruno",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "rrahmani amir",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "brozovic marcelo",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "agudelo kevin",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "akpa-akpro jean-daniel",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "tatarusanu ciprian",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "sava razvan",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "di tacchio francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pavoletti leonardo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "tessmann tanner",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "hernani",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "gonzalez nicolas",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "piccoli roberto",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pjaca marko",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "teodorczyk lukasz",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "strelec david",
+    "ruolo": "attaccante"
+  }
+]

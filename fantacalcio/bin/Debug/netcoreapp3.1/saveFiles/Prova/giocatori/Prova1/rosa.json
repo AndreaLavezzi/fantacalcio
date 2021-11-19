@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "nome": "vacca antonio junior",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "adrien silva",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "pereyra roberto",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "felicioli gian filippo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "magnanelli francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "baselli daniele",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "semper adrian",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "koopmeiners teun",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "florenzi alessandro",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "romagnoli simone",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "biraschi davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "romagnoli alessio",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "zappacosta davide",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "falcinelli diego",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "darmian matteo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "ricci samuele",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "de maio sebastien",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "kessie franck",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "rossi francesco",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "riccardi alessio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gemello luca",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "kouame christian",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pandev goran",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gabbiadini manolo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "immobile ciro",
+    "ruolo": "attaccante"
+  }
+]

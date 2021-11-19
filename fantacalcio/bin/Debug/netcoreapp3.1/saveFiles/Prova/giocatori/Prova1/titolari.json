@@ -1,0 +1,46 @@
+[
+  {
+    "nome": "semper adrian",
+    "ruolo": "portiere"
+  },
+  {
+    "nome": "felicioli gian filippo",
+    "ruolo": "difensore"
+  },
+  {
+    "nome": "magnanelli francesco",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "vacca antonio junior",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "adrien silva",
+    "ruolo": "centrocampista"
+  },
+  {
+    "nome": "immobile ciro",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "gabbiadini manolo",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "pandev goran",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "kouame christian",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "riccardi alessio",
+    "ruolo": "attaccante"
+  },
+  {
+    "nome": "falcinelli diego",
+    "ruolo": "attaccante"
+  }
+]
